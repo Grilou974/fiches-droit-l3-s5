@@ -224,5 +224,43 @@
     "88 ans, voisine de Nino, ancienne danseuse du Moulin Rouge"
    ]
   ]
+ },
+ "protec": {
+  "title": "Un croissant, pas deux",
+  "course": "Initiation au droit de la protection sociale",
+  "pitch": "Sami, apprenti boulanger rue des Abbesses, rend sa monnaie au PDG de l'assureur qui veut remplacer la Sécu. Brûlure, pneumonie, asthme professionnel, faute inexcusable, révocation, enfance placée, audition à l'Assemblée et jumelles à Lariboisière : tout le cours, de Bismarck au congé de naissance.",
+  "c": "#2B8A3E",
+  "soft": "#EBFBEE",
+  "deep": "#1B5E28",
+  "cast": [
+   [
+    "Sami Haddad",
+    "22 ans, L3 de droit, apprenti boulanger rue des Abbesses dès 4 h 30, studio rue Jean-Baptiste-Pigalle"
+   ],
+   [
+    "Augustin Lécuyer-Roy",
+    "36 ans, PDG de Providentia, maison néo-gothique impasse Marie-Blanche, veut remplacer la Sécu"
+   ],
+   [
+    "Nadia Haddad",
+    "mère de Sami, agente d'entretien depuis vingt ans dans la tour Providentia"
+   ],
+   [
+    "Monsieur Joly",
+    "le boulanger"
+   ],
+   [
+    "Leïla et Youssef",
+    "sœur et beau-frère de Sami, jumelles en route"
+   ],
+   [
+    "Madame Lemaire",
+    "78 ans, ancienne assistante familiale dans la Somme"
+   ],
+   [
+    "Gérard",
+    "chauffeur d'Augustin, ne dit jamais rien"
+   ]
+  ]
  }
 }

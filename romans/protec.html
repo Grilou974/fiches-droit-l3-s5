@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Un croissant, pas deux — Initiation au droit de la protection sociale (version romancée)</title>
+<style>
+@font-face{font-family:"Fraunces";src:url("../assets/fonts/fraunces-latin-wght-normal.woff2") format("woff2");font-weight:100 900;font-style:normal}
+@font-face{font-family:"Fraunces";src:url("../assets/fonts/fraunces-latin-wght-italic.woff2") format("woff2");font-weight:100 900;font-style:italic}
+@font-face{font-family:"InterV";src:url("../assets/fonts/inter-latin-wght-normal.woff2") format("woff2");font-weight:100 900}
+:root{--c:#2B8A3E;--soft:#EBFBEE;--deep:#1B5E28;--paper:#FBF8F2;--ink:#22201C;--muted:#6E6A62;--line:#E7E1D6;--card:#fff;--fs:19px}
+body.night{--paper:#16151A;--ink:#E9E4DA;--muted:#9C978E;--line:#2C2A31;--card:#1F1E24;--soft:#2A211B}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.6 InterV,system-ui,sans-serif;transition:background .3s,color .3s}
+a{color:inherit}
+/* barre */
+.bar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar .in{max-width:1100px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;gap:8px}
+.bar a.back{font:600 13px InterV;text-decoration:none;padding:7px 12px;border:1px solid var(--line);border-radius:99px;background:var(--card)}
+.bar .t{flex:1;font:600 14px Fraunces,serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 6px}
+.bar button,.bar a.back{white-space:nowrap}
+.bar button{font:600 13px InterV;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:7px 11px;cursor:pointer}
+.bar button.on{background:var(--c);border-color:var(--c);color:#fff}
+.prog{position:absolute;left:0;bottom:-1px;height:3px;background:var(--c);width:0}
+/* couverture */
+.hero{max-width:760px;margin:0 auto;padding:64px 24px 24px}
+.hero .kick{font:600 12px InterV;letter-spacing:.14em;text-transform:uppercase;color:var(--c)}
+.hero h1{font:600 clamp(44px,8vw,84px)/1 Fraunces,serif;letter-spacing:-.02em;margin:14px 0 10px}
+.hero h1 em{color:var(--c);font-weight:500}
+.hero .sub{font:italic 400 21px/1.45 Fraunces,serif;color:var(--muted);margin:0 0 22px}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.meta span{font:600 12.5px InterV;background:var(--soft);color:var(--deep);padding:6px 11px;border-radius:99px}
+body.night .meta span{color:#FFB98A}
+.hero .cta{display:flex;gap:10px;flex-wrap:wrap}
+.btn{font:600 14px InterV;text-decoration:none;border-radius:12px;padding:12px 16px;border:1px solid var(--line);background:var(--card);cursor:pointer;color:var(--ink)}
+.btn.pri{background:var(--c);border-color:var(--c);color:#fff}
+.how{margin:30px 0 0;padding:18px 20px;border-radius:18px;background:var(--card);border:1px solid var(--line);font-size:14.5px;color:var(--muted)}
+.how b{color:var(--ink)}
+.how .k{cursor:default}
+details.cast{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:4px 20px}
+details.cast summary{cursor:pointer;font:600 15px InterV;padding:14px 0}
+details.cast ul{list-style:none;padding:0;margin:0 0 16px}
+details.cast li{display:flex;gap:10px;padding:7px 0;border-top:1px dashed var(--line);font-size:14.5px}
+details.cast li b{min-width:150px;font-family:Fraunces,serif;font-size:16px}
+details.cast li span{color:var(--muted)}
+/* sommaire */
+.toc{max-width:760px;margin:26px auto 0;padding:0 24px}
+.toc h3{font:600 13px InterV;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+.toc ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}
+.toc a{display:block;text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:11px 14px;font:500 15px/1.3 Fraunces,serif;transition:transform .15s,border-color .15s}
+.toc a:hover{transform:translateY(-2px);border-color:var(--c)}
+.toc a span{display:block;font:600 11px InterV;letter-spacing:.08em;text-transform:uppercase;color:var(--c);margin-bottom:3px}
+.toc a.read{opacity:.55}
+.toc a.read span::after{content:" ✓"}
+/* tiroir */
+.drawer{position:fixed;inset:0;z-index:40;display:none}
+.drawer.open{display:block}
+.drawer .shade{position:absolute;inset:0;background:rgba(0,0,0,.35)}
+.drawer .panel{position:absolute;right:0;top:0;bottom:0;width:min(360px,88vw);background:var(--paper);padding:20px;overflow:auto;box-shadow:-10px 0 30px rgba(0,0,0,.15)}
+.drawer .panel ol{grid-template-columns:1fr}
+/* texte */
+article{max-width:680px;margin:0 auto;padding:10px 24px 80px}
+.chap{padding-top:70px}
+.chap header{text-align:center;margin-bottom:34px}
+.chap .num{font:600 12px InterV;letter-spacing:.16em;text-transform:uppercase;color:var(--c)}
+.chap h2{font:600 clamp(32px,5vw,46px)/1.08 Fraunces,serif;margin:10px 0 16px;letter-spacing:-.01em}
+.epi{margin:0 auto;max-width:520px;font:italic 400 16px/1.5 Fraunces,serif;color:var(--muted);border:0;padding:0}
+.chap p{font:400 var(--fs)/1.72 Fraunces,serif;margin:0 0 1.05em;hyphens:auto;-webkit-hyphens:auto;text-align:justify}
+.chap header + p::first-letter{float:left;font:600 4.1em/.8 Fraunces,serif;color:var(--c);padding:.08em .1em 0 0}
+.chap strong{font-weight:650}
+.scene{text-align:center;color:var(--c);font-size:20px;margin:1.6em 0;letter-spacing:.5em}
+/* termes juridiques */
+.k{position:relative;cursor:help;outline:none}
+body.law .k{background:linear-gradient(transparent 58%,color-mix(in srgb,var(--c) 26%,transparent) 58%);border-radius:2px}
+body.law .k::after{content:"§";font:700 .62em InterV;color:var(--c);vertical-align:super;margin-left:1px}
+.k[data-r]:hover::before,.k[data-r]:focus::before{content:attr(data-r);position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%);
+  width:max-content;max-width:270px;background:#22201C;color:#fff;font:500 13px/1.4 InterV;padding:8px 11px;border-radius:10px;z-index:30;text-align:left;box-shadow:0 8px 24px rgba(0,0,0,.2);white-space:normal}
+body:not(.law) .k::before{display:none}
+/* encadrés */
+.retenir{margin:2.2em 0 0;background:var(--soft);border:1px solid color-mix(in srgb,var(--c) 30%,transparent);border-radius:20px;padding:20px 22px 10px}
+body.night .retenir{background:#231C17}
+.retenir h4{margin:0 0 10px;font:700 12px InterV;letter-spacing:.12em;text-transform:uppercase;color:var(--deep)}
+body.night .retenir h4{color:#FFB98A}
+.retenir ul{margin:0;padding-left:18px}
+.retenir li{font:400 14.5px/1.55 InterV;margin-bottom:9px}
+body.hidebox .retenir{display:none}
+.next{display:flex;justify-content:space-between;gap:10px;margin-top:26px}
+.next a{flex:1;text-align:center}
+footer{max-width:680px;margin:0 auto;padding:30px 24px 60px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+@media (max-width:600px){.bar .t{display:none}.bar .lbl{display:none}.bar .in{gap:6px;padding:9px 12px}.bar .in>a.back{margin-right:auto}.chap p{text-align:left}details.cast li{flex-direction:column;gap:0}
+  .k[data-r]:hover::before,.k[data-r]:focus::before{position:fixed;left:12px;right:12px;bottom:16px;top:auto;transform:none;width:auto;max-width:none;font-size:14px;padding:12px 14px}}
+@media print{.bar,.drawer,.next,.toc{display:none}}
+</style>
+</head>
+<body class="law">
+<div class="bar"><div class="in">
+  <a class="back" href="../index.html">← Cours</a>
+  <div class="t">Un croissant, pas deux · Initiation au droit de la protection sociale</div>
+  <button id="bLaw" class="on" title="Surligner les notions juridiques">§<span class="lbl"> Repères</span></button>
+  <button id="bBox" class="on" title="Afficher les encadrés de fin de chapitre">📌</button>
+  <button id="bSize" title="Taille du texte">Aa</button>
+  <button id="bNight" title="Mode nuit">☾</button>
+  <button id="bToc" title="Chapitres">☰</button>
+</div><div class="prog" id="prog"></div></div>
+
+<header class="hero">
+  <div class="kick">Version romancée · Initiation au droit de la protection sociale</div>
+  <h1>Un croissant, pas deux</h1>
+  <p class="sub">Sami, apprenti boulanger rue des Abbesses, rend sa monnaie au PDG de l&#x27;assureur qui veut remplacer la Sécu. Brûlure, pneumonie, asthme professionnel, faute inexcusable, révocation, enfance placée, audition à l&#x27;Assemblée et jumelles à Lariboisière : tout le cours, de Bismarck au congé de naissance.</p>
+  <div class="meta"><span>13 chapitres</span><span>≈ 93 min de lecture</span><span>Tout le cours dedans</span></div>
+  <div class="cta">
+    <a class="btn pri" id="start" href="#ch1">Commencer la lecture →</a>
+    <a class="btn" href="../fiches/protec.html">Lire la fiche classique</a>
+  </div>
+  <div class="how"><b>Comment ça marche.</b> Les notions du cours sont <span class="k" tabindex="0" data-r="Survole ou touche un mot surligné : l'article ou la règle s'affiche.">surlignées</span> : survole-les (ou touche-les sur téléphone) pour voir l'article ou la règle. Chaque chapitre se termine par un encadré « Ce que tu viens d'apprendre ». Le bouton § coupe les surlignages si tu veux juste lire l'histoire.</div>
+  <details class="cast"><summary>Les personnages</summary><ul><li><b>Sami Haddad</b><span>22 ans, L3 de droit, apprenti boulanger rue des Abbesses dès 4 h 30, studio rue Jean-Baptiste-Pigalle</span></li><li><b>Augustin Lécuyer-Roy</b><span>36 ans, PDG de Providentia, maison néo-gothique impasse Marie-Blanche, veut remplacer la Sécu</span></li><li><b>Nadia Haddad</b><span>mère de Sami, agente d&#x27;entretien depuis vingt ans dans la tour Providentia</span></li><li><b>Monsieur Joly</b><span>le boulanger</span></li><li><b>Leïla et Youssef</b><span>sœur et beau-frère de Sami, jumelles en route</span></li><li><b>Madame Lemaire</b><span>78 ans, ancienne assistante familiale dans la Somme</span></li><li><b>Gérard</b><span>chauffeur d&#x27;Augustin, ne dit jamais rien</span></li></ul></details>
+</header>
+
+<nav class="toc" id="toc"><h3>Chapitres</h3><ol><li><a href="#ch1"><span>Chapitre 1</span>Un croissant, pas deux</a></li><li><a href="#ch2"><span>Chapitre 2</span>Bismarck, Beveridge et Laroque</a></li><li><a href="#ch3"><span>Chapitre 3</span>La mosaïque</a></li><li><a href="#ch4"><span>Chapitre 4</span>Qui paie quoi</a></li><li><a href="#ch5"><span>Chapitre 5</span>La plaque à cent quatre-vingts degrés</a></li><li><a href="#ch6"><span>Chapitre 6</span>Présent au domicile de 9 h à 11 h</a></li><li><a href="#ch7"><span>Chapitre 7</span>Le trentième étage</a></li><li><a href="#ch8"><span>Chapitre 8</span>Inexcusable</a></li><li><a href="#ch9"><span>Chapitre 9</span>France Travail, guichet 4</a></li><li><a href="#ch10"><span>Chapitre 10</span>La maison grise</a></li><li><a href="#ch11"><span>Chapitre 11</span>Audition publique</a></li><li><a href="#ch12"><span>Chapitre 12</span>Les jumelles de Lariboisière</a></li><li><a href="#ch13"><span>Épilogue</span>Deux croissants</a></li></ol></nav>
+
+<div class="drawer" id="drawer"><div class="shade"></div><div class="panel"><nav class="toc"><h3>Chapitres</h3><ol><li><a href="#ch1"><span>Chapitre 1</span>Un croissant, pas deux</a></li><li><a href="#ch2"><span>Chapitre 2</span>Bismarck, Beveridge et Laroque</a></li><li><a href="#ch3"><span>Chapitre 3</span>La mosaïque</a></li><li><a href="#ch4"><span>Chapitre 4</span>Qui paie quoi</a></li><li><a href="#ch5"><span>Chapitre 5</span>La plaque à cent quatre-vingts degrés</a></li><li><a href="#ch6"><span>Chapitre 6</span>Présent au domicile de 9 h à 11 h</a></li><li><a href="#ch7"><span>Chapitre 7</span>Le trentième étage</a></li><li><a href="#ch8"><span>Chapitre 8</span>Inexcusable</a></li><li><a href="#ch9"><span>Chapitre 9</span>France Travail, guichet 4</a></li><li><a href="#ch10"><span>Chapitre 10</span>La maison grise</a></li><li><a href="#ch11"><span>Chapitre 11</span>Audition publique</a></li><li><a href="#ch12"><span>Chapitre 12</span>Les jumelles de Lariboisière</a></li><li><a href="#ch13"><span>Épilogue</span>Deux croissants</a></li></ol></nav></div></div>
+
+<article id="book">
+<section class="chap" id="ch1"><header><div class="num">Chapitre 1</div><h2>Un croissant, pas deux</h2><blockquote class="epi">« Tout être humain qui […] se trouve dans l'incapacité de travailler a le droit d'obtenir de la collectivité des moyens convenables d'existence. » — Préambule de 1946, al. 11</blockquote></header><p>À six heures du matin, la boulangerie <em>Au Pain de Montmartre</em>, rue des Abbesses, sentait le beurre, le levain et le sommeil.</p>
+<p>Sami Haddad y travaillait depuis quatre heures et demie. Il avait façonné cent quarante baguettes avec Monsieur Joly, le patron, sorti les croissants du four sans se brûler, ce qui tenait du miracle, et rangé les pains au chocolat en pyramide dans la vitrine. Il avait vingt-deux ans, des cheveux noirs bouclés toujours blanchis de farine, une fossette au menton, des yeux sombres de quelqu'un qui dort quatre heures par nuit, et une tache de farine sur le nez dont il ne se rendait jamais compte. Le jour, il était en L3 de droit. À cinq heures du matin, il était vendeur, apprenti, livreur et parfois laveur de plaques. Il habitait rue Jean-Baptiste-Pigalle, au cinquième sans ascenseur, dans un studio dont la fenêtre donnait sur les néons d'un bar à hôtesses.</p>
+<p>À six heures deux, la porte s'ouvrit sur l'homme du croissant.</p>
+<p>Il venait tous les matins depuis trois semaines. Grand, la trentaine, costume bleu nuit coupé sur mesure, manteau en cachemire camel, une montre qui coûtait sans doute le prix de la boulangerie, et une expression d'ennui universel. Il ne disait jamais bonjour. Il disait :</p>
+<p>— Un croissant.</p>
+<p>— Bonjour, monsieur. Un croissant, deux euros dix.</p>
+<p>— Pas deux. Un.</p>
+<p>— C'est le prix. Deux euros dix.</p>
+<p>L'homme posa un billet de cinquante sur le comptoir, prit le croissant, et sortit sans attendre la monnaie. Comme tous les matins.</p>
+<p>— Qui c'est ? demanda Sami à Monsieur Joly.</p>
+<p>— Augustin Lécuyer-Roy, dit le patron depuis le fournil. Le patron de Providentia. Les assurances. Il habite impasse Marie-Blanche, dans la maison gothique. Il paraît qu'il veut remplacer la Sécu.</p>
+<div class="scene">❦</div>
+<p>Sami garda les quarante-sept euros quatre-vingt-dix de monnaie dans une enveloppe, sous la caisse. Au bout de trois semaines, il y en avait pour mille deux cents euros.</p>
+<p>Le lundi de la quatrième semaine, quand l'homme posa son billet, Sami posa l'enveloppe à côté.</p>
+<p>— Votre monnaie. Depuis le début.</p>
+<p>Augustin Lécuyer-Roy regarda l'enveloppe, puis Sami, pour la première fois. Vraiment. Comme on regarde une anomalie dans un tableau Excel.</p>
+<p>— Gardez-la.</p>
+<p>— Je ne peux pas. Ce n'est pas à moi.</p>
+<p>— C'est un pourboire.</p>
+<p>— Un pourboire de mille deux cents euros pour vingt croissants, c'est une libéralité, pas un pourboire. Et moi je ne veux pas de charité. Je veux un salaire.</p>
+<p>Augustin haussa un sourcil. Il prit l'enveloppe, la soupesa, et la mit dans la poche de son manteau.</p>
+<p>— Vous êtes étudiant, dit-il. En quoi ?</p>
+<p>— En droit. J'ai un TD de protection sociale à dix heures.</p>
+<p>— La protection sociale, dit Augustin avec un petit sourire. Mon métier. Et ma cible.</p>
+<p>— Votre cible ?</p>
+<p>— La Sécurité sociale coûte trente-deux pour cent du PIB, est en déficit depuis quarante ans et rembourse mal. Je propose de la remplacer par des assurances privées, efficaces, personnalisées. Chacun paie pour ses propres risques. C'est plus juste.</p>
+<p>— C'est faux.</p>
+<p>Le mot était sorti tout seul. Monsieur Joly, dans le fournil, laissa tomber une plaque. Augustin pencha la tête.</p>
+<p>— Expliquez-moi pourquoi c'est faux. Vous avez deux minutes. Je suis pressé.</p>
+<div class="scene">❦</div>
+<p>Sami s'essuya les mains sur son tablier, ce qui y laissa deux traces de farine en forme de mains, et parla très vite, parce qu'il avait deux minutes.</p>
+<p>— D'abord, la <span class="k" tabindex="0" data-r="ensemble des dispositifs qui protègent contre les risques sociaux">protection sociale</span>, c'est l'ensemble des institutions et des dispositifs qui protègent les individus ou les ménages, tout au long de leur vie, contre les conséquences de la survenance de <strong>risques sociaux</strong>. Le <span class="k" tabindex="0" data-r="événement qui augmente les besoins ou fait perdre des ressources">risque social</span>, c'est un événement qui menace ceux qui vivent en société, et qui entraîne soit une <strong>augmentation des besoins</strong>, la maladie, la famille, soit une <strong>perte de ressources</strong>, la vieillesse, l'altération physique de la force de travail, ou son altération économique, le chômage.</p>
+<p>— Je sais ce qu'est un risque. C'est mon métier.</p>
+<p>— Alors vous savez qu'il y a quatre <strong>techniques</strong> pour s'en protéger. L'<strong>épargne individuelle</strong> : la plus inefficace. Les plus vulnérables ne peuvent pas épargner, l'inflation ruine leurs efforts, et on n'est jamais sûr d'avoir épargné assez pour son propre risque. L'<strong>assistance</strong>, la charité privée ou publique, l'Église, le roi, les corporations, les paroisses, la famille : elle est facultative, donc elle ne couvre jamais tout le monde. La <strong>responsabilité civile</strong> : il faut un responsable solvable et souvent prouver sa faute. On l'utilisait pour les accidents du travail avant 1898, et les ouvriers ne gagnaient presque jamais. Et l'<strong>assurance</strong>, la <strong>mutualisation</strong> : la plus performante. On répartit le risque sur toute une collectivité contre une prime ou une cotisation.</p>
+<p>— Exactement. L'assurance. Mon métier.</p>
+<p>— Sauf que votre assurance privée, elle répartit le risque sur ceux qui peuvent payer la prime. Pas sur tout le monde. Le système français combine toutes ces techniques. La protection sociale, chez nous, c'est la <strong>sécurité sociale</strong>, l'<strong>aide sociale</strong>, l'<strong>assurance chômage</strong> et la <strong>protection sociale complémentaire</strong>.</p>
+<p>Augustin regarda sa montre.</p>
+<p>— Une minute.</p>
+<p>— Le fondement, c'est l'<span class="k" tabindex="0" data-r="droit d&#x27;obtenir de la collectivité des moyens convenables d&#x27;existence">alinéa 11 du Préambule de 1946</span>. « Tout être humain qui, en raison de son âge, de son état physique ou mental, de la situation économique, se trouve dans l'incapacité de travailler a le droit d'obtenir de la collectivité des moyens convenables d'existence. » La collectivité. Pas Providentia.</p>
+<p>— Et les chiffres ? Vous savez ce que ça coûte ?</p>
+<p>— D'après la DREES, 932,5 milliards d'euros de prestations en 2024. 31,9 % du PIB, contre 27,3 % en moyenne dans l'Union. La France est deuxième en Europe, derrière la Finlande. Les retraites et la santé font les quatre cinquièmes des dépenses. Et l'Organisation internationale du travail, dans sa <span class="k" tabindex="0" data-r="OIT, 28 juin 1952 : norme minimum">convention n° 102</span> du 28 juin 1952, fixe une norme minimum en <strong>neuf branches</strong> : soins médicaux, indemnités de maladie, chômage, vieillesse, accidents du travail et maladies professionnelles, prestations familiales, maternité, invalidité, survivants. La DREES, elle, compte <strong>six grands risques</strong> : santé, vieillesse-survie, famille, emploi, logement, pauvreté-exclusion sociale. Ça coûte cher parce que c'est beaucoup de choses. Et parce que c'est tout le monde.</p>
+<p>Il reprit son souffle.</p>
+<p>— Deux minutes.</p>
+<p>Augustin le regarda longtemps. Puis il sortit l'enveloppe de sa poche, en retira un billet de cinquante, et le reposa sur le comptoir.</p>
+<p>— Pour le croissant de demain. Gardez la monnaie. C'est un salaire.</p>
+<p>— Pour quoi ?</p>
+<p>— Pour deux minutes de cours. Demain, vous me direz le reste.</p>
+<div class="scene">❦</div>
+<p>Il revint le lendemain à six heures deux. Puis le surlendemain. Chaque matin, Sami lui donnait son croissant et deux minutes de protection sociale, et chaque matin, Augustin laissait un billet de cinquante en disant « un salaire ». Sami notait tout dans un carnet, en déclarant chaque billet comme cours particulier, parce qu'il ne voulait pas qu'on puisse dire qu'il avait été payé au noir.</p>
+<p>Monsieur Joly regardait ça depuis le fournil en secouant la tête.</p>
+<p>— Tu sais ce qu'il veut, ce type ?</p>
+<p>— Comprendre, je crois.</p>
+<p>— Personne ne se lève à six heures pour comprendre la Sécu. Il veut autre chose.</p>
+<p>Sami ne répondit pas. Mais le jeudi, quand Augustin entra, il remarqua qu'il avait des cernes, que sa cravate était mal nouée, et qu'il avait dit, pour la première fois, presque à voix basse :</p>
+<p>— Bonjour, Sami.</p>
+<p>Il ne lui avait jamais dit son nom. Il l'avait lu sur le badge du tablier.</p>
+<p>Sami lui donna son croissant. Il le choisit, sans même s'en rendre compte, parmi les plus dorés de la plaque.</p>
+<aside class="retenir"><h4>Ce que tu viens d'apprendre</h4><ul><li>Fondement constitutionnel : al. 11 du Préambule de 1946 (moyens convenables d'existence pour qui ne peut travailler).</li><li>Poids (DREES) : 932,5 Md€ en 2024, 31,9 % du PIB (UE : 27,3 %) ; France 2e en Europe derrière la Finlande ; retraites et santé = 4/5 des dépenses.</li><li>Protection sociale : institutions et dispositifs contre les conséquences des risques sociaux. Risque social : augmentation des besoins (maladie, famille) ou perte de ressources (vieillesse, altération physique ou économique de la force de travail).</li><li>Convention n° 102 de l'OIT (28 juin 1952) : 9 branches. DREES : 6 risques (santé, vieillesse-survie, famille, emploi, logement, pauvreté-exclusion).</li><li>Techniques : épargne (inefficace), assistance (facultative), responsabilité civile (responsable solvable, faute ; AT avant 1898), assurance/mutualisation (la plus performante). Le système français les combine : sécurité sociale + aide sociale + chômage + complémentaire.</li></ul></aside></section>
+<section class="chap" id="ch2"><header><div class="num">Chapitre 2</div><h2>Bismarck, Beveridge et Laroque</h2><blockquote class="epi">« La sécurité sociale est fondée sur le principe de solidarité nationale. » — Art. L. 111-1 CSS</blockquote></header><p>L'impasse Marie-Blanche était un cul-de-sac minuscule, au bout de la rue Lepic, qui finissait sur une maison absurde : un petit château néo-gothique de la fin du XIXe siècle, avec des tourelles, des gargouilles et des vitraux, coincé entre deux immeubles haussmanniens comme un rêve égaré.</p>
+<p>— Vous habitez là-dedans ? demanda Sami, sa baguette sous le bras.</p>
+<p>— J'ai acheté la maison la plus inutile de Paris, dit Augustin en ouvrant la porte. Ça me semblait cohérent.</p>
+<p>À l'intérieur, tout était vide. Des pièces immenses, blanches, presque sans meubles. Un canapé, une table, une chaise. Une seule assiette dans la cuisine. Pas une photo, pas un tableau, pas un livre en dehors des rapports annuels de Providentia empilés sur le sol.</p>
+<p>— Vous venez d'emménager ?</p>
+<p>— Il y a six ans.</p>
+<div class="scene">❦</div>
+<p>Augustin l'avait invité un samedi à dix-neuf heures « pour travailler ». Il devait prononcer le discours d'ouverture d'un grand colloque d'assureurs, à la fin du mois, intitulé <em>Après la Sécu</em>. Il voulait, disait-il, connaître les arguments de l'adversaire.</p>
+<p>— Je suis l'adversaire ? demanda Sami.</p>
+<p>— Vous êtes le seul qui me contredise sans que je le paie pour ça. C'est-à-dire, je vous paie, mais vous me contredisez quand même.</p>
+<p>Ils s'installèrent par terre, au milieu des rapports annuels, avec la baguette, un saucisson et une bouteille de vin qu'Augustin ouvrit sans regarder l'étiquette.</p>
+<p>— Commencez par la définition, dit Augustin. Je veux savoir ce que je vais détruire.</p>
+<p>— Il n'y a <strong>pas de définition universelle</strong>. Le Code de la sécurité sociale donne le fondement et les objectifs. L'<span class="k" tabindex="0" data-r="fondement et objectifs de la sécurité sociale">article L. 111-1 CSS</span> : elle est fondée sur le principe de <strong>solidarité nationale</strong>. Elle assure, pour toute personne travaillant ou résidant en France de façon stable et régulière, la couverture des charges de maladie, de maternité et de paternité, des charges de famille et d'autonomie. Et elle garantit les travailleurs contre les risques de toute nature susceptibles de réduire ou supprimer leurs revenus, par leur affiliation à des régimes obligatoires. La doctrine dit : une institution, ou un ensemble d'institutions, qui garantit la sécurité économique de chacun, quelle que soit sa condition. L'idée fondatrice, c'est qu'il serait <strong>injuste que le hasard pénalise</strong> des gens qui ne sont pas responsables de ce qui leur arrive. Aujourd'hui, on parle surtout de solidarité entre les <strong>générations</strong>, et entre les <strong>actifs</strong> et les <strong>chômeurs</strong>, plus que de solidarité de classe.</p>
+<p>— Le hasard, répéta Augustin. Je ne crois pas au hasard. Je crois que les gens font des choix.</p>
+<p>— Le bébé qui naît avec une malformation cardiaque, il a fait quel choix ?</p>
+<p>Augustin ne répondit pas. Il coupa une rondelle de saucisson avec une précision chirurgicale.</p>
+<div class="scene">❦</div>
+<p>— L'histoire, dit-il. Racontez.</p>
+<p>— Dès la fin du XIXe siècle, il y a un « <strong>tournant assurantiel</strong> » : on commence à indemniser les victimes sur la base de risques. Double mouvement : les ouvriers veulent des droits en plus de leur salaire ; les employeurs veulent une main-d'œuvre en bon état et en nombre suffisant. Premier texte : la <span class="k" tabindex="0" data-r="accidents du travail : responsabilité fondée sur le risque professionnel">loi du 9 avril 1898</span> sur les accidents du travail. Avant, c'était la responsabilité civile : l'ouvrier devait prouver la faute de son employeur. Presque impossible, et il y avait l'infériorité sociale. La loi de 1898 fonde la responsabilité sur le <strong>risque professionnel</strong> : l'employeur profite du machinisme, il en supporte les risques. C'est un <strong>compromis</strong> : responsabilité <strong>automatique</strong> de l'employeur, mais l'ouvrier perd le droit d'agir contre lui en justice ; en échange, une réparation <strong>forfaitaire</strong> et <strong>partielle</strong>, sans préjudice esthétique ni moral. Étendue aux maladies professionnelles en 1919. C'est toujours le socle des accidents du travail.</p>
+<p>— Ensuite ?</p>
+<p>— La loi du 5 avril 1910 sur les <strong>retraites ouvrières et paysannes</strong> : une assurance vieillesse obligatoire pour les ouvriers de l'industrie et de l'agriculture qui gagnent moins de trois mille francs par an ; par capitalisation ; avec une double cotisation, employeur et salarié. Puis les lois du 5 avril 1928 et du 30 avril 1930 sur les <strong>assurances sociales</strong> : la loi de 1928, critiquée, est aménagée en 1930, et une grande partie des salariés est obligatoirement couverte contre la maladie et la vieillesse. Et la loi du 11 mars 1932 sur les « sursalaires » : elle généralise les <strong>allocations familiales</strong>, en obligeant les employeurs de l'industrie et du commerce à s'affilier à des caisses de compensation. Le législateur consacre une pratique qui existait déjà.</p>
+<p>— Et Bismarck ? Tout le monde me parle de Bismarck.</p>
+<p>Sami sourit. Il avait de la farine sur le sourcil gauche, Augustin le remarqua, et ne dit rien.</p>
+<p>— Le <span class="k" tabindex="0" data-r="Allemagne, années 1880 : assurance obligatoire liée au salariat">modèle bismarckien</span>. Allemagne, années 1880. Le premier système cohérent d'assurances sociales. Une assurance <strong>collective obligatoire</strong>. Bismarck, devant le Reichstag, le 17 janvier 1881 : l'État doit promouvoir le bien-être de tous. L'État intervient, relayé par le monde professionnel. Les <strong>cotisations</strong> sont <strong>proportionnelles aux salaires</strong>, partagées entre employeur et salarié. C'est lié au <strong>salariat</strong> : c'est une solidarité <strong>professionnelle</strong>. Le système français y reste ancré.</p>
+<p>— Et Beveridge ?</p>
+<p>— Le <span class="k" tabindex="0" data-r="rapport de 1942 : système universel, unique, uniforme">modèle beveridgien</span>, le rapport de 1942, <em>Social Insurance and Allied Services</em>. C'est la naissance du <em>Welfare State</em> britannique. Un système <strong>généralisé</strong>, <strong>unique</strong>, <strong>uniforme</strong>, sans considération de la situation professionnelle. Un droit de <strong>chacun</strong> à la sécurité sociale. Une solidarité <strong>nationale</strong> : libérer l'homme du <strong>besoin</strong>, en lui garantissant une sécurité de revenu. Pendant la guerre, sous les bombes, un pays ruiné décide que plus personne n'aura faim.</p>
+<p>— Et la France prend lequel ?</p>
+<p>— Les deux. Deux héritages contradictoires. L'<span class="k" tabindex="0" data-r="ordonnance n° 45-2250 : création du régime général">ordonnance du 4 octobre 1945</span>, n° 45-2250, crée le régime général. Son artisan, c'est <strong>Pierre Laroque</strong>, un haut fonctionnaire du ministère du Travail. L'État fait de la protection sociale une de ses fonctions propres. Et c'est consacré par le Préambule de 1946, alinéa 11 : la Nation garantit à tous, notamment à l'enfant, à la mère et aux vieux travailleurs, la protection de la santé, la sécurité matérielle, le repos et les loisirs.</p>
+<div class="scene">❦</div>
+<p>Augustin s'était allongé sur le parquet, les bras croisés sous la tête, et regardait le plafond où une gargouille de plâtre tirait la langue.</p>
+<p>— Les « trois U », dit-il. Mon directeur de la stratégie me parle tout le temps des « trois U ». Je n'ai jamais osé lui demander ce que c'était.</p>
+<p>— Les trois principes de Beveridge. Et la France ne les a réalisés qu'à moitié. L'<strong>universalité</strong> : toute la population, contre tous les risques, « du berceau à la tombe ». La loi du 22 mai 1946 proclame la généralisation, mais les non-salariés refusent. Résultat, une juxtaposition de régimes : des lois de 1948 pour leur vieillesse, de 1966 pour leur maladie. L'universalité de la maladie n'arrive qu'avec la CMU en 1999, puis la PUMa en 2016, fondées sur la <strong>résidence</strong>. L'<strong>unité</strong> : un seul régime, une caisse unique pour tous les risques, un seul financement. Très vite affaiblie. Les <strong>régimes spéciaux</strong> sont maintenus « provisoirement », article 17 de l'ordonnance de 1945… et ils sont toujours là. Le régime agricole reste à part. Les caisses d'allocations familiales sont distinctes dès l'origine, à cause du mouvement familial. Et en 1967, des branches autonomes. C'est un système <strong>pluraliste</strong>. L'<strong>uniformité</strong> : des cotisations et des prestations <strong>forfaitaires</strong>, identiques pour tous, <em>flat-rate</em>. Rejetée. Chez nous, les cotisations et les prestations de remplacement, indemnités journalières, pensions, sont <strong>proportionnelles</strong> aux salaires. C'est la logique bismarckienne du <strong>maintien du niveau de vie</strong> qui l'emporte.</p>
+<p>— Et qui gère ?</p>
+<p>— Au départ, la « <strong>démocratie sociale</strong> ». Des <strong>caisses</strong>, organismes de <strong>droit privé</strong> chargés d'une <strong>mission de service public</strong>, administrées majoritairement par les représentants des assurés. Tempérée ensuite : le <strong>paritarisme</strong> en 1967, autant de représentants des salariés que des employeurs ; puis une tutelle de l'État renforcée avec les lois de financement, à partir de 1996.</p>
+<p>— Et après 1945 ?</p>
+<p>— Les grandes dates. 1967 : les <strong>ordonnances Jeanneney</strong> du 21 août, les branches, trois caisses nationales, la CNAMTS, la CNAVTS, la CNAF, et l'Acoss. 1991 : la <strong>CSG</strong>, premier jalon de la fiscalisation. 1996 : la loi constitutionnelle du 22 février sur les <strong>lois de financement</strong>, l'ordonnance du 24 janvier avec la CADES et la CRDS. De 1999 à 2016, de la <strong>CMU</strong> à la <strong>PUMa</strong>. De 2018 à 2020 : on supprime le <strong>RSI</strong>, les indépendants passent au régime général. 2020 : la cinquième branche, l'<strong>autonomie</strong>, par la loi du 7 août. 2023 : la réforme des retraites, l'âge légal relevé, des régimes spéciaux fermés. Et la loi de financement pour 2026 qui <strong>suspend</strong> le relèvement de l'âge et de la durée d'assurance jusqu'au 1er janvier 2028. L'année dernière, on a fêté les quatre-vingts ans de la Sécurité sociale.</p>
+<p>— Et les branches, aujourd'hui ?</p>
+<p>— Cinq, article L. 200-2. <strong>Maladie</strong>, maternité, invalidité, décès. <strong>Accidents du travail et maladies professionnelles</strong>. <strong>Vieillesse</strong> et veuvage. <strong>Famille</strong>. <strong>Autonomie</strong>, depuis 2020. Et pour les frais de santé, la protection est <strong>universelle</strong> : toute personne qui travaille ou, à défaut, réside en France de manière stable et régulière, article L. 160-1, la protection universelle maladie.</p>
+<div class="scene">❦</div>
+<p>Il était minuit. Le vin était fini. Sami tourna la tête : Augustin s'était endormi sur le parquet, au milieu des rapports annuels, la bouche entrouverte, une main encore posée sur le bout de baguette.</p>
+<p>Sami resta assis à le regarder. Sans son costume froissé de pouvoir, sans son regard d'ennui universel, il avait l'air très jeune, et très fatigué. Il y avait au coin de sa lèvre une miette de pain.</p>
+<p>Sami chercha une couverture. Il n'y en avait aucune dans le salon. Il monta à l'étage : une chambre immense, un lit défait, un dressing de costumes tous bleu nuit. Une seule chose, sur la table de nuit, qui n'était pas un rapport : une petite photo en noir et blanc, cornée, d'un garçon de huit ans devant une maison grise, avec un cartable trop grand et un regard qui ne souriait pas.</p>
+<p>Il redescendit avec la couette. Il la posa sur Augustin, doucement. Augustin bougea, attrapa le bord de la couette, et, sans ouvrir les yeux, attrapa aussi le poignet de Sami.</p>
+<p>— Restez, murmura-t-il. Juste… cinq minutes. Il n'y a jamais personne ici.</p>
+<p>Sami resta. Il s'allongea sur le parquet, à côté de lui, à vingt centimètres, sous la gargouille qui tirait la langue. Il ne comptait pas rester cinq heures. Il en resta cinq. À quatre heures et quart, il se leva sans bruit pour aller faire les baguettes. Augustin dormait toujours, la main encore tendue vers l'endroit où il avait été.</p>
+<aside class="retenir"><h4>Ce que tu viens d'apprendre</h4><ul><li>Art. L. 111-1 CSS : solidarité nationale ; couverture des personnes travaillant ou résidant en France de façon stable et régulière ; affiliation à des régimes obligatoires. Idée : le hasard ne doit pas pénaliser ; solidarités entre générations et entre actifs et chômeurs.</li><li>Étapes : loi du 9 avr. 1898 (AT : risque professionnel ; compromis : responsabilité automatique contre réparation forfaitaire et partielle ; MP en 1919) ; 5 avr. 1910 (retraites ouvrières et paysannes) ; 1928-1930 (assurances sociales) ; 11 mars 1932 (allocations familiales).</li><li>Bismarck (1881 : assurance obligatoire, cotisations proportionnelles, salariat, solidarité professionnelle) / Beveridge (1942 : système généralisé, unique, uniforme, solidarité nationale).</li><li>Ordonnance n° 45-2250 du 4 oct. 1945 (Pierre Laroque) ; Préambule 1946 al. 11. Trois U : universalité (loi du 22 mai 1946 ; non-salariés ; CMU 1999, PUMa 2016), unité (régimes spéciaux, art. 17 ; agricole ; CAF ; branches 1967), uniformité (rejetée : proportionnalité).</li><li>Démocratie sociale (caisses de droit privé, mission de service public) → paritarisme (1967) → tutelle (LFSS 1996). 1967 Jeanneney ; 1991 CSG ; 1996 LFSS, CADES, CRDS ; 2018-2020 fin du RSI ; 2020 autonomie ; 2023 retraites ; LFSS 2026. Cinq branches (L. 200-2) ; PUMa (L. 160-1).</li></ul></aside></section>
+<section class="chap" id="ch3"><header><div class="num">Chapitre 3</div><h2>La mosaïque</h2><blockquote class="epi">« Une trentaine de régimes obligatoires de base. »</blockquote></header><p>Le lundi, à six heures deux, Augustin entra dans la boulangerie comme si rien ne s'était passé. Costume bleu nuit, cravate parfaite, regard d'ennui universel.</p>
+<p>— Un croissant.</p>
+<p>— Bonjour, monsieur. Deux euros dix.</p>
+<p>Il posa un billet de cinquante. Puis, au lieu de partir, il resta planté devant le comptoir.</p>
+<p>— Vous êtes parti sans dire au revoir.</p>
+<p>— J'avais cent quarante baguettes à faire.</p>
+<p>— J'ai cru que j'avais rêvé.</p>
+<p>— Vous ronflez, dit Sami. Vous n'avez pas rêvé.</p>
+<p>Monsieur Joly, dans le fournil, éclata d'un rire énorme qui fit trembler les plaques. Augustin rougit. C'était la première fois que Sami le voyait rougir. Ça lui allait terriblement bien.</p>
+<div class="scene">❦</div>
+<p>L'après-midi, après ses cours, Sami prit le métro jusqu'à la tour Providentia, à La Défense, parce qu'Augustin avait insisté : <em>Venez voir ce que je construis. Vous me direz si c'est un monstre.</em></p>
+<p>Quarante-deux étages de verre bleuté. Un hall en marbre, des agents de sécurité, des écrans géants où défilait un slogan : <em>Providentia Total. Votre protection. Votre choix.</em></p>
+<p>Au quarante-deuxième, dans une salle de réunion avec vue sur tout l'ouest de Paris, Augustin lui montra le projet sur un écran tactile.</p>
+<p>— Une seule assurance, privée, pour tout. Santé, retraite, chômage, dépendance. Chacun choisit son niveau de couverture, selon ses moyens et ses risques. Plus de cotisations obligatoires. Plus de déficit. L'État ne garde qu'un filet minimal pour les plus pauvres. C'est simple, c'est efficace.</p>
+<p>Sami regarda l'écran longtemps.</p>
+<p>— Vous voulez remplacer l'assurance par l'assistance.</p>
+<p>— Je veux remplacer l'obligation par le choix.</p>
+<p>— C'est pareil. Il y a deux logiques en sécurité sociale. La <span class="k" tabindex="0" data-r="anticiper un risque contre cotisations">logique d'assurance</span>, celle de Bismarck : anticiper un risque pour en prévoir les conséquences financières. On <strong>cotise</strong> obligatoirement pour avoir droit à des prestations quand le risque survient. La <span class="k" tabindex="0" data-r="aide déclenchée par le seul besoin">logique d'assistance</span>, celle de Beveridge : l'aide se déclenche <strong>indépendamment de toute prévoyance</strong>, du seul fait d'un état de <strong>besoin</strong>. « Il est dans le besoin, donc il a droit. » La France a mélangé les deux. Par exemple la <strong>CMU</strong>, loi du 27 juillet 1999, au 1er janvier 2000. Puis la <strong>PUMa</strong>, article 59 de la loi de financement pour 2016 : vos frais de santé sont pris en charge sur le seul critère de l'<strong>activité</strong> ou, à défaut, de la <strong>résidence stable et régulière</strong>, à titre personnel et continu. Fin de la CMU de base. Et la <strong>complémentaire santé solidaire</strong>, la C2S, qui a fusionné la CMU-C et l'aide à la complémentaire santé le 1er novembre 2019 : gratuite ou avec une participation selon les ressources, article L. 861-1. Vous, vous voulez garder seulement un minimum d'assistance pour les pauvres, et une assurance privée pour ceux qui peuvent payer. Deux systèmes. Deux classes.</p>
+<p>— Les pauvres seront couverts.</p>
+<p>— Par la charité. Facultative. Qui ne couvre jamais tout le monde. On l'a dit samedi.</p>
+<div class="scene">❦</div>
+<p>Augustin ne répondit pas. Il fit défiler un autre écran : un organigramme compliqué de la protection sociale française, avec des dizaines de cases.</p>
+<p>— Expliquez-moi ce bazar, alors. Mon directeur de la stratégie le montre en conférence pour faire rire la salle.</p>
+<p>— D'abord, il faut distinguer la <strong>branche</strong> et le <strong>régime</strong>. La <span class="k" tabindex="0" data-r="ensemble d&#x27;institutions gérant un même risque">branche</span>, c'est une notion structurante : dans le régime général, un ensemble d'institutions, une caisse nationale et des organismes de base, qui gèrent un <strong>même risque</strong>. Elle transcende les régimes, et sert à fixer des objectifs par branche dans les lois de financement. Créées par les quatre ordonnances Jeanneney du 21 août 1967. Il y en a cinq, plus la branche <strong>recouvrement</strong>, qui collecte les ressources des autres. La branche autonomie, de 2020, est gérée par la CNSA, créée en 2004. Le <span class="k" tabindex="0" data-r="ensemble de règles pour une population">régime</span>, lui, vise une <strong>population</strong>. Et il y en a une trentaine : trente-deux régimes obligatoires de base, selon l'annexe du projet de loi de financement pour 2025. Une « <strong>mosaïque</strong> ».</p>
+<p>— Commencez par le plus gros.</p>
+<p>— Le <strong>régime général</strong> : l'essentiel des dépenses. Les <strong>salariés</strong> du commerce, de l'industrie et des services, et les <strong>assimilés</strong> de l'article L. 311-3 : travailleurs à domicile, VRP, mannequins, artistes du spectacle, journalistes, dirigeants de certaines sociétés. Comme vous, sans doute, si vous êtes président de SAS. Et depuis la suppression du RSI, transition achevée le 1er janvier 2020, aussi les <strong>indépendants</strong>, avec des règles propres. Les caisses nationales : la <strong>Cnam</strong>, maladie et accidents du travail ; la <strong>Cnaf</strong>, famille ; la <strong>Cnav</strong>, retraites ; la <strong>CNSA</strong>, autonomie ; et l'Acoss, devenue « <strong>Urssaf Caisse nationale</strong> », recouvrement. Le réseau local : les <strong>CPAM</strong>, départementales, de droit privé avec une mission de service public, maladie et accidents du travail ; les <strong>Carsat</strong>, régionales, retraites et une partie des accidents du travail, sauf en Île-de-France où c'est la Cnav directement ; les <strong>CAF</strong>, départementales, famille, logement, insertion ; les <strong>Urssaf</strong>, régionales, recouvrement et contrôles.</p>
+<p>— Le régime agricole ?</p>
+<p>— Mon oncle Karim est maraîcher en Seine-et-Marne. Il est à la <strong>MSA</strong>, la Mutualité sociale agricole : exploitants agricoles et leurs familles, salariés agricoles, contre tous les risques. Un « guichet unique » : une caisse centrale et des caisses départementales ou pluridépartementales. Le régime est <strong>déficitaire</strong>, à cause du déclin du secteur primaire.</p>
+<p>— Et les régimes spéciaux ? On me dit que ce sont des privilèges.</p>
+<p>— La liste est à l'article R. 711-1. Fonctionnaires de l'État, magistrats, militaires, fonctionnaires territoriaux et hospitaliers, marins, mines, SNCF, industries électriques et gazières, Banque de France, Opéra de Paris, Comédie-Française… Certains couvrent tous les risques, d'autres une partie. Leurs avantages sont souvent supérieurs : autonomie de gestion, droits acquis avant 1946. Certains sont en extinction, les mines. On les ferme : la SNCF avec la réforme ferroviaire de 2018 ; et depuis le 1er septembre 2023, la RATP, les industries électriques et gazières, la Banque de France, les clercs de notaires et le CESE. Les <strong>nouveaux recrutés</strong> relèvent du régime général. Les agents déjà en place gardent leur régime : c'est la « <strong>clause du grand-père</strong> ». Ma sœur Leïla a été embauchée à la SNCF en 2021 : elle est au régime général. Son chef, embauché en 1998, est au régime spécial.</p>
+<p>— Et les complémentaires ?</p>
+<p>— Les <span class="k" tabindex="0" data-r="en parallèle de la base, parfois obligatoires">régimes complémentaires</span> viennent <strong>en parallèle</strong> de la couverture de base. Parfois obligatoires, parfois facultatifs. Seule la <strong>vieillesse</strong> des salariés est obligatoire : l'AGIRC pour les cadres, depuis 1947, l'ARRCO pour les non-cadres, depuis 1961, généralisées en 1972, fusionnées en un régime unifié <strong>Agirc-Arrco</strong> par l'accord du 17 novembre 2017, applicable au 1er janvier 2019, en <strong>répartition</strong>. Pour la santé, les mutuelles sont facultatives… sauf la <strong>complémentaire santé d'entreprise</strong>, obligatoire depuis le 1er janvier 2016, par la loi du 14 juin 2013 sur la sécurisation de l'emploi : une couverture collective à adhésion obligatoire, un panier minimal, financée <strong>au moins pour moitié</strong> par l'employeur, article L. 911-7. Et les <span class="k" tabindex="0" data-r="démarche facultative pour améliorer la couverture">régimes supplémentaires</span> sont <strong>facultatifs</strong> : on s'y engage, seul ou par l'entreprise, pour améliorer une couverture déjà assurée. Le <strong>plan d'épargne retraite</strong>, le PER, loi PACTE du 22 mai 2019 : une rente viagère ou un capital, payable au plus tôt à la liquidation de la pension ou à l'âge légal.</p>
+<p>— C'est mon métier, ça. Le supplémentaire.</p>
+<p>— Alors restez-y. Le supplémentaire, c'est en plus. Pas à la place.</p>
+<div class="scene">❦</div>
+<p>Ils descendirent par l'ascenseur à vingt heures. Au trentième étage, les portes s'ouvrirent. Une femme en blouse bleue entra, avec un chariot de produits ménagers et un seau. Une cinquantaine d'années, des mains rougies, un foulard, un badge <em>Net&amp;Clair — Prestataire</em>. Elle toussait.</p>
+<p>Elle vit Sami et s'immobilisa.</p>
+<p>— Sami ? Qu'est-ce que tu fais là, mon fils ?</p>
+<p>Sami pâlit, puis rougit, puis pâlit encore.</p>
+<p>— Maman. Je… je travaille. Enfin, je donne des cours.</p>
+<p>Augustin regarda la femme, puis Sami, puis le badge.</p>
+<p>— Madame, dit-il, vous travaillez ici ?</p>
+<p>— Tous les soirs depuis vingt ans, monsieur. Du trentième au quarante-deuxième. Je fais votre bureau. Vous laissez toujours votre tasse sur le rebord de la fenêtre.</p>
+<p>Elle toussa encore, longtemps, une toux sèche, sifflante, qui la plia en deux. Augustin tendit la main, maladroitement, comme s'il ne savait pas où la mettre.</p>
+<p>— Ça va, monsieur, dit-elle en se redressant. C'est les produits. Ça fait ça depuis quelques années. C'est rien.</p>
+<p>Les portes s'ouvrirent au rez-de-chaussée. Nadia Haddad poussa son chariot vers le local de ménage. Sami et Augustin restèrent dans l'ascenseur, immobiles, pendant que les portes se refermaient sur eux.</p>
+<p>— Votre mère nettoie mon bureau, dit Augustin, d'une voix étrange.</p>
+<p>— Depuis vingt ans. Vous ne l'avez jamais vue.</p>
+<p>— Je ne vois jamais personne.</p>
+<p>Les portes se rouvrirent toutes seules, parce que personne n'avait appuyé sur aucun bouton. Augustin ne bougea pas. Il regardait Sami avec quelque chose dans les yeux que Sami ne lui connaissait pas : de la honte, peut-être. Ou le début de quelque chose d'autre.</p>
+<p>— Je vous raccompagne, dit-il. À Pigalle. À pied, s'il le faut.</p>
+<p>— C'est à quinze kilomètres.</p>
+<p>— Alors en voiture. Mais je veux vous raccompagner.</p>
+<aside class="retenir"><h4>Ce que tu viens d'apprendre</h4><ul><li>Logique d'assurance (Bismarck : cotisations obligatoires → prestations) / d'assistance (Beveridge : besoin → droit). CMU (loi du 27 juill. 1999) ; PUMa (art. 59 LFSS 2016 : activité ou résidence stable et régulière) ; C2S (1er nov. 2019, L. 861-1).</li><li>Branche : ensemble d'institutions gérant un même risque (ordonnances Jeanneney, 21 août 1967) ; 5 branches + recouvrement ; autonomie gérée par la CNSA (2004). Régime : une population ; 32 régimes obligatoires de base, une « mosaïque ».</li><li>Régime général : salariés et assimilés (L. 311-3), indépendants depuis la fin du RSI (2020). Cnam, Cnaf, Cnav, CNSA, Urssaf Caisse nationale ; CPAM, Carsat, CAF, Urssaf.</li><li>Régime agricole (MSA, guichet unique, déficitaire). Régimes spéciaux (R. 711-1) ; fermetures (SNCF 2018 ; 1er sept. 2023 : RATP, IEG, Banque de France, CRPCEN, CESE) ; clause du grand-père.</li><li>Complémentaires (en parallèle ; obligatoire : Agirc-Arrco, ANI du 17 nov. 2017, 2019 ; santé d'entreprise obligatoire depuis 2016, L. 911-7, moitié employeur) / supplémentaires (facultatifs ; PER, loi PACTE 2019).</li></ul></aside></section>
+<section class="chap" id="ch4"><header><div class="num">Chapitre 4</div><h2>Qui paie quoi</h2><blockquote class="epi">« Les lois de financement de la sécurité sociale déterminent les conditions générales de son équilibre financier. » — Art. 34 de la Constitution</blockquote></header><p>La voiture d'Augustin était noire, silencieuse, électrique, et conduite par un chauffeur qui s'appelait Gérard et ne disait jamais rien. Ils roulèrent sur le périphérique dans un silence ouaté, chacun contre sa vitre.</p>
+<p>— Votre mère tousse, dit enfin Augustin.</p>
+<p>— Depuis cinq ans. Elle dit que c'est les produits. Les sprays, les détartrants. Le médecin dit que c'est de l'asthme.</p>
+<p>— Elle est arrêtée ?</p>
+<p>— Jamais. Elle ne veut pas perdre ses jours. Elle a peur que Net&amp;Clair ne renouvelle pas son contrat.</p>
+<p>Augustin ne répondit pas. Il regardait défiler les tours de la porte Maillot.</p>
+<p>— Net&amp;Clair, dit-il au bout d'un moment, appartient à Providentia. C'est une filiale. Je l'ai rachetée il y a trois ans. Je n'y suis jamais allé.</p>
+<div class="scene">❦</div>
+<p>Gérard les déposa en bas de la rue Jean-Baptiste-Pigalle, devant le bar à hôtesses dont l'enseigne rose clignotait. Augustin descendit en même temps que Sami.</p>
+<p>— Vous n'êtes pas obligé.</p>
+<p>— Je veux voir où vous habitez.</p>
+<p>— C'est au cinquième sans ascenseur.</p>
+<p>— Je fais du sport.</p>
+<p>Il arriva au cinquième essoufflé, la cravate dénouée, une main contre le mur. Le studio faisait douze mètres carrés. Un lit, un bureau couvert de codes, une plaque électrique, un frigo minuscule, et, collé sur le frigo, un bulletin de salaire de la boulangerie.</p>
+<p>Augustin s'arrêta devant le bulletin et le lut. Sami sentit ses joues brûler.</p>
+<p>— Mille trois cent quatre-vingts euros nets, dit Augustin. Pour des nuits à quatre heures et demie.</p>
+<p>— Pour un temps partiel. C'est correct. Il y a la cotisation vieillesse, la CSG, la CRDS…</p>
+<p>— Expliquez-moi. Ce bulletin. Toutes ces lignes. Je n'ai jamais regardé les miens.</p>
+<p>Sami prit le bulletin, s'assit sur le lit, et Augustin s'assit à côté de lui, faute d'une autre place. Leurs genoux se touchaient.</p>
+<div class="scene">❦</div>
+<p>— Il y a deux sortes de prestations, d'abord. Les <strong>contributives</strong>, logique d'assurance : il y a une proportionnalité avec les cotisations versées. Les <strong>non contributives</strong>, logique d'assistance : le lien avec les cotisations est relâché, ou n'existe pas. Et puis, autre distinction : les prestations <strong>en espèces</strong>, un revenu de remplacement, les indemnités journalières, les pensions d'invalidité, sous condition d'activité ou de cotisations, calculé sur les revenus d'avant ; et les prestations <strong>en nature</strong> : la prise en charge de dépenses, consultations, médicaments, hospitalisation, ou le financement direct de services, l'aide-ménagère.</p>
+<p>— Et l'argent, d'où il vient ?</p>
+<p>— De deux sources. Les <span class="k" tabindex="0" data-r="logique assurantielle et professionnelle d&#x27;origine">cotisations</span> d'abord, la logique d'origine, assurantielle et professionnelle. Elles sont en principe <strong>partagées</strong> entre employeur et salarié, sauf la famille et les accidents du travail, payées par l'employeur seul. Mais ce partage s'érode : depuis 2018, dans le privé, il n'y a <strong>plus de cotisation salariale</strong> maladie ni chômage, en échange d'une hausse de 1,7 point de CSG. Regardez : sur mon bulletin, la part salariale, c'est surtout la vieillesse. Elles sont <strong>proportionnelles</strong> aux salaires, un pourcentage. C'est une obligation d'<strong>ordre public</strong>, liée au droit aux prestations : elle ouvre droit, potentiellement, aux prestations. Il y a des exonérations, sans perte de droits ; mais depuis la loi du 25 juillet 1994, toute nouvelle exonération doit en principe être <strong>compensée intégralement par l'État</strong>, article L. 131-7, sauf exceptions légales. Les taux sont fixés par règlement, uniformes par risque, sauf pour les accidents du travail.</p>
+<p>— Pourquoi sauf ?</p>
+<p>— Parce que la cotisation AT-MP sert à <strong>responsabiliser</strong> l'employeur, à le pousser à la <strong>prévention</strong>. Le taux varie selon la <strong>taille</strong> de l'entreprise et sa <strong>sinistralité</strong> : plus il y a d'accidents, plus on paie, article D. 242-6-2. Moins de vingt salariés : un taux <strong>collectif</strong>, celui du secteur. De vingt à cent quarante-neuf : un taux <strong>mixte</strong>, de plus en plus individualisé avec l'effectif. Cent cinquante et plus : un taux <strong>individuel</strong>. Net&amp;Clair doit en avoir combien ?</p>
+<p>— Deux mille.</p>
+<p>— Taux individuel, alors. Si vos agents tombent malades à cause du travail, c'est vous qui paierez plus.</p>
+<p>Augustin regardait le bulletin comme s'il le voyait pour la première fois. Ce qui était le cas.</p>
+<p>— Et la CSG ? Mon fiscaliste m'en parle tous les ans.</p>
+<p>— Les <span class="k" tabindex="0" data-r="impositions affectées : fiscalisation">contributions</span>, c'est la <strong>fiscalisation</strong>. D'abord des <strong>taxes affectées</strong>, une logique de « pollueur-payeur » : pénaliser les comportements coûteux. Les primes d'assurance auto, les boissons alcoolisées depuis 1983, les premix, la publicité pharmaceutique, le tabac, certains produits alimentaires, les médicaments… Et surtout la <span class="k" tabindex="0" data-r="contribution sociale généralisée, 1991">CSG</span>, la contribution sociale généralisée. Créée par la loi de finances pour 1991, d'abord pour la branche famille, à 1,1 %. Son assiette, ce sont <strong>tous les revenus</strong>, pas seulement les salaires : plus large que l'impôt sur le revenu et que les cotisations. Quatre contributions : activité et remplacement, patrimoine, placements, jeux. Le taux est <strong>proportionnel</strong>, pas progressif. 9,2 % sur les revenus d'activité ; 8,3 % sur les retraites et l'invalidité ; 6,2 % sur le chômage et les indemnités journalières ; 6,6 ou 3,8 % selon le revenu fiscal de référence. Et la loi de financement pour 2026 : <strong>10,6 %</strong> sur la plupart des revenus du patrimoine et de placement, 9,2 % pour certains, revenus fonciers, plus-values immobilières, assurance-vie.</p>
+<p>— Mes dividendes.</p>
+<p>— Vos dividendes, 10,6 %. Et ce n'est pas une cotisation, c'est une « <strong>imposition de toutes natures</strong> », au sens de l'article 34 de la Constitution. Le Conseil constitutionnel l'a dit en <span class="k" tabindex="0" data-r="CC, 90-285 DC, 28 déc. 1990">1990</span> : et un taux proportionnel unique est conforme à l'article 13 de la DDHC. La CSG est recouvrée par l'Urssaf pour l'activité et le remplacement, par les services fiscaux pour le patrimoine et le capital. Et il y a la <strong>CRDS</strong>, ordonnance du 24 janvier 1996, avec la <strong>CADES</strong>, la caisse qui rembourse la dette sociale : 0,5 %, uniforme. On a prolongé la CADES plusieurs fois : elle a repris 136 milliards en 2020, et la fin de la dette sociale est repoussée à 2033.</p>
+<div class="scene">❦</div>
+<p>Augustin s'était allongé en travers du lit, les pieds dépassant largement, la tête contre le mur.</p>
+<p>— Et qui décide de tout ça ?</p>
+<p>— Le Parlement, depuis 1996. Les <span class="k" tabindex="0" data-r="art. 34 et 47-1 C. ; LC du 22 févr. 1996">lois de financement de la sécurité sociale</span>, articles 34 et 47-1 de la Constitution, loi constitutionnelle du 22 février 1996. Elles « déterminent les conditions générales de son équilibre financier et, compte tenu de leurs prévisions de recettes, fixent ses objectifs de dépenses ». Chaque automne, le Parlement vote les prévisions de recettes, les objectifs de dépenses par branche, et l'<strong>ONDAM</strong>, l'objectif national de dépenses d'assurance maladie. Le cadre organique a été refondu par la loi organique du 14 mars 2022. La dernière, c'est la loi du 30 décembre 2025, pour 2026.</p>
+<p>— Et elle a fait quoi ?</p>
+<p>— Elle a <strong>gelé</strong> temporairement l'âge légal de la retraite. La réforme du 14 avril 2023 le relevait progressivement à 64 ans. La loi de financement pour 2026 l'a bloqué à 62 ans et 9 mois pour les gens nés entre le 1er janvier 1963 et le 31 mars 1965, puis le relèvement reprend pour atteindre 64 ans pour ceux nés à partir de 1969. Il y a eu aussi la branche autonomie en 2020, pour le vieillissement. Et une loi contre la fraude sociale et fiscale, en juin.</p>
+<p>— Et vous, vous pensez quoi de tout ça ? La « crise de l'État-providence » ?</p>
+<p>— L'<span class="k" tabindex="0" data-r="interventions sociales de l&#x27;État pour un minimum de bien-être">État-providence</span>, c'est l'ensemble des interventions sociales de l'État pour garantir un minimum de bien-être à toute la population ; on l'oppose à l'État-gendarme, limité aux fonctions régaliennes. Et il traverse trois crises. Une crise de <strong>solvabilité</strong> : la croissance ralentit, les besoins augmentent, les prélèvements aussi. On fiscalise : les cotisations restent la première ressource, mais elles passent de 77,8 % en 1959 à <strong>55,6 %</strong> en 2024 ; les impôts et taxes affectés montent à 30 %. Une crise d'<strong>efficacité</strong> : les inégalités se creusent malgré la redistribution ; des dispositifs pensés pour une autre société, les retraites, la politique familiale. Et une crise de <strong>légitimité</strong> : l'individualisme monte, on rejette les mécanismes impersonnels, les solidarités nationale et professionnelle s'effacent devant la <strong>privatisation du risque</strong>.</p>
+<p>Il se tourna vers Augustin.</p>
+<p>— C'est vous, la crise de légitimité. Providentia Total.</p>
+<p>Augustin le regarda longtemps, de bas en haut, la tête contre le mur.</p>
+<p>— Peut-être, dit-il. Mais ce soir, j'ai vu votre mère tousser dans un ascenseur, et j'ai compris que je ne savais même pas ce qu'il y avait sur une fiche de paie.</p>
+<p>Il se redressa sur un coude. Leurs visages étaient très proches. Dehors, l'enseigne rose du bar clignotait, et sa lumière passait sur eux par intermittence, rose, noir, rose, noir.</p>
+<p>— Sami.</p>
+<p>— Oui.</p>
+<p>— Je ne sais rien faire de ce qui compte. Je sais vendre, racheter, restructurer. Je ne sais pas… ça.</p>
+<p>— Ça quoi ?</p>
+<p>Augustin ne répondit pas avec des mots. Il tendit la main, et du pouce, très doucement, il enleva la tache de farine que Sami avait sur le nez depuis le matin, et dont il ne s'était pas rendu compte. Puis il laissa sa main sur sa joue.</p>
+<p>Sami l'embrassa. Ce fut lui qui le fit, le premier, maladroitement, en se cognant le nez contre celui d'Augustin, et en riant à moitié dans le baiser. Augustin ne riait pas. Il l'embrassa en retour avec une sorte de gravité étonnée, comme quelqu'un qui découvre qu'il a faim alors qu'il pensait ne plus jamais avoir faim.</p>
+<p>Le bulletin de salaire glissa par terre. Personne ne le ramassa.</p>
+<aside class="retenir"><h4>Ce que tu viens d'apprendre</h4><ul><li>Prestations contributives (assurance) / non contributives (assistance) ; en espèces (revenus de remplacement) / en nature (prise en charge des dépenses, services).</li><li>Cotisations : partage employeur-salarié (sauf famille et AT-MP) érodé (2018 : fin des cotisations salariales maladie et chômage, +1,7 pt de CSG) ; proportionnalité ; obligation d'ordre public ; exonérations compensées par l'État (loi du 25 juill. 1994, L. 131-7) ; taux uniformes sauf AT-MP (D. 242-6-2 : collectif &lt; 20, mixte 20-149, individuel ≥ 150).</li><li>Contributions : taxes affectées (pollueur-payeur) ; CSG (LF 1991, 1,1 % ; tous revenus ; proportionnelle ; 9,2 / 8,3 / 6,2 / 6,6-3,8 % ; 10,6 % patrimoine en 2026 ; imposition de toutes natures, CC 90-285 DC) ; CRDS (ord. 24 janv. 1996, 0,5 %, CADES ; 136 Md€ repris en 2020 ; dette éteinte en 2033).</li><li>LFSS (art. 34 et 47-1 ; LC du 22 févr. 1996 ; LO du 14 mars 2022) : recettes, objectifs par branche, ONDAM. LFSS 2026 (loi du 30 déc. 2025).</li><li>Crise de l'État-providence : solvabilité (cotisations 77,8 % en 1959 → 55,6 % en 2024 ; impôts 30 %), efficacité, légitimité (privatisation du risque). Réformes : retraites (loi du 14 avr. 2023 ; gel par la LFSS 2026), autonomie (2020), fraudes (loi du 25 juin 2026).</li></ul></aside></section>
+<section class="chap" id="ch5"><header><div class="num">Chapitre 5</div><h2>La plaque à cent quatre-vingts degrés</h2><blockquote class="epi">« Est considéré comme accident du travail, quelle qu'en soit la cause, l'accident survenu par le fait ou à l'occasion du travail. » — Art. L. 411-1 CSS</blockquote></header><p>Ce fut un mardi, à cinq heures cinquante-huit, quatre minutes avant le croissant.</p>
+<p>Sami sortait du four la dernière plaque de pains au chocolat. Il avait dormi trois heures, parce qu'il avait passé la soirée à embrasser un milliardaire sur un lit de quatre-vingt-dix centimètres, et sa main gauche glissa. La plaque, à cent quatre-vingts degrés, bascula contre son avant-bras droit. Il entendit sa propre peau grésiller avant de sentir la douleur. Puis il la sentit.</p>
+<p>Il ne cria pas. Il posa la plaque, très calmement, sur le plan de travail, parce que les pains au chocolat n'y étaient pour rien. Puis il s'assit par terre, contre le pétrin, et regarda son bras où la peau devenait blanche, puis rouge, puis se soulevait en cloques.</p>
+<p>Monsieur Joly arriva en courant, le mit sous l'eau froide, appela le 15. C'est à ce moment-là que la porte s'ouvrit, et qu'Augustin entra.</p>
+<p>— Un croiss…</p>
+<p>Il vit Sami par terre, le bras sous le robinet, le visage gris. Il lâcha son billet de cinquante.</p>
+<div class="scene">❦</div>
+<p>Le SAMU dit que c'était une brûlure du deuxième degré, profonde, sur quinze centimètres, et qu'il fallait aller au centre des brûlés de l'hôpital Saint-Louis. Augustin monta dans l'ambulance sans demander l'avis de personne. Quand l'ambulancier lui demanda s'il était de la famille, il dit « oui » avec une telle assurance que personne ne discuta.</p>
+<p>Dans l'ambulance, Sami serrait les dents. Augustin lui tenait la main gauche, celle qui n'était pas brûlée, et parlait sans arrêt pour le distraire, ce qui ne lui ressemblait pas du tout.</p>
+<p>— J'ai annulé mon conseil d'administration. C'est la première fois en onze ans. Mon directeur financier a cru que j'étais mort.</p>
+<p>— Vous n'auriez pas dû.</p>
+<p>— Expliquez-moi. Ce qui vous arrive. Juridiquement. Ça vous fera penser à autre chose.</p>
+<p>Sami rit à travers ses larmes.</p>
+<p>— Vous avez compris comment je fonctionne.</p>
+<div class="scene">❦</div>
+<p>— C'est un <span class="k" tabindex="0" data-r="L. 411-1 CSS">accident du travail</span>. Article L. 411-1 du Code de la sécurité sociale : est considéré comme accident du travail, <strong>quelle qu'en soit la cause</strong>, l'accident survenu <strong>par le fait ou à l'occasion du travail</strong> à toute personne salariée. Quelle qu'en soit la cause : même si c'est ma faute, parce que j'étais fatigué, parce que j'ai glissé. Peu importe. Et ça crée une <span class="k" tabindex="0" data-r="accident au temps et au lieu du travail présumé professionnel">présomption d'imputabilité</span> : un accident survenu <strong>au temps et au lieu du travail</strong> est présumé professionnel, sauf si on prouve une cause <strong>totalement étrangère</strong> au travail.</p>
+<p>— Et avant ?</p>
+<p>— Avant, la jurisprudence le définissait comme « l'action violente et soudaine d'une cause extérieure provoquant, au cours du travail, une lésion de l'organisme ». La <strong>soudaineté</strong> le distinguait de la maladie professionnelle. Mais en 2003, <span class="k" tabindex="0" data-r="n° 00-21.768">Soc., 2 avr. 2003</span>, la chambre sociale a élargi : c'est « un événement ou une série d'événements survenus à des <strong>dates certaines</strong> par le fait ou à l'occasion du travail, dont il est résulté une lésion corporelle, <strong>quelle que soit la date d'apparition</strong> de celle-ci ». Même si la lésion apparaît plus tard, ça compte, du moment que l'événement a une date certaine.</p>
+<p>L'ambulance prit un virage. Sami grimaça.</p>
+<p>— Et si vous vous étiez brûlé en venant ? Dans la rue ?</p>
+<p>— Alors ce serait un <span class="k" tabindex="0" data-r="L. 411-2 CSS">accident de trajet</span>, article L. 411-2. Sur l'aller et retour entre la résidence principale, ou une résidence secondaire stable, ou un lieu où l'on va habituellement pour des raisons familiales, et le lieu de travail. Ou entre le lieu de travail et le lieu habituel des repas, le restaurant, la cantine. À condition que le parcours ne soit ni <strong>interrompu</strong> ni <strong>détourné</strong> pour un motif d'intérêt personnel étranger aux nécessités essentielles de la vie courante, ou indépendant de l'emploi. Un détour imposé par un covoiturage régulier, c'est admis. Mais attention : pour le trajet, <strong>pas de présomption</strong>. C'est la victime qui doit prouver les conditions, sauf si l'enquête donne des présomptions suffisantes.</p>
+<p>— Si je vous avais raccompagné en voiture et qu'on avait eu un accident en passant chez moi pour un café…</p>
+<p>— Détour pour un motif personnel. Pas de trajet.</p>
+<p>— Je retiens.</p>
+<div class="scene">❦</div>
+<p>Au centre des brûlés, on nettoya la plaie, on posa un pansement gras, on lui donna de la morphine. Sami se mit à parler plus lentement, avec un sourire flottant.</p>
+<p>— Et le mieux, dit-il, c'est l'<strong>indemnisation</strong>. Le compromis de 1898. Une réparation <strong>forfaitaire</strong>, graduée selon la gravité : incapacité temporaire, permanente, décès. En échange, je perds l'action en responsabilité civile de droit commun contre Monsieur Joly, même si la réparation est partielle. Mais je ne voudrais jamais attaquer Monsieur Joly. Il m'a mis le bras sous l'eau.</p>
+<p>— Et concrètement ?</p>
+<p>— Les <strong>soins</strong> sont gratuits. Réglés directement par la caisse : pas de ticket modérateur, pas de forfait journalier, tiers payant. Le <strong>jour de l'accident</strong> est payé intégralement par l'employeur. <strong>Pas de carence</strong> : les indemnités journalières sont dues dès le lendemain, article L. 433-1. Alors qu'en maladie ordinaire, il y a trois jours de carence. Et le montant : <strong>60 %</strong> du salaire journalier les vingt-huit premiers jours, puis <strong>80 %</strong> à partir du vingt-neuvième. En maladie ordinaire, c'est 50 %. Et la loi de financement pour 2026 prévoit une durée maximale, fixée par décret, au bout de laquelle l'incapacité est réputée permanente, sauf travail aménagé ou temps partiel thérapeutique.</p>
+<p>— Et si vous gardez une cicatrice ? Une incapacité ?</p>
+<p>— Le service médical fixe un <strong>taux d'incapacité permanente</strong>. Moins de 10 % : une indemnité en <strong>capital</strong>, une fois. Au-delà : une <strong>rente</strong>. Et en cas de décès, une rente aux ayants droit : le conjoint, les enfants à charge, les ascendants. La rente était versée tous les trimestres, ou tous les mois si le taux est d'au moins 50 %. À partir du 1er novembre, elle est mensuelle pour tout le monde, et au 1er janvier 2028 pour les rentes notifiées avant.</p>
+<p>Il ferma les yeux.</p>
+<p>— Je vais avoir une cicatrice, je crois.</p>
+<p>— Ça ne me dérange pas.</p>
+<p>— Vous ne l'avez pas encore vue.</p>
+<p>— Ça ne me dérange pas quand même.</p>
+<div class="scene">❦</div>
+<p>On le laissa sortir en fin d'après-midi, avec un pansement énorme, une ordonnance, un arrêt de travail de trois semaines et l'interdiction absolue de toucher un four. Monsieur Joly avait déclaré l'accident à la caisse dans la matinée. Il avait aussi téléphoné quatre fois pour avoir des nouvelles, et menacé de fermer la boulangerie s'il le fallait pour venir le chercher.</p>
+<p>Ce fut Gérard, le chauffeur silencieux, qui vint les chercher. Augustin donna une adresse. Ce n'était pas la rue Jean-Baptiste-Pigalle.</p>
+<p>— Je rentre chez moi, protesta Sami.</p>
+<p>— Vous habitez au cinquième sans ascenseur avec un bras brûlé, une plaque électrique et un frigo vide. Vous venez chez moi. J'ai un ascenseur dans une tourelle gothique, une cuisinière que je n'ai jamais allumée et un lit immense dans lequel je dors seul depuis six ans.</p>
+<p>— Vous me faites une proposition indécente ?</p>
+<p>— Je vous fais une proposition d'hébergement. L'indécence, on en reparlera quand vous n'aurez plus de morphine.</p>
+<p>Sami rit, et se cogna le bras contre la portière, et jura, et Augustin lui prit la main gauche, et ne la lâcha plus jusqu'à l'impasse Marie-Blanche.</p>
+<p>Ce soir-là, Augustin alluma la cuisinière pour la première fois en six ans. Il fit cuire des pâtes. Il les rata. Elles collèrent. Il les servit quand même, dans l'unique assiette, et en mangea dans la casserole. Sami trouva que c'étaient les meilleures pâtes de sa vie, et c'était peut-être la morphine, et peut-être pas.</p>
+<aside class="retenir"><h4>Ce que tu viens d'apprendre</h4><ul><li>Accident du travail (L. 411-1) : quelle qu'en soit la cause, par le fait ou à l'occasion du travail ; présomption d'imputabilité au temps et au lieu du travail (sauf cause totalement étrangère).</li><li>Définition : avant, action violente et soudaine d'une cause extérieure ; Soc., 2 avr. 2003 : événement(s) à date(s) certaine(s) dont résulte une lésion, quelle que soit sa date d'apparition.</li><li>Accident de trajet (L. 411-2) : résidence principale ou secondaire stable ou lieu familial habituel ↔ travail ; travail ↔ lieu habituel des repas ; ni interrompu ni détourné pour un motif personnel (covoiturage régulier admis) ; pas de présomption, preuve par la victime.</li><li>Indemnisation forfaitaire (compromis de 1898) contre perte de l'action de droit commun. Soins gratuits (tiers payant ; pas de ticket modérateur ni de forfait journalier) ; jour de l'accident payé par l'employeur ; pas de carence (L. 433-1) ; IJ 60 % puis 80 % dès le 29e jour (R. 433-1, R. 433-3) ; durée maximale (LFSS 2026).</li><li>Incapacité permanente : &lt; 10 % capital (L. 434-1), au-delà rente ; décès : rente aux ayants droit ; versement mensuel dès le 1er nov. 2026 (2028 pour les rentes antérieures).</li></ul></aside></section>
+<section class="chap" id="ch6"><header><div class="num">Chapitre 6</div><h2>Présent au domicile de 9 h à 11 h</h2><blockquote class="epi">« L'assurance maladie n'est qu'une composante de la sécurité sociale. »</blockquote></header><p>Augustin s'effondra le jeudi, en pleine conférence téléphonique, dans le salon vide de l'impasse Marie-Blanche.</p>
+<p>Sami, qui lisait son manuel de protection sociale sur le canapé avec son bras bandé sur un coussin, entendit d'abord la voix d'Augustin se casser au milieu d'une phrase sur les « synergies de la branche prévoyance ». Puis un bruit sourd. Augustin était assis par terre, le dos contre le mur, livide, couvert de sueur, avec une toux qui le secouait tout entier.</p>
+<p>— C'est rien, dit-il. Un rhume.</p>
+<p>Il avait 40,2 de fièvre.</p>
+<div class="scene">❦</div>
+<p>Le médecin arriva une heure plus tard. Ce fut Sami qui l'appela, parce qu'Augustin n'avait pas de médecin.</p>
+<p>— Pas de médecin traitant ? répéta le docteur Benguigui, une petite femme énergique du cabinet de la rue Caulaincourt, qui faisait encore des visites à domicile. Vous avez trente-six ans et pas de médecin traitant ?</p>
+<p>— Je ne suis jamais malade.</p>
+<p>— Vous avez une pneumonie. Le poumon droit est plein comme une éponge. Ça couve depuis au moins deux semaines. Vous auriez dû consulter il y a dix jours.</p>
+<p>— J'avais un conseil d'administration.</p>
+<p>Le docteur Benguigui le regarda comme on regarde un enfant qui a mangé du sable.</p>
+<p>— Antibiotiques, repos absolu, arrêt de travail de quinze jours. Et si ça ne va pas mieux dans quarante-huit heures, hospitalisation. Je vous déclare comme médecin traitant, si vous voulez bien. Vous me donnez votre carte Vitale ?</p>
+<p>Augustin ne savait pas où était sa carte Vitale. Sami la trouva au fond d'un tiroir de la cuisine, dans son enveloppe d'origine, jamais utilisée.</p>
+<div class="scene">❦</div>
+<p>Le soir, Augustin était couché dans son immense lit, sous trois couettes, frissonnant, et Sami était assis à côté de lui avec un bol de bouillon qu'il avait fait lui-même, d'une seule main.</p>
+<p>— Je ne sais même pas comment ça marche, dit Augustin, la voix rauque. L'assurance maladie. Je vends des mutuelles depuis onze ans et je ne sais pas comment marche la base.</p>
+<p>— Vous voulez vraiment un cours ? Avec quarante de fièvre ?</p>
+<p>— C'est la seule chose qui me calme. Votre voix qui récite.</p>
+<p>Sami posa le bol.</p>
+<p>— D'abord, trois opérations. L'<strong>identification</strong> : on vérifie l'identité, l'état civil, et on attribue le <strong>NIR</strong>, le numéro de sécurité sociale, dès la naissance, par l'INSEE, pour les personnes nées en France. L'<strong>assujettissement</strong> : on rattache un travailleur à un régime. L'âge, la nationalité, la qualité de salarié dans le contrat sont <strong>indifférents</strong> : ce qui compte, c'est la nature de l'activité et ses conditions d'exécution. Il faut être reconnu travailleur <strong>dépendant</strong>. L'<strong>affiliation</strong> : on rattache l'assuré à la caisse qui lui versera ses prestations, en principe la CPAM de sa résidence habituelle.</p>
+<p>— Et pour avoir droit ?</p>
+<p>— En 1945, c'était fondé sur le <strong>travail</strong> : il fallait avoir cotisé. Puis 1999, date majeure : la <strong>CMU</strong> de base contre l'exclusion des soins, et la CMU-C. Puis le 1er janvier 2016, la <span class="k" tabindex="0" data-r="protection universelle maladie, L. 160-1">PUMa</span> : toute personne qui <strong>travaille</strong> ou, à défaut, <strong>réside</strong> en France de manière stable et régulière bénéficie de la prise en charge de ses frais de santé. Un droit <strong>personnel</strong> et <strong>continu</strong>, toute la vie. Pour les salariés, plus besoin d'activité minimale : il suffit d'exercer une activité. Pour les indépendants, les droits dès le début. Pour ceux qui n'ont pas d'activité, la résidence suffit. Et le 1er novembre 2019, la CMU-C devient la <strong>complémentaire santé solidaire</strong>, la C2S : gratuite sous un plafond de ressources, avec une participation entre ce plafond et ce plafond majoré de 35 %.</p>
+<p>— Donc j'ai droit, même sans jamais avoir mis les pieds chez un médecin.</p>
+<p>— Vous avez droit comme tout le monde. Mais attention : la PUMa ne concerne que les <strong>frais de santé</strong>. Les <strong>indemnités journalières</strong>, elles, restent soumises à des conditions d'activité ou de cotisations.</p>
+<div class="scene">❦</div>
+<p>Augustin toussa longtemps. Sami lui tint le dos, puis l'aida à se rallonger.</p>
+<p>— Les prestations en nature, reprit Sami, plus doucement. Le remboursement des actes médicaux et paramédicaux, des médicaments, des appareils, des hospitalisations, des transports, certaines vaccinations, de la prévention. C'est une assurance <strong>remboursement</strong> : on avance les frais, puis on est remboursé, sauf <strong>tiers payant</strong>. Et pour être bien remboursé, il faut suivre le <strong>parcours de soins coordonnés</strong> : consulter d'abord son <strong>médecin traitant</strong>. Sauf les moins de seize ans, et les spécialistes en accès direct. Vous, jusqu'à aujourd'hui, vous auriez été mal remboursé.</p>
+<p>— Je n'ai jamais rien demandé.</p>
+<p>— Et il reste toujours quelque chose à payer : le <span class="k" tabindex="0" data-r="ticket modérateur, participation, franchises, forfait">reste à charge</span>. Le <strong>ticket modérateur</strong> : la part qui reste à la charge de l'assuré après le remboursement, sur tous les frais remboursables. Son taux varie selon le risque, l'acte, et le respect du parcours de soins. Souvent la complémentaire le prend en charge. La <strong>participation forfaitaire</strong> : <strong>deux euros</strong>, et non plus un, pour les plus de dix-huit ans, par consultation, par examen de radiologie, par analyse ; plafonnée à trente-cinq participations, soit <strong>soixante-dix euros</strong> par an depuis le 1er octobre. Les <strong>franchises</strong> : un euro par boîte de médicament, un euro par acte paramédical, quatre euros par transport ; plafond porté de cinquante à <strong>soixante-dix euros</strong> par an depuis le 1er octobre aussi. Et le <strong>forfait journalier hospitalier</strong> : vingt-trois euros par jour, dix-sept en psychiatrie, depuis le 1er mars. Avec des exonérations, la maternité, les accidents du travail. Moi, avec ma brûlure, je ne paie rien.</p>
+<p>— Et les trois étages ?</p>
+<p>— La PUMa rembourse la part obligatoire. Le reste peut être couvert par une <strong>complémentaire santé</strong>, votre métier, ou par la <strong>C2S</strong>, qui la remplace sous plafond de ressources. Les deux ne se cumulent pas.</p>
+<div class="scene">❦</div>
+<p>— Et l'argent ? demanda Augustin, les yeux fermés. Si je ne travaille pas quinze jours ?</p>
+<p>— Les <span class="k" tabindex="0" data-r="substitut de salaire en cas d&#x27;arrêt">indemnités journalières</span>, c'est un substitut de salaire quand l'incapacité de travailler est constatée par un médecin, une sage-femme ou un chirurgien-dentiste, article L. 321-1. Il faut remplir des conditions de durée d'activité ou de cotisations à la date de l'arrêt, et en plus une durée d'affiliation pour les arrêts de plus de six mois. Il y a <strong>trois jours de carence</strong> : elles sont dues à partir du quatrième jour. Le montant : <strong>50 %</strong> du revenu d'activité antérieur ramené à une valeur journalière, dans la limite de <strong>1,4 SMIC</strong> mensuel pour les arrêts qui ont commencé depuis le 1er avril 2025. Vous, avec votre salaire de président, vous toucherez le plafond, comme tout le monde.</p>
+<p>Augustin rit, puis toussa.</p>
+<p>— Et la durée ?</p>
+<p>— Depuis le 1er septembre, la loi de financement pour 2026 limite la durée des arrêts prescrits : <strong>trente et un jours</strong> au plus pour un arrêt initial, <strong>soixante-deux</strong> pour une prolongation, sauf justification du médecin. La durée d'indemnisation : <strong>trois cent soixante</strong> indemnités au plus sur trois ans pour les affections ordinaires ; trois ans pour les affections de longue durée exonérantes ; et, pour les arrêts prescrits depuis le 15 octobre, un an pour les affections de longue durée non exonérantes.</p>
+<p>— Et l'employeur ? Il ajoute quelque chose ?</p>
+<p>— Pour les salariés, il y a l'<strong>indemnité complémentaire</strong> de l'article L. 1226-1 du Code du travail. Il faut un an d'ancienneté, justifier de l'incapacité dans les quarante-huit heures, être pris en charge par la sécurité sociale, être soigné en France ou dans l'Union. Elle est versée après <strong>sept jours</strong> d'absence, dès le premier jour pour un accident du travail, sauf le trajet. Elle porte la rémunération à <strong>90 %</strong> du brut pendant trente jours, puis aux <strong>deux tiers</strong> les trente jours suivants, des durées qui s'allongent avec l'ancienneté, et souvent améliorées par les conventions collectives. L'employeur peut organiser une <strong>contre-visite</strong>. Et depuis le 27 juin, elle est exclue en cas de <strong>fraude avérée</strong> du salarié aux indemnités journalières, si l'employeur en a été informé.</p>
+<p>— Je suis mon propre employeur. Je vais me faire une contre-visite.</p>
+<p>— Et vous avez des <strong>obligations</strong>. Respecter les prescriptions. Si les sorties sont autorisées, être <strong>présent au domicile de 9 h à 11 h et de 14 h à 16 h</strong>, sauf soins ou sorties libres médicalement justifiées. Ne pas quitter la circonscription sans autorisation. Et <strong>aucune activité</strong> non autorisée. Pas de conseil d'administration. Pas de conférence téléphonique. Pas de Providentia Total.</p>
+<p>— Et qui va vérifier ?</p>
+<p>— Moi.</p>
+<div class="scene">❦</div>
+<p>Augustin ouvrit les yeux. Ils brillaient de fièvre, et d'autre chose.</p>
+<p>— Vous restez ? Toute la nuit ?</p>
+<p>— Je suis en arrêt de travail aussi. Accident du travail. Je dois être présent à mon domicile. Mais je n'ai pas précisé lequel.</p>
+<p>— C'est de la fraude.</p>
+<p>— C'est du concubinage temporaire.</p>
+<p>Augustin souleva les couettes. Sami se glissa dessous, en caleçon et tee-shirt, son bras bandé posé sur la poitrine d'Augustin, sa tête au creux de son épaule brûlante. Augustin le serra contre lui, prudemment, en évitant le pansement, et Sami sentit contre sa joue la peau chaude et moite, et le cœur qui battait vite à cause de la fièvre, ou pas seulement.</p>
+<p>— J'ai jamais eu quelqu'un dans ce lit, murmura Augustin. En six ans.</p>
+<p>— Et avant ?</p>
+<p>— Avant, j'avais d'autres lits. Des hôtels. Personne ne restait le matin.</p>
+<p>— Moi, je ne pars pas à quatre heures et demie. Je suis en arrêt.</p>
+<p>Ils restèrent ainsi, emmêlés, malades tous les deux, sans rien faire d'autre que respirer l'un contre l'autre. Vers trois heures du matin, la fièvre d'Augustin tomba. Il se réveilla trempé de sueur, et trouva Sami réveillé, qui le regardait.</p>
+<p>— Tu es resté, dit Augustin.</p>
+<p>C'était la première fois qu'il le tutoyait. Sami ne releva pas. Il l'embrassa sur le front, puis sur la tempe, puis, très doucement, sur la bouche, et Augustin, qui avait vendu des milliards d'assurances, comprit pour la première fois de sa vie ce que voulait dire être couvert.</p>
+<aside class="retenir"><h4>Ce que tu viens d'apprendre</h4><ul><li>Identification (NIR, INSEE) ; assujettissement (rattachement à un régime ; nature de l'activité, travailleur dépendant) ; affiliation (CPAM de résidence, R. 312-1).</li><li>1945 : droit fondé sur le travail ; 1999 : CMU et CMU-C ; 1er janv. 2016 : PUMa (L. 160-1 : travail ou résidence stable et régulière ; droit personnel et continu) ; 1er nov. 2019 : C2S (L. 861-1). La PUMa ne couvre que les frais de santé, pas les IJ.</li><li>Prestations en nature : assurance remboursement (sauf tiers payant) ; parcours de soins coordonnés. Reste à charge : ticket modérateur ; participation forfaitaire 2 € (plafond 70 € au 1er oct. 2026) ; franchises 1 € / 1 € / 4 € (plafond 70 €) ; forfait journalier 23 € (17 € psychiatrie). Trois étages ; complémentaire et C2S non cumulables.</li><li>IJ (L. 321-1) : conditions d'activité ou de cotisations ; 3 jours de carence ; 50 % (plafond 1,4 SMIC depuis le 1er avr. 2025) ; arrêts limités à 31 j / 62 j (LFSS 2026) ; 360 IJ sur 3 ans ; ALD 3 ans ; ALD non exonérante 1 an.</li><li>Indemnité complémentaire (L. 1226-1 C. trav.) : 1 an d'ancienneté, 48 h, après 7 jours (1er jour en AT-MP hors trajet), 90 % puis 2/3 ; contre-visite ; exclue en cas de fraude (27 juin 2026). Obligations de l'assuré : présence 9-11 h et 14-16 h, circonscription, aucune activité.</li></ul></aside></section>
+<section class="chap" id="ch7"><header><div class="num">Chapitre 7</div><h2>Le trentième étage</h2><blockquote class="epi">« Une lente atteinte de l'organisme. »</blockquote></header><p>Augustin retourna à la tour Providentia un lundi soir, guéri, contre l'avis de Sami et du docteur Benguigui. Mais pas pour travailler. Il prit l'ascenseur jusqu'au trentième étage à vingt heures, et attendit.</p>
+<p>Nadia Haddad sortit du local de ménage à vingt heures cinq, poussant son chariot.</p>
+<p>— Monsieur ? Vous êtes encore là ?</p>
+<p>— Je voulais vous voir. Je voulais… vous demander comment vous allez.</p>
+<p>Nadia le regarda avec une méfiance profonde, celle des gens à qui les patrons ne demandent jamais comment ils vont.</p>
+<p>— Ça va, monsieur.</p>
+<p>Puis elle toussa. Et cette fois, ça ne s'arrêta pas. Elle se plia en deux, lâcha la poignée du chariot, chercha l'air avec un sifflement terrible, comme si sa gorge se fermait. Ses lèvres devenaient grises. Augustin la rattrapa avant qu'elle ne tombe, l'assit par terre contre le mur du couloir, et appela le 15 d'une main qui tremblait.</p>
+<div class="scene">❦</div>
+<p>Ils étaient tous les trois aux urgences de l'hôpital Bichat à minuit : Nadia, sous oxygène, avec un masque d'aérosol sur le visage ; Sami, qui était arrivé en taxi en pyjama sous son manteau, le bras encore bandé ; et Augustin, assis sur une chaise en plastique, en costume, la tête dans les mains.</p>
+<p>Le pneumologue de garde fut catégorique.</p>
+<p>— Asthme sévère. Professionnel, très probablement. Elle m'a dit qu'elle utilisait des sprays désinfectants à base d'ammoniums quaternaires, en milieu fermé, sans masque, depuis des années. C'est un tableau classique. Il faut faire une déclaration de maladie professionnelle.</p>
+<p>Nadia retira son masque.</p>
+<p>— Je ne veux pas d'histoires avec mon employeur.</p>
+<p>— Maman, dit Sami. Ton employeur, il est assis là.</p>
+<p>Nadia tourna la tête vers Augustin. Augustin ne releva pas la sienne.</p>
+<div class="scene">❦</div>
+<p>Ils rentrèrent à l'impasse Marie-Blanche à trois heures du matin. Nadia restait en observation jusqu'au lendemain. Sami ne voulait pas dormir. Il s'assit à la table de la cuisine, avec son manuel, ses fiches, et un regard que Augustin ne lui avait jamais vu : quelque chose entre la colère et la peur.</p>
+<p>— Explique-moi, dit Augustin. Ce qui va se passer pour elle.</p>
+<p>— Une <span class="k" tabindex="0" data-r="atteinte résultant d&#x27;une lente atteinte de l&#x27;organisme">maladie professionnelle</span>, c'est une atteinte à l'intégrité physique ou psychique qui résulte d'une <strong>lente atteinte</strong> de l'organisme. Pas un événement soudain, comme un accident. Le problème, c'est l'identification, et surtout la <strong>causalité</strong> : comment prouver que c'est le travail qui l'a rendue malade, et pas autre chose ? Alors l'article L. 461-1 prévoit <strong>trois voies</strong> de reconnaissance.</p>
+<p>Il prit une feuille et un stylo, et dessina trois colonnes, de la main gauche, ce qui donnait un tableau tordu.</p>
+<p>— Première voie : la <strong>présomption</strong>. Il existe des <strong>tableaux</strong> de maladies professionnelles, annexés au Code de la sécurité sociale. Chaque tableau désigne une maladie, un <strong>délai de prise en charge</strong>, parfois une <strong>durée d'exposition</strong>, et une <strong>liste des travaux</strong> susceptibles de la provoquer. Si la maladie est désignée dans un tableau et contractée dans les conditions du tableau, elle est <strong>présumée</strong> d'origine professionnelle. Comme pour l'accident du travail. C'est la caisse qui instruit. Il y a un tableau pour les asthmes professionnels, et les produits de nettoyage y figurent.</p>
+<p>— Alors c'est réglé.</p>
+<p>— Pas forcément. Il faut que toutes les conditions soient remplies. Si l'une manque, par exemple le délai entre la fin de l'exposition et le diagnostic, ou la durée d'exposition, ou si son travail exact ne figure pas dans la <strong>liste limitative</strong> des travaux, alors on passe à la <strong>deuxième voie</strong> : le tableau, avec une condition manquante. La maladie peut quand même être reconnue s'il est établi qu'elle est <strong>directement causée par le travail habituel</strong> de la victime. Pas forcément la cause unique ou essentielle : la chambre sociale l'a dit en <span class="k" tabindex="0" data-r="n° 00-13.097">Soc., 19 déc. 2002</span>. Il suffit que le travail soit une cause directe. Là, la caisse doit demander l'avis motivé d'un <strong>comité régional de reconnaissance des maladies professionnelles</strong>, le <strong>CRRMP</strong>, et cet avis s'impose à elle. Depuis la loi de financement pour 2026, si <strong>seul le délai</strong> n'est pas respecté, le dossier sera examiné par un collège de deux médecins-conseils, et le CRRMP sera recentré sur les dossiers complexes ; mais il faut encore des textes réglementaires pour que ça s'applique.</p>
+<p>— Et la troisième ?</p>
+<p>— La voie <strong>hors tableau</strong>. Une maladie caractérisée qui n'est désignée dans <strong>aucun</strong> tableau, mais qui est <strong>essentiellement et directement</strong> causée par le travail habituel, et qui a entraîné le <strong>décès</strong> ou une <strong>incapacité permanente d'au moins 25 %</strong>. Avis du CRRMP, là aussi. C'est la voie des <strong>pathologies psychiques</strong> : la dépression, le burn-out. Le seuil de 25 % est très difficile à atteindre.</p>
+<p>— Et les tableaux, ils changent ?</p>
+<p>— Ils évoluent. Le décret du 26 décembre 2025 a complété deux tableaux sur l'<strong>amiante</strong> pour les activités de lutte contre les incendies, les pompiers professionnels et volontaires, et, pour l'un des deux, pour le sauvetage et le déblaiement lors d'effondrements. Ça a pris des décennies. Les tableaux suivent toujours la réalité avec un temps de retard.</p>
+<div class="scene">❦</div>
+<p>Augustin était resté debout, appuyé contre l'évier. Il regardait par la fenêtre l'impasse vide, la gargouille de la façade d'en face, le ciel orange de Paris.</p>
+<p>— Les ammoniums quaternaires, dit-il lentement. J'ai vu passer une note, il y a deux ans. Le directeur des achats de Net&amp;Clair avait changé de fournisseur. Un produit moins cher, plus concentré. Il y a eu un rapport du médecin du travail, qui demandait des masques, une ventilation, une formation. On l'a classé. C'était trop cher. J'ai signé le budget sans lire.</p>
+<p>Sami posa son stylo.</p>
+<p>— Tu as signé.</p>
+<p>— Je signe tout. Je ne lis rien. C'est comme ça que je vais vite.</p>
+<p>— Tu sais ce que c'est, ça ?</p>
+<p>— Dis-le.</p>
+<p>— Si la maladie de ma mère est reconnue, et si l'employeur avait conscience du danger, ou aurait dû l'avoir, et n'a pas pris les mesures pour la protéger… c'est une <strong>faute inexcusable</strong>.</p>
+<p>Le mot resta suspendu dans la cuisine, sous les voûtes gothiques.</p>
+<div class="scene">❦</div>
+<p>Ils ne dormirent pas. Vers cinq heures, Sami alla prendre une douche, en tenant son bras bandé hors de l'eau. Quand il sortit, Augustin était assis sur le bord de la baignoire, en chemise, les manches relevées, avec une serviette.</p>
+<p>— Laisse-moi faire, dit-il. Pour ton bras.</p>
+<p>Sami se laissa faire. Augustin le sécha avec une précaution infinie, l'épaule, le dos, les jambes, en évitant le pansement. Il ne disait rien. Sami voyait ses mains trembler un peu.</p>
+<p>— Je ne veux pas que tu restes avec moi par pitié, dit Augustin, à voix très basse. Ou par colère. Ou pour ta mère. Si tu veux partir, pars maintenant. Je comprendrai.</p>
+<p>Sami prit la serviette de ses mains et la posa. Il était nu, encore humide, devant cet homme en chemise blanche qui tremblait.</p>
+<p>— Je ne pars pas, dit-il. Mais tu vas réparer.</p>
+<p>— Tout ?</p>
+<p>— Tout ce qui se répare.</p>
+<p>Augustin hocha la tête. Puis il posa son front contre le ventre de Sami, et resta comme ça très longtemps, à genoux sur le carrelage de la salle de bains, les bras autour de sa taille, sans bouger, comme quelqu'un qui demande pardon dans une langue qu'il ne connaît pas encore.</p>
+<p>Sami lui caressa les cheveux. Dehors, le ciel blanchissait au-dessus de Montmartre. Quelque part, rue des Abbesses, Monsieur Joly sortait les premières baguettes sans lui.</p>
+<aside class="retenir"><h4>Ce que tu viens d'apprendre</h4><ul><li>Maladie professionnelle : atteinte à l'intégrité physique ou psychique résultant d'une lente atteinte de l'organisme ; difficultés d'identification et de causalité. Trois voies (L. 461-1).</li><li>1) Présomption : maladie désignée dans un tableau et contractée dans ses conditions (délai de prise en charge, durée d'exposition, liste des travaux) ; instruction par la caisse.</li><li>2) Tableau, condition manquante : maladie directement causée par le travail habituel (pas forcément cause unique ou essentielle : Soc., 19 déc. 2002) ; avis motivé du CRRMP qui s'impose à la caisse ; LFSS 2026 : seul le délai manquant → collège de deux médecins-conseils (sous réserve des textes réglementaires).</li><li>3) Hors tableau : maladie essentiellement et directement causée par le travail habituel, ayant entraîné le décès ou une IP d'au moins 25 % (R. 461-8) ; avis du CRRMP ; voie des pathologies psychiques.</li><li>Évolution des tableaux : décret du 26 déc. 2025 (amiante, n° 16 bis et 30 : pompiers ; sauvetage et déblaiement).</li></ul></aside></section>
+<section class="chap" id="ch8"><header><div class="num">Chapitre 8</div><h2>Inexcusable</h2><blockquote class="epi">« Lorsque l'accident est dû à la faute inexcusable de l'employeur… » — Art. L. 452-1 CSS</blockquote></header><p>Le CRRMP rendit son avis en février. Les conditions du tableau n'étaient pas toutes remplies : le nettoyage de bureaux par pulvérisation ne figurait pas exactement dans la liste limitative des travaux. Mais le comité constata que l'asthme de Nadia Haddad était <strong>directement causé</strong> par son travail habituel. La caisse reconnut la maladie professionnelle. Le service médical fixa un taux d'incapacité permanente de 30 %. Une <strong>rente</strong>.</p>
+<p>— Trente pour cent, répéta Nadia, assise dans la cuisine de son HLM de la Goutte-d'Or, son inhalateur à la main. C'est beaucoup ?</p>
+<p>— C'est une rente, maman, dit Sami. Pas un capital. Au-dessus de 10 %, c'est une rente, tous les mois, toute ta vie.</p>
+<p>— Et je pourrai reprendre le travail ?</p>
+<p>— Pas avec ces produits. Jamais.</p>
+<div class="scene">❦</div>
+<p>La semaine suivante, le directeur juridique de Providentia, Maître Hugo Ferrand-Lasalle, demanda un rendez-vous à Augustin. Il arriva au quarante-deuxième étage avec trois associés et un dossier de deux cents pages.</p>
+<p>— La salariée va engager une action en reconnaissance de <strong>faute inexcusable</strong> contre Net&amp;Clair, dit-il. Son fils est étudiant en droit, il le lui a forcément conseillé. Nous recommandons de contester. Fermement. Il y a des arguments : elle n'a jamais signalé de symptômes à sa hiérarchie, elle n'a jamais demandé de masque, le produit était homologué…</p>
+<p>— Et le rapport du médecin du travail ? demanda Augustin. Celui qui demandait des masques et une ventilation, il y a deux ans ?</p>
+<p>Maître Ferrand-Lasalle eut un très léger temps d'arrêt.</p>
+<p>— Il n'a pas été versé au dossier.</p>
+<p>— Il existe ?</p>
+<p>— Il existe.</p>
+<p>— Alors expliquez-moi la faute inexcusable. Comme si j'étais étudiant en L3.</p>
+<div class="scene">❦</div>
+<p>Le directeur juridique s'éclaircit la gorge.</p>
+<p>— La <span class="k" tabindex="0" data-r="art. L. 452-1 CSS">faute inexcusable</span>, article L. 452-1 du Code de la sécurité sociale. Celle de l'employeur, ou de ceux qu'il s'est substitués dans la direction. Pendant longtemps, la jurisprudence la rattachait à une « obligation de sécurité <strong>de résultat</strong> ». Ce n'est plus le cas. Elle la rattache désormais à l'<strong>obligation légale de sécurité</strong>, articles L. 4121-1 et L. 4121-2 du Code du travail. Le manquement à cette obligation est une faute inexcusable lorsque l'employeur <strong>avait ou aurait dû avoir conscience du danger</strong> auquel était exposé le travailleur, et qu'il <strong>n'a pas pris les mesures nécessaires</strong> pour l'en préserver. C'est l'arrêt de la deuxième chambre civile du <span class="k" tabindex="0" data-r="Civ. 2e, 8 oct. 2020, n° 18-25.021">8 octobre 2020</span>.</p>
+<p>— Avait conscience. Ou aurait dû avoir conscience.</p>
+<p>— C'est exact.</p>
+<p>— J'avais un rapport sur mon bureau. Je l'ai signé sans le lire. J'aurais dû avoir conscience.</p>
+<p>Silence dans la salle de réunion. Un des associés baissa les yeux vers son stylo.</p>
+<p>— Comment elle est reconnue ? demanda Augustin.</p>
+<p>— Par <strong>accord amiable</strong> entre la caisse, l'employeur et la victime. Ou, à défaut, par le <strong>pôle social du tribunal judiciaire</strong>.</p>
+<p>— Et ses effets ?</p>
+<p>— D'abord, une <strong>majoration de la rente</strong>. Ensuite, la <strong>réparation des préjudices</strong> que le livre IV ne couvre pas, normalement, à cause du compromis de 1898. Et depuis une décision du Conseil constitutionnel, la <span class="k" tabindex="0" data-r="CC, 2010-8 QPC">QPC du 18 juin 2010</span>, la victime peut demander la réparation de <strong>l'ensemble</strong> des dommages non couverts par le livre IV. Les souffrances physiques et morales, le préjudice esthétique, le préjudice d'agrément, la perte de chance de promotion professionnelle, et tous les autres. C'est ce qui rend ces procédures coûteuses.</p>
+<p>— Et si l'employeur l'avait fait exprès ?</p>
+<p>Maître Ferrand-Lasalle eut l'air choqué.</p>
+<p>— Ce serait la <strong>faute intentionnelle</strong>, article L. 452-5. L'<strong>intention de nuire</strong>, la volonté de causer des lésions corporelles. Un acte ou une omission volontaire de l'employeur, des coups et blessures volontaires ; ou d'un préposé, quelqu'un qui jette un objet sur un collègue pour le blesser. Dans ce cas, la victime ou ses ayants droit <strong>conservent</strong> contre l'auteur l'action de droit commun pour le préjudice que le livre IV ne répare pas. Mais personne ne prétend que Net&amp;Clair a voulu rendre cette femme malade.</p>
+<p>— Non, dit Augustin. Personne n'a rien voulu. Personne n'a rien lu. C'est pire.</p>
+<p>Il se leva.</p>
+<p>— Nous ne contestons pas. Nous proposons un accord amiable. Je veux que la faute inexcusable soit reconnue, que la rente soit majorée au maximum, et que tous les préjudices soient réparés. Et je veux que, d'ici un mois, tous les agents de Net&amp;Clair aient des masques, des produits sans ammoniums quaternaires, une formation, et une visite médicale. Tous. Deux mille.</p>
+<p>— Monsieur le président, le conseil d'administration…</p>
+<p>— Je préviendrai le conseil d'administration.</p>
+<p>— Ce sera reconnu comme un aveu. D'autres salariés vont suivre. Ça pourrait coûter des dizaines de millions. Et le taux de cotisation AT-MP de Net&amp;Clair, qui est individuel, va exploser.</p>
+<p>— Alors c'est que ça devait coûter des dizaines de millions. Depuis deux ans.</p>
+<div class="scene">❦</div>
+<p>Le samedi suivant, Sami annonça à Augustin qu'ils étaient invités à déjeuner à la Goutte-d'Or.</p>
+<p>— Ta mère veut me voir ?</p>
+<p>— Ma mère veut voir l'homme qui a reconnu sa faute inexcusable. Et l'homme qui dort avec son fils. Elle a compris tout ça mardi. Elle n'est pas bête.</p>
+<p>Augustin s'arrêta net dans l'escalier de la tourelle.</p>
+<p>— Elle sait ?</p>
+<p>— Elle a vu ta tête à l'hôpital. Elle dit qu'un patron ne fait pas cette tête-là pour une femme de ménage. Il la fait pour son fils.</p>
+<p>Augustin se changea trois fois. Il finit en jean et en pull, pour la première fois depuis que Sami le connaissait, et apporta des fleurs, des pâtisseries orientales de la rue Myrha, et une bouteille de vin qu'il reposa sur le palier au dernier moment, sur le conseil de Sami.</p>
+<p>Nadia ouvrit la porte. Elle regarda Augustin de haut en bas, longtemps. Puis elle prit le torchon qu'elle avait sur l'épaule et lui en donna un coup sec sur le bras.</p>
+<p>— Ça, c'est pour les produits, dit-elle.</p>
+<p>Puis elle le prit dans ses bras et le serra si fort qu'il en perdit le souffle.</p>
+<p>— Et ça, c'est pour les masques. Entrez. Le couscous refroidit.</p>
+<div class="scene">❦</div>
+<p>Ils mangèrent à six autour d'une table pour quatre : Nadia, Sami, Augustin, Leïla, la sœur de Sami, qui travaillait à la SNCF et qui était enceinte de cinq mois, son mari Youssef, et l'oncle Karim, venu de Seine-et-Marne avec un cageot de légumes. Augustin ne parla presque pas. Il mangea trois fois du couscous. Il écouta Karim raconter ses démêlés avec la MSA, Leïla raconter son chef qui était au régime spécial, Nadia raconter Sami à huit ans qui récitait déjà les règles du Monopoly comme un code.</p>
+<p>À la fin du repas, Leïla se pencha vers lui.</p>
+<p>— Vous savez qu'il vous aime, mon frère ?</p>
+<p>Augustin la regarda, puis regarda Sami, qui faisait semblant de ne pas avoir entendu en débarrassant les assiettes et en laissant tomber une fourchette.</p>
+<p>— Je ne sais pas, dit Augustin. Personne ne m'a jamais aimé. Je ne sais pas à quoi ça ressemble.</p>
+<p>— Ça ressemble à ça, dit Leïla en désignant son frère, à genoux sous la table, à la recherche de sa fourchette.</p>
+<p>Le soir, dans le grand lit de l'impasse Marie-Blanche, Augustin resta longtemps éveillé, Sami endormi contre lui. Il pensa à la table pour quatre où ils avaient tenu à six. Il pensa à la maison vide, aux pièces blanches, à l'assiette unique. Il pensa à une maison grise, quelque part en Picardie, où il avait vécu de huit à douze ans, et dont il n'avait jamais parlé à personne.</p>
+<p>Son téléphone vibra sur la table de nuit. Un message du président du comité des nominations de Providentia.</p>
+<p><em>Conseil d'administration extraordinaire lundi 8 h. Ordre du jour : révocation du président.</em></p>
+<aside class="retenir"><h4>Ce que tu viens d'apprendre</h4><ul><li>Faute inexcusable (L. 452-1) : de l'employeur ou de ceux qu'il s'est substitués ; rattachée non plus à une obligation de sécurité de résultat mais à l'obligation légale de sécurité (L. 4121-1 et L. 4121-2 C. trav.) : conscience (réelle ou exigible) du danger + absence des mesures nécessaires (Civ. 2e, 8 oct. 2020).</li><li>Reconnaissance : accord amiable ou pôle social du tribunal judiciaire.</li><li>Effets : majoration de la rente ; réparation des préjudices ; depuis CC, 2010-8 QPC, 18 juin 2010 : réparation de l'ensemble des dommages non couverts par le livre IV.</li><li>Faute intentionnelle (L. 452-5) : intention de nuire, volonté de causer des lésions (employeur ou préposé) ; la victime conserve l'action de droit commun pour le préjudice non réparé.</li><li>Incapacité permanente : capital sous 10 %, rente au-delà ; tarification AT-MP individuelle pour les grandes entreprises (incitation à la prévention).</li></ul></aside></section>
+<section class="chap" id="ch9"><header><div class="num">Chapitre 9</div><h2>France Travail, guichet 4</h2><blockquote class="epi">« Le chômage n'est pas de la sécurité sociale. »</blockquote></header><p>Le conseil d'administration de Providentia révoqua son président le lundi à huit heures quarante-sept, par onze voix contre deux. Motif officiel : « divergences stratégiques ». Motif réel : vingt-trois millions d'euros de provisions pour faute inexcusable, l'abandon de Providentia Total et une baisse de 14 % de l'action en trois jours.</p>
+<p>Augustin sortit de la tour à neuf heures quinze avec un carton contenant tout ce qu'il possédait au quarante-deuxième étage : un stylo, une tasse, une plante verte morte et une photo d'identité de Sami, prise dans un photomaton de la gare du Nord pour sa carte de transport et volée dans son portefeuille, ce que Sami ignorait.</p>
+<p>Gérard l'attendait en bas, avec la voiture. Augustin lui dit de rentrer chez lui.</p>
+<p>— Je vous paie jusqu'à la fin du mois, Gérard. Après, je ne sais pas. Je ne sais plus rien.</p>
+<p>Il prit la ligne 1 jusqu'à Charles-de-Gaulle-Étoile, puis la 2 jusqu'à Pigalle, son carton dans les bras, debout, entre une dame avec un cabas et un adolescent qui écoutait du rap. Personne ne le reconnut.</p>
+<div class="scene">❦</div>
+<p>Sami l'attendait à la sortie du métro, place Pigalle, entre les fontaines et les sex-shops, avec deux cafés et un pain au chocolat.</p>
+<p>— Alors ?</p>
+<p>— Alors je suis chômeur.</p>
+<p>Sami lui prit le carton des bras et regarda dedans. Il vit la photo. Il rougit jusqu'aux oreilles. Il ne dit rien.</p>
+<p>— Je vais avoir le chômage ? demanda Augustin, mi-sérieux, mi-perdu. Comment ça marche ? Je n'ai jamais été au chômage. Je n'ai jamais rien eu de la société.</p>
+<p>Sami lui tendit le pain au chocolat.</p>
+<p>— Tu vas voir. Viens.</p>
+<div class="scene">❦</div>
+<p>Ils marchèrent jusqu'à l'agence France Travail de la rue de Clignancourt, sans y entrer, parce que Sami voulait seulement « lui montrer le bâtiment pendant qu'il expliquait », et ils s'assirent sur un banc en face, avec leurs cafés.</p>
+<p>— D'abord, le chômage, ce n'est <strong>pas de la sécurité sociale</strong>. C'est de la protection sociale au sens large. Il n'a pas été intégré en 1945. Il a été mis en place par les <strong>partenaires sociaux</strong>, l'accord interprofessionnel du 31 décembre 1958. Ses règles sont dans le <strong>Code du travail</strong>, pas dans le Code de la sécurité sociale. Et il était géré par des associations, les Assedic, pas par des caisses de sécurité sociale.</p>
+<p>— Qui gère, aujourd'hui ?</p>
+<p>— Deux acteurs. L'<span class="k" tabindex="0" data-r="le pilote de l&#x27;assurance chômage">Unédic</span>, c'est le <strong>pilote</strong>. Une association créée en 1958 par les partenaires sociaux, paritaire, de droit privé. Elle a quatre rôles : financer les allocations ; veiller à l'application des règles ; verser à France Travail une contribution d'au moins 10 % de ses ressources, article L. 5422-24, fixée à 11 % pour 2026, environ 5,2 milliards d'euros, presque les trois quarts des ressources de l'opérateur ; et définir avec l'État et France Travail les objectifs, et suivre leur réalisation. Et puis <span class="k" tabindex="0" data-r="l&#x27;opérateur">France Travail</span>, l'<strong>opérateur</strong>. Une institution nationale publique, avec la personnalité morale et l'autonomie financière, sous la tutelle du ministère du Travail, article L. 5312-1. Créée par la loi du 18 décembre 2023 pour le plein emploi, elle a remplacé Pôle emploi le 1er janvier 2024. Elle verse l'allocation d'assurance chômage pour le compte de l'Unédic, et les allocations de solidarité pour le compte de l'État. Elle coordonne le « réseau pour l'emploi ». C'est l'interlocuteur unique du demandeur : inscription, attestation employeur, litiges.</p>
+<p>— Et les règles, qui les fixe ?</p>
+<p>— Une <strong>convention d'assurance chômage</strong>, négociée tous les deux ou trois ans par les partenaires sociaux, et rendue obligatoire par un <strong>arrêté d'agrément</strong>. Mais depuis la loi du 5 septembre 2018, l'État <strong>encadre</strong> la négociation : le Premier ministre transmet un <strong>document de cadrage</strong>, avec une trajectoire financière et des objectifs, article L. 5422-20-1. L'accord ne s'applique qu'une fois agréé. Les règles actuelles : la convention du 15 novembre 2024, agréée le 19 décembre, applicable au 1er janvier 2025, modifiée par un avenant du 7 juillet 2025, agréé en février. Et l'État ne compense que partiellement certaines exonérations, ce qui ampute les recettes.</p>
+<p>— Et qui paie ?</p>
+<p>— Une <strong>assurance</strong> : depuis 1958, elle protège tous les salariés du privé, et certains du public, qui perdent leur emploi. Une allocation calculée sur l'ancien salaire, et des aides au retour à l'emploi. Obligatoire : tous les employeurs du privé cotisent. Mais aussi <strong>solidaire</strong> : elle mutualise les risques et compense mieux la perte d'un bas salaire que celle d'un haut revenu. Le financement, ce sont des <strong>contributions patronales</strong> et des impositions affectées, article L. 5422-9. Les salariés de droit commun <strong>ne cotisent plus</strong> depuis 2018.</p>
+<div class="scene">❦</div>
+<p>Un homme d'une cinquantaine d'années sortit de l'agence, une pochette plastique à la main, l'air épuisé. Il alluma une cigarette sur le trottoir d'en face, et la fuma en regardant le vide. Augustin le regarda longtemps.</p>
+<p>— Et qui a droit ?</p>
+<p>— Article L. 5422-1 : les salariés <strong>privés d'emploi de façon involontaire</strong>. Licenciement, fin de CDD. Aussi, sous conditions, en cas de <strong>rupture conventionnelle</strong>, et pour les <strong>démissionnaires</strong> qui ont un projet réel et sérieux de reconversion, ou de création ou reprise d'entreprise. Et il faut une <span class="k" tabindex="0" data-r="durée minimale de travail antérieure">condition d'affiliation</span> : en principe au moins <strong>six mois</strong>, soit cent trente jours ou neuf cent dix heures, au cours des <strong>vingt-quatre</strong> derniers mois, trente-six mois pour les salariés les plus âgés. Et depuis la convention de 2024, <strong>cinq mois</strong> pour les primo-entrants, ceux qui entrent sur le marché du travail.</p>
+<p>— Et moi ?</p>
+<p>— Toi, tu étais président de société. Un <strong>mandataire social</strong>, révoqué par le conseil. En principe, un mandataire social sans contrat de travail n'est pas un salarié privé d'emploi. Il n'est pas couvert par le régime d'assurance chômage. Ce n'est pas dans mon cours, mais c'est ce que dit le régime.</p>
+<p>— Donc je n'ai droit à rien.</p>
+<p>— Tu as droit à tes actions Providentia. Tu en as pour combien ?</p>
+<p>— Six cents millions. Moins quatorze pour cent depuis jeudi.</p>
+<p>— Alors tu n'es pas dans le besoin. Ni assurance, ni assistance. Tu es juste riche et vexé.</p>
+<p>Augustin éclata de rire, si fort que l'homme à la cigarette se retourna.</p>
+<div class="scene">❦</div>
+<p>— Il y a deux volets, termina Sami. L'<strong>indemnisation</strong>, les dépenses « passives », avec un régime d'<strong>assurance</strong> et un régime de <strong>solidarité</strong>, qui relève de l'aide sociale de l'État, par exemple l'allocation de solidarité spécifique. Et l'<strong>aide au retour à l'emploi</strong> : la prospection, le placement, la formation, le bilan de compétences. Et depuis le 1er janvier 2025, les bénéficiaires du <strong>RSA</strong>, et leur conjoint, concubin ou partenaire, sont <strong>inscrits</strong> sur la liste des demandeurs d'emploi, article L. 5411-1, sauf exceptions.</p>
+<p>— Et lui ? demanda Augustin en désignant du menton l'homme à la cigarette.</p>
+<p>— Je ne sais pas. Peut-être qu'il vient d'être licencié. Peut-être qu'il est en fin de droits et qu'il passe au régime de solidarité. Peut-être qu'il est au RSA et qu'on lui demande de chercher un emploi qui n'existe pas.</p>
+<p>L'homme jeta sa cigarette, remonta son col, et partit vers Barbès. Augustin le suivit des yeux jusqu'à ce qu'il disparaisse.</p>
+<p>— Pendant onze ans, dit-il, j'ai voulu supprimer tout ça. Les cotisations obligatoires, les filets, les « dépenses passives ». Je me disais que les gens devaient être responsables. Je n'avais jamais regardé un seul d'entre eux.</p>
+<p>Sami posa la tête sur son épaule, là, sur le banc, devant l'agence France Travail de la rue de Clignancourt.</p>
+<p>— Tu les regardes, maintenant.</p>
+<div class="scene">❦</div>
+<p>Ils rentrèrent à pied à l'impasse Marie-Blanche. Dans la boîte aux lettres, entre les relevés de banque et les invitations à des galas qui seraient bientôt annulées, il y avait une enveloppe administrative, à en-tête du conseil départemental de la Somme. <em>Direction de l'autonomie. Aide sociale à l'hébergement.</em></p>
+<p>Augustin l'ouvrit dans le hall, sous la voûte gothique. Il la lut debout. Sami vit son visage se vider de toute couleur.</p>
+<p>— Qu'est-ce que c'est ?</p>
+<p>— Mon père, dit Augustin. Je ne l'ai pas vu depuis vingt-quatre ans. Il est dans un EHPAD à Abbeville. Il ne peut plus payer. Le département demande l'aide sociale. Et il me demande, à moi, au titre de l'<strong>obligation alimentaire</strong>, de dire ce que je peux verser.</p>
+<p>Il laissa tomber la lettre par terre. Sami la ramassa.</p>
+<p>— Je ne lui dois rien, dit Augustin d'une voix blanche. Il ne m'a jamais rien donné. Rien. Il m'a… J'ai été placé, Sami. À huit ans. Par le juge. Quatre ans dans une famille d'accueil, en Picardie. La maison grise, sur la photo. Personne ne le sait. Personne.</p>
+<p>Il s'assit sur la première marche de l'escalier de la tourelle, la tête dans les mains. Sami s'assit à côté de lui, la lettre sur les genoux, et lut la suite. Puis il relut. Puis il dit, très doucement :</p>
+<p>— Alors tu ne lui dois peut-être vraiment rien. Écoute.</p>
+<aside class="retenir"><h4>Ce que tu viens d'apprendre</h4><ul><li>Le chômage n'est pas de la sécurité sociale : non intégré en 1945 ; accord des partenaires sociaux du 31 déc. 1958 ; Code du travail ; Assedic.</li><li>Unédic (pilote : association paritaire de 1958 ; financer, veiller aux règles, contribution à France Travail ≥ 10 %, 11 % en 2026, L. 5422-24 ; objectifs). France Travail (opérateur : loi du 18 déc. 2023, 1er janv. 2024 ; L. 5312-1 ; verse pour l'Unédic et l'État ; interlocuteur unique).</li><li>Règles : convention négociée + arrêté d'agrément ; cadrage par le Premier ministre depuis la loi du 5 sept. 2018 (L. 5422-20-1) ; convention du 15 nov. 2024 (1er janv. 2025), avenant du 7 juill. 2025.</li><li>Assurance (obligatoire, calculée sur l'ancien salaire) et solidaire ; contributions patronales et impositions (L. 5422-9) ; plus de cotisation salariale depuis 2018.</li><li>Bénéficiaires (L. 5422-1) : privés d'emploi involontairement ; rupture conventionnelle ; démissionnaires avec projet. Affiliation : 6 mois (130 j ou 910 h) sur 24 mois (36 pour les plus âgés) ; 5 mois pour les primo-entrants.</li><li>Deux volets : indemnisation (assurance + solidarité de l'État) et retour à l'emploi. RSA : inscription comme demandeur d'emploi depuis le 1er janv. 2025 (L. 5411-1).</li></ul></aside></section>
+<section class="chap" id="ch10"><header><div class="num">Chapitre 10</div><h2>La maison grise</h2><blockquote class="epi">« Toute personne résidant en France bénéficie, si elle remplit les conditions légales d'attribution, des formes de l'aide sociale. » — Art. L. 111-1 CASF</blockquote></header><p>— L'<span class="k" tabindex="0" data-r="prestations dues sans contribution préalable face à un état de besoin">aide sociale</span>, dit Sami, assis sur la première marche de l'escalier, la lettre sur les genoux. C'est un ensemble de prestations, en nature ou en argent, qui correspondent à des <strong>droits subjectifs</strong>, spécialisés, à caractère <strong>alimentaire</strong>, attribués <strong>sans contribution préalable</strong>. Une <strong>obligation légale</strong> des collectivités publiques face à un état de besoin. L'article L. 111-1 du Code de l'action sociale et des familles : toute personne résidant en France bénéficie, si elle remplit les conditions légales, des formes de l'aide sociale. C'est le corollaire de l'alinéa 11 du Préambule.</p>
+<p>— Je m'en fous, de l'aide sociale. Je veux savoir si je dois payer pour lui.</p>
+<p>— Justement. L'aide sociale est <strong>subsidiaire</strong>. C'est la conséquence de son caractère alimentaire. Chacun doit d'abord subvenir à ses propres besoins, par son travail, son patrimoine. L'aide sociale n'intervient qu'<strong>après</strong> les ressources personnelles ; après les droits de sécurité sociale, s'ils sont épuisés ou inexistants ; et après la <strong>solidarité familiale</strong>. Les débiteurs de l'<strong>obligation alimentaire</strong>, articles 205 et suivants du Code civil, les enfants envers leurs parents, doivent indiquer l'aide qu'ils peuvent apporter, ou prouver qu'ils ne peuvent pas, article L. 132-6 du CASF. C'est pour ça que le département t'écrit.</p>
+<p>— Alors je dois payer.</p>
+<p>— Attends. Il y a des <span class="k" tabindex="0" data-r="L. 132-6 CASF">dispenses d'obligation alimentaire</span>. Même article. Sont dispensés : les enfants qui ont été <strong>retirés de leur milieu familial par décision judiciaire</strong> pendant au moins <strong>trente-six mois cumulés</strong> avant leurs dix-huit ans. Les enfants dont un parent a été condamné pour un crime ou une agression sexuelle sur l'autre parent, pour l'aide au parent condamné. Et, depuis la loi « bien-vieillir » du 8 avril 2024, les <strong>petits-enfants</strong>, pour l'aide sociale à l'hébergement d'un grand-parent. Les dispenses s'étendent aux descendants, sauf décision contraire du juge aux affaires familiales dans les deux premiers cas.</p>
+<p>Augustin releva la tête.</p>
+<p>— Quatre ans. De huit à douze ans. Par le juge des enfants.</p>
+<p>— Quarante-huit mois. Plus que trente-six. Tu es <strong>dispensé</strong>. Tu ne lui dois rien. La loi le dit.</p>
+<p>Augustin resta longtemps immobile. Puis il se mit à pleurer, sans bruit, le visage dans les mains, sur la première marche de l'escalier de sa maison absurde. Sami le prit contre lui et ne dit plus rien.</p>
+<div class="scene">❦</div>
+<p>Ils partirent pour Abbeville le samedi, en train, avec un sandwich et le manuel.</p>
+<p>Augustin ne savait pas pourquoi il y allait. Il ne devait rien. Mais il voulait voir.</p>
+<p>Dans le train, pour ne pas penser, il demanda à Sami de lui expliquer le reste.</p>
+<p>— L'aide sociale, ça vient d'où ?</p>
+<p>— Des premières lois de la fin du XIXe et du début du XXe : l'<strong>assistance médicale gratuite</strong> en 1893, l'<strong>assistance aux vieillards, infirmes et incurables</strong> le 14 juillet 1905. Inspirées du devoir de subsistance publique de la Révolution. Le <strong>congrès international d'assistance</strong> de 1889 a posé les fondements : l'assistance publique est due à ceux qui sont, temporairement ou définitivement, dans l'impossibilité physique de pourvoir aux nécessités de la vie ; elle n'est due qu'<strong>à défaut</strong> d'une autre assistance ; elle est d'essence <strong>communale</strong>, parce que la commune connaît ses habitants. On aurait pu croire qu'elle disparaîtrait en 1945. Mais l'assistance est restée irremplaçable.</p>
+<p>— Et l'action sociale, c'est pareil ?</p>
+<p>— Non. L'<span class="k" tabindex="0" data-r="interventions facultatives, libres ou discrétionnaires">action sociale</span> n'a pas de définition précise. Ce sont des interventions <strong>libres</strong> ou <strong>discrétionnaires</strong>, qui comblent les carences des autres aides, les complètent, les élargissent. Également sans contribution préalable. Mais l'aide sociale est <strong>obligatoire</strong> pour la personne publique ; l'action sociale est une <strong>simple faculté</strong>. L'aide sociale, ce sont des aides légales spécialisées ; l'action sociale, des aides directes, l'aide-ménagère, indirectes, les aides à l'emploi, des équipements collectifs, les crèches. Et les acteurs : pour l'aide sociale, toujours des collectivités publiques ; pour l'action sociale, tout le monde, l'État, les collectivités, les caisses de sécurité sociale, les associations.</p>
+<p>— Et le droit à l'aide sociale, c'est un vrai droit ?</p>
+<p>— C'est un droit <strong>alimentaire</strong> : sa cause, c'est le <strong>besoin</strong>, « un manque qui produit des effets de droit ». Ni une indemnité, ni une libéralité. Il est dû pour faire vivre son titulaire et sa famille, il s'impose absolument au débiteur, et il dure tant que le besoin dure. <strong>Spécialisé</strong> : chaque forme répond à un besoin déterminé. Et <strong>subjectif</strong> : apprécié selon la situation individuelle, opposable à la puissance publique, d'où un droit de recours. Ni absolu, ni général. Depuis 2007, plus de commissions d'admission : c'est le président du conseil départemental ou le préfet qui décide, et il faut un <strong>recours administratif préalable obligatoire</strong> avant d'aller au juge.</p>
+<p>— Et s'il revient à meilleure fortune ?</p>
+<p>— Le département peut exercer des <span class="k" tabindex="0" data-r="L. 132-8 CASF">recours en récupération</span>, article L. 132-8, contre le bénéficiaire revenu à meilleure fortune ; contre sa succession ; contre le donataire, si la donation est postérieure à la demande ou date des dix ans qui précèdent ; contre le légataire ; et, à titre subsidiaire, contre le bénéficiaire d'une assurance-vie, à concurrence des primes versées après soixante-dix ans.</p>
+<div class="scene">❦</div>
+<p>L'EHPAD d'Abbeville s'appelait <em>Les Tilleuls</em>. Il n'y avait pas de tilleuls. Il y avait un parking, un hall qui sentait le désinfectant, et une salle commune avec une télévision allumée sur un jeu.</p>
+<p>Bernard Lécuyer avait quatre-vingt-un ans. Il était assis près de la fenêtre, dans un fauteuil roulant, une couverture sur les genoux. Il avait la même mâchoire qu'Augustin, le même front, et les yeux vides.</p>
+<p>— Il a une maladie d'Alzheimer avancée, dit l'aide-soignante. Il ne reconnaît plus personne. Vous êtes de la famille ?</p>
+<p>Augustin s'approcha. Il s'accroupit devant le fauteuil. Son père le regarda sans le voir, puis regarda Sami, puis la fenêtre.</p>
+<p>— Bonjour, dit Augustin.</p>
+<p>— Bonjour, monsieur, dit le vieil homme poliment. Vous êtes le nouveau docteur ?</p>
+<p>Augustin resta accroupi longtemps. Puis il se releva.</p>
+<p>— Non, dit-il. Je suis juste quelqu'un qui passait.</p>
+<p>Dans le couloir, il demanda à voir la directrice. Il lui dit qu'il était dispensé de l'obligation alimentaire, qu'il le ferait valoir, et qu'il ne voulait pas que son nom apparaisse nulle part. Puis il demanda si l'établissement avait besoin de quelque chose. La directrice, interloquée, parla d'un jardin thérapeutique qu'on n'avait jamais pu financer. Augustin fit un virement depuis son téléphone, dans le couloir, avant de partir.</p>
+<p>— C'est de l'action sociale, dit Sami dans l'escalier. Facultative. Libre. Personne ne t'obligeait.</p>
+<p>— Je sais. C'est pour ça que je l'ai fait.</p>
+<div class="scene">❦</div>
+<p>Il voulait voir une dernière chose. Ils prirent un taxi jusqu'à un village à vingt kilomètres, au bord de la Somme, et s'arrêtèrent devant une maison grise, aux volets verts, avec un potager.</p>
+<p>Une vieille dame était dans le potager, à genoux dans les poireaux. Elle se redressa en entendant le taxi. Elle mit une main en visière. Puis elle laissa tomber sa binette.</p>
+<p>— Augustin ? Le petit Augustin ?</p>
+<p>Il ne répondit pas. Il ne pouvait pas. Elle traversa le potager en courant, autant qu'on peut courir à soixante-dix-huit ans, et le prit dans ses bras, la terre des poireaux sur les mains, sur son pull, sur son visage.</p>
+<p>— Vingt-quatre ans, dit Madame Lemaire en pleurant. Tu n'as jamais écrit. Je t'ai cherché partout. Je t'ai vu à la télévision, une fois, dans un costume. Je me suis dit, il a réussi, il ne veut plus de nous.</p>
+<p>— Je ne savais pas comment revenir, dit Augustin.</p>
+<p>Ils restèrent jusqu'au soir. Madame Lemaire leur fit une soupe aux poireaux. Elle montra à Sami les dessins d'Augustin à neuf ans, gardés dans une boîte à chaussures : des maisons, toujours des maisons, avec beaucoup de fenêtres et beaucoup de gens dedans.</p>
+<p>— Il a été placé chez moi par l'<strong>aide sociale à l'enfance</strong>, expliqua-t-elle à Sami. J'étais assistante familiale. J'en ai eu vingt-deux, des petits, en trente ans. Lui, c'est celui qui ne parlait jamais.</p>
+<p>— L'<span class="k" tabindex="0" data-r="aide sociale à l&#x27;enfance">ASE</span>, dit Sami doucement. C'est le <strong>département</strong>. Le premier poste budgétaire des départements. L'aide et l'action sociale y sont imbriquées, et elle n'est <strong>pas subsidiaire</strong>. Elle est guidée par l'<strong>intérêt de l'enfant</strong>, et par le maintien, de préférence, dans la famille d'origine. Ses missions, article L. 221-1 : la PMI, les pupilles de l'État, les mineurs en danger ou en risque de l'être, les informations préoccupantes, les mineurs maltraités, les mineurs émancipés et les jeunes majeurs de moins de vingt et un ans en grande difficulté, les femmes enceintes et les mères isolées avec des enfants de moins de trois ans. Des actions collectives de prévention ; des actions individuelles, des secours d'urgence, des allocations ; et des <strong>placements</strong>. Les mineurs délinquants, eux, relèvent surtout de l'État, la protection judiciaire de la jeunesse.</p>
+<p>Madame Lemaire le regarda avec admiration.</p>
+<p>— Il est savant, ton ami.</p>
+<p>— Il est en L3, dit Augustin. Et ce n'est pas mon ami.</p>
+<p>Madame Lemaire haussa un sourcil. Augustin prit la main de Sami sur la toile cirée, devant elle, et ne la lâcha pas.</p>
+<p>— Ah, dit-elle. Eh bien, c'est pas trop tôt. Tu reprendras de la soupe ?</p>
+<aside class="retenir"><h4>Ce que tu viens d'apprendre</h4><ul><li>Origines : AMG (1893), assistance aux vieillards (14 juill. 1905) ; congrès de 1889 (impossibilité physique, subsidiarité, essence communale).</li><li>Aide sociale (droits subjectifs, spécialisés, alimentaires, sans contribution ; obligatoire ; collectivités publiques) / action sociale (facultative, libre, pluri-institutionnelle).</li><li>Droit à l'aide sociale (L. 111-1 CASF) : alimentaire (le besoin), spécialisé, subjectif (recours ; décision du président du conseil départemental ou du préfet, L. 131-2 ; RAPO, L. 134-2), subsidiaire (ressources, sécurité sociale, obligation alimentaire : art. 205 C. civ., L. 132-6).</li><li>Dispenses (L. 132-6) : enfant retiré par décision judiciaire ≥ 36 mois avant 18 ans ; enfant d'un parent condamné pour crime ou agression sexuelle sur l'autre parent ; petits-enfants pour l'hébergement d'un grand-parent (loi du 8 avr. 2024). Recours en récupération (L. 132-8) : retour à meilleure fortune, succession, donataire (10 ans), légataire, assurance-vie (primes après 70 ans).</li><li>ASE (département) : premier poste, non subsidiaire, intérêt de l'enfant ; missions (L. 221-1) ; prévention, aides, placements ; PJJ pour les mineurs délinquants.</li></ul></aside></section>
+<section class="chap" id="ch11"><header><div class="num">Chapitre 11</div><h2>Audition publique</h2><blockquote class="epi">« Un manque qui produit des effets de droit. »</blockquote></header><p>La convocation arriva en octobre, sur papier à en-tête de l'Assemblée nationale. <em>La commission des affaires sociales, dans le cadre de l'examen du projet de loi de financement de la sécurité sociale pour 2027, souhaite entendre M. Augustin Lécuyer-Roy, ancien président de Providentia, sur l'avenir de la protection sociale.</em></p>
+<p>— Ils veulent que je défende Providentia Total, dit Augustin. Les députés qui veulent réduire l'aide médicale de l'État et durcir le RSA. Ils pensent que je suis de leur côté.</p>
+<p>— Et tu es de quel côté ?</p>
+<p>— Je ne sais pas encore. Apprends-moi le reste. Tout ce que je ne sais pas.</p>
+<div class="scene">❦</div>
+<p>Ils travaillèrent trois semaines, tous les soirs, dans la cuisine de l'impasse Marie-Blanche. Sami avait repris la boulangerie, avec un manchon de compression sur l'avant-bras et une cicatrice rose qu'Augustin embrassait tous les matins avant qu'il parte, à quatre heures et quart, ce qui faisait rire Monsieur Joly quand il l'apprit.</p>
+<p>— Les acteurs, d'abord. Le <strong>département</strong> est le « <strong>chef de file</strong> », article L. 121-1 du CASF : il définit et met en œuvre la politique d'action sociale, et coordonne. Les prestations légales sont à la charge du département du <strong>domicile de secours</strong>, sauf celles de l'<strong>État</strong>, article L. 121-7 : pour les personnes présentes en France à cause de circonstances exceptionnelles ou sans domicile fixe déterminable, l'<strong>aide médicale de l'État</strong>, le logement, l'hébergement et la réinsertion. Pilotage régional par les ARS, les DREETS depuis 2021, et les préfets de région. Et les <strong>communes</strong>, avec les CCAS et les CIAS.</p>
+<p>— L'aide médicale de l'État. C'est ça qu'ils veulent réduire.</p>
+<p>— L'<span class="k" tabindex="0" data-r="aide médicale de l&#x27;État, L. 251-1 CASF">AME</span>, article L. 251-1. L'accès aux soins des étrangers en situation <strong>irrégulière</strong>, qui résident en France de façon ininterrompue depuis plus de <strong>trois mois</strong>, sous le plafond de ressources de la complémentaire santé solidaire. Accordée pour un an, renouvelable chaque année. Un décret du 6 février 2026, applicable au 1er avril, a renforcé les pièces justificatives : acte de naissance, pièce d'identité avec photo pour les majeurs, justificatifs de résidence de moins de douze mois, justificatif de soins pour la prise en charge rétroactive. Un autre décret permet de consulter le fichier. Et la première demande se fait en principe en personne, à la CPAM.</p>
+<p>— Pourquoi on ne la supprime pas ? C'est l'argument qu'on va me servir.</p>
+<p>— Parce qu'une maladie contagieuse ne demande pas les papiers. Parce que soigner tôt coûte moins cher que soigner aux urgences. Et parce que l'alinéa 11 dit « tout être humain ».</p>
+<p>Augustin nota. Il notait tout, maintenant, dans un carnet noir, d'une écriture minuscule.</p>
+<p>— Les personnes âgées ?</p>
+<p>— Le département. Un revenu minimal, le maintien à domicile, l'insertion. Pour la dépendance, l'<strong>APA</strong>, l'allocation personnalisée d'autonomie, pour toute personne âgée résidant en France qui ne peut pas assumer les conséquences de sa perte d'autonomie, article L. 232-1. La branche autonomie depuis 2020, la CNSA. La loi « bien-vieillir » de 2024.</p>
+<p>— Mon père.</p>
+<p>— Ton père, oui. Et l'aide sociale à l'hébergement en EHPAD, quand il ne peut plus payer.</p>
+<p>— Les personnes handicapées ?</p>
+<p>— Le département aussi. La loi d'orientation du 30 juin 1975 : on fait reculer l'aide sociale au profit de la sécurité sociale, maintien à domicile, insertion. La loi du 11 février 2005 pour l'égalité des droits et des chances : la <strong>PCH</strong>, la prestation de compensation du handicap, article L. 245-1. Et l'<strong>AAH</strong>, l'allocation aux adultes handicapés, qui est une prestation de <strong>sécurité sociale</strong>, a été « <strong>déconjugalisée</strong> » par la loi du 16 août 2022, au plus tard au 1er octobre 2023 : les revenus du conjoint ne comptent plus. Avant, une personne handicapée qui se mettait en couple perdait son allocation. Elle devenait dépendante de son conjoint.</p>
+<p>— Et l'hébergement ?</p>
+<p>— L'<strong>État</strong>. L'aide à l'hébergement et à la réinsertion sociale, créée en 1953, rénovée en 1974 : subsidiaire, temporaire, liée au besoin, spécialisée. Surtout dans les <strong>CHRS</strong>, les centres d'hébergement et de réinsertion sociale, article L. 345-1 : pour les personnes et les familles en graves difficultés, pour qu'elles retrouvent leur autonomie.</p>
+<div class="scene">❦</div>
+<p>— Et si quelqu'un conteste un refus ? demanda Augustin.</p>
+<p>— Le contentieux de l'aide sociale a été réformé par la loi J21 du 18 novembre 2016, au 1er janvier 2019. On a supprimé les commissions départementales et la Commission centrale d'aide sociale. Maintenant, ce sont les <strong>juridictions de droit commun</strong>, après un recours administratif préalable obligatoire. Le <strong>juge judiciaire</strong>, article L. 134-3, pour l'obligation alimentaire, les recours en récupération, l'allocation différentielle aux adultes handicapés et la PCH. <strong>Tout le reste</strong> : le juge administratif.</p>
+<p>— Et les minima sociaux ? C'est pareil que l'aide sociale ?</p>
+<p>— Non. Les <span class="k" tabindex="0" data-r="prestations non contributives garantissant un revenu minimal">minima sociaux</span> garantissent un <strong>revenu minimal</strong> aux personnes précaires. Ce sont des prestations <strong>non contributives</strong>. Il n'y a pas un minimum unique, mais <strong>dix</strong> dispositifs, chacun pour une population : le <strong>RSA</strong> ; le RSO, outre-mer ; l'<strong>ASS</strong>, l'allocation de solidarité spécifique pour les chômeurs en fin de droits ; l'ADA, pour les demandeurs d'asile ; l'allocation veuvage ; l'ASI, l'allocation supplémentaire d'invalidité ; l'<strong>AAH</strong> ; l'<strong>ASPA</strong>, pour les personnes âgées ; et deux en extinction, l'AER-R et l'ATA.</p>
+<div class="scene">❦</div>
+<p>L'audition eut lieu un mardi, à seize heures, salle Lamartine, à l'Assemblée nationale. Il y avait une trentaine de députés, des caméras de LCP, des journalistes. Sami était dans le public, au dernier rang, en chemise blanche repassée par Nadia, le cœur battant si fort qu'il l'entendait.</p>
+<p>Le président de la commission rappela le parcours d'Augustin, le projet Providentia Total, le colloque <em>Après la Sécu</em>, et lui donna la parole.</p>
+<p>Augustin se leva. Il avait un costume bleu nuit, mais pas de cravate. Il posa son carnet noir sur la table, l'ouvrit, puis le referma.</p>
+<p>— Mesdames et messieurs les députés, pendant onze ans, j'ai voulu remplacer la Sécurité sociale. Je pensais que chacun devait payer pour ses propres risques. Que la solidarité était un coût. Que les gens qui avaient besoin d'aide avaient fait de mauvais choix.</p>
+<p>Il marqua une pause.</p>
+<p>— Je me trompais. Je me trompais parce que je ne connaissais rien. Je n'avais jamais lu un bulletin de salaire. Je n'avais jamais eu de médecin traitant. Je n'avais jamais regardé la femme qui nettoyait mon bureau tous les soirs depuis vingt ans, et qui y a perdu une partie de ses poumons. Et j'avais oublié, ou voulu oublier, que de huit à douze ans, j'ai été un enfant placé par l'aide sociale à l'enfance. Que tout ce que je suis devenu, je le dois à une assistante familiale de la Somme payée par le département, à une école publique, à une bourse, et à une collectivité qui m'a nourri quand mon propre père ne le faisait pas.</p>
+<p>Dans la salle, le silence était total. Un député de l'opposition avait arrêté d'écrire.</p>
+<p>— Vous me demandez l'avenir de la protection sociale. Je vais vous répondre avec l'alinéa 11 du Préambule de 1946, qu'un étudiant en L3 m'a fait apprendre par cœur à six heures du matin dans une boulangerie de la rue des Abbesses : <em>Tout être humain qui, en raison de son âge, de son état physique ou mental, de la situation économique, se trouve dans l'incapacité de travailler a le droit d'obtenir de la collectivité des moyens convenables d'existence.</em> Tout être humain. Pas tout assuré. Pas tout client. Tout être humain. Je n'ai rien d'autre à dire.</p>
+<p>Il se rassit. Pendant trois secondes, personne ne bougea. Puis une députée, au premier rang, se mit à applaudir. Puis une autre. Puis presque toute la salle, sur tous les bancs, ce qui n'arrive jamais en commission.</p>
+<p>Au dernier rang, Sami pleurait dans sa chemise blanche repassée.</p>
+<div class="scene">❦</div>
+<p>Le soir, l'extrait de l'audition avait été vu quatre millions de fois. Augustin, lui, n'avait pas regardé son téléphone. Il était assis dans le salon vide de l'impasse Marie-Blanche, avec Sami, et regardait les pièces immenses, blanches, inutiles.</p>
+<p>— J'ai une idée, dit-il. Elle va te paraître folle.</p>
+<p>— Toutes tes idées me paraissent folles.</p>
+<p>— Cette maison. Six chambres. Trois salles de bains. Une cuisine où personne ne cuisine. Je voudrais la donner. À une association. Pour accueillir des jeunes qui sortent de l'aide sociale à l'enfance. Les majeurs de moins de vingt et un ans en grande difficulté. Ceux qui se retrouvent à la rue le jour de leurs dix-huit ans, avec un sac poubelle et rien d'autre. Comme j'aurais pu.</p>
+<p>— C'est de l'action sociale.</p>
+<p>— Facultative. Libre. Je sais.</p>
+<p>— Et toi, tu vas habiter où ?</p>
+<p>Augustin le regarda, et sourit, pour la première fois de la journée, un vrai sourire, un peu tordu.</p>
+<p>— J'ai entendu parler d'un studio de douze mètres carrés, rue Jean-Baptiste-Pigalle. Au cinquième sans ascenseur. Avec vue sur un bar à hôtesses.</p>
+<p>— Tu fais deux mètres. Tu ne tiens pas dans le lit.</p>
+<p>— Je dormirai plié. J'ai l'habitude, maintenant. Je fais des concessions.</p>
+<p>Sami se jeta sur lui. Ils tombèrent ensemble sur le parquet, au milieu du salon vide, sous la gargouille qui tirait la langue, en riant, et ne se relevèrent pas avant très longtemps.</p>
+<aside class="retenir"><h4>Ce que tu viens d'apprendre</h4><ul><li>Acteurs : département chef de file (L. 121-1 ; domicile de secours) ; État (L. 121-7 : circonstances exceptionnelles, SDF, AME, logement, hébergement ; ARS, DREETS, préfets) ; communes (CCAS, CIAS).</li><li>AME (L. 251-1) : étrangers en situation irrégulière, résidence ininterrompue &gt; 3 mois, plafond C2S ; 1 an renouvelable ; décrets du 6 févr. 2026 (pièces renforcées, fichier, demande en personne).</li><li>Personnes âgées : APA (L. 232-1) ; branche autonomie ; loi du 8 avr. 2024. Personnes handicapées : loi du 30 juin 1975 ; loi du 11 févr. 2005 (PCH, L. 245-1) ; AAH (sécurité sociale) déconjugalisée (loi du 16 août 2022). Hébergement (État : 1953, 1974 ; CHRS, L. 345-1).</li><li>Contentieux (loi J21 du 18 nov. 2016, 1er janv. 2019) : RAPO ; juge judiciaire (L. 134-3 : obligation alimentaire, récupération, allocation différentielle, PCH) ; sinon juge administratif.</li><li>Minima sociaux (non contributifs) : RSA, RSO, ASS, ADA, allocation veuvage, ASI, AAH, ASPA ; AER-R et ATA en extinction.</li></ul></aside></section>
+<section class="chap" id="ch12"><header><div class="num">Chapitre 12</div><h2>Les jumelles de Lariboisière</h2><blockquote class="epi">« L'assuré et ses ayants droit ne supportent aucune participation. » — Art. L. 160-9 CSS</blockquote></header><p>Augustin emménagea rue Jean-Baptiste-Pigalle le 1er décembre, avec deux valises, un carton et une plante verte neuve, parce que la vieille était morte au quarante-deuxième étage et qu'il voulait « recommencer avec quelque chose de vivant ».</p>
+<p>Il se cogna la tête contre la poutre du studio onze fois la première semaine. Il dormait en diagonale, les pieds sur une chaise. Il apprit à faire du café sur une plaque électrique. Il découvrit que le bar à hôtesses d'en face fermait à cinq heures et que les hôtesses, en sortant, lui faisaient coucou de la main quand il ouvrait les volets. Il leur répondait. Il disait que c'étaient ses premières voisines.</p>
+<p>La maison de l'impasse Marie-Blanche fut donnée à une association pour les jeunes majeurs sortant de l'aide sociale à l'enfance. Madame Lemaire, en apprenant la nouvelle, demanda qu'on l'appelle « la maison grise ». Augustin refusa : il voulait qu'elle s'appelle <em>Maison Lemaire</em>. Ils transigèrent. Elle s'appelait <em>Maison Lemaire</em>, et les volets furent peints en vert.</p>
+<div class="scene">❦</div>
+<p>Le 14 décembre, à deux heures du matin, le téléphone de Sami sonna. C'était Youssef, le mari de Leïla, qui hurlait de joie et de panique en même temps.</p>
+<p>— Ça y est ! Elle perd les eaux ! On est à Lariboisière ! C'est des jumelles, Sami, je te rappelle, c'est des jumelles !</p>
+<p>— On sait que c'est des jumelles depuis cinq mois, Youssef.</p>
+<p>— Oui, mais là, c'est vraiment des jumelles !</p>
+<p>Ils s'habillèrent dans le noir, Augustin se cogna la tête contre la poutre pour la douzième fois, et ils descendirent en courant jusqu'au boulevard de Magenta.</p>
+<div class="scene">❦</div>
+<p>Dans la salle d'attente de la maternité, à quatre heures du matin, il y avait Nadia avec son inhalateur, l'oncle Karim avec un cageot de clémentines, Youssef qui faisait les cent pas, et maintenant Sami et Augustin.</p>
+<p>— Elle va payer combien, ma fille ? demanda Nadia, inquiète. Pour tout ça ? L'hôpital, les docteurs ?</p>
+<p>— Rien, maman, dit Sami. Rien du tout. L'<span class="k" tabindex="0" data-r="frais de santé, IJ, congés de paternité et de naissance">assurance maternité</span> a trois objectifs. Couvrir les <strong>frais de santé</strong>, article L. 160-9. Verser des <strong>indemnités journalières</strong> aux femmes qui arrêtent de travailler. Et indemniser le <strong>congé de paternité</strong> et d'accueil de l'enfant, et maintenant le <strong>congé supplémentaire de naissance</strong>. Elle a le même champ que l'assurance maladie. Et pour les frais de santé, c'est une prise en charge <strong>intégrale</strong> : « L'assuré et ses ayants droit ne supportent <strong>aucune participation</strong>. » Les frais médicaux, pharmaceutiques, les analyses, les appareils, l'hospitalisation, liés ou non à la grossesse. De quatre mois avant la date présumée de l'accouchement, le premier jour du sixième mois, jusqu'à douze jours après. Pas de ticket modérateur, pas de participation de deux euros, pas de franchises, pas de forfait journalier.</p>
+<p>— Même le forfait de l'hôpital ?</p>
+<p>— Même le forfait.</p>
+<p>Nadia hocha la tête, rassurée, et proposa des clémentines à tout le monde.</p>
+<div class="scene">❦</div>
+<p>Les jumelles naquirent à six heures quatorze et six heures dix-neuf. Inès et Yasmine. Deux kilos quatre cents et deux kilos six cents. Elles criaient toutes les deux, en même temps, ce que Youssef interpréta comme un signe de génie.</p>
+<p>Augustin, debout dans le couloir devant la vitre de la nurserie, ne bougeait plus. Il regardait les deux minuscules visages rouges dans leurs couveuses transparentes, avec une expression que Sami ne lui avait jamais vue.</p>
+<p>— Elle va s'arrêter combien de temps, ta sœur ? demanda-t-il à voix basse.</p>
+<p>— Le congé de maternité, pour un premier ou un deuxième enfant, c'est <strong>six semaines avant</strong> et <strong>dix semaines après</strong> l'accouchement, article L. 1225-17 du Code du travail. Pour des jumeaux, c'est plus long. Et elle touche des indemnités journalières si elle cesse tout travail pendant au moins <strong>huit semaines</strong>, article L. 331-3. Il faut remplir les conditions des arrêts maladie de six mois au plus, cent cinquante heures sur trois mois, ou des cotisations sur mille quinze fois le SMIC horaire sur six mois, et <strong>six mois d'affiliation</strong> à la date présumée de l'accouchement. Leïla est à la SNCF depuis 2021. Régime général. Elle remplit tout.</p>
+<p>— Et Youssef ?</p>
+<p>— Le <span class="k" tabindex="0" data-r="25 jours, 32 en cas de naissances multiples">congé de paternité</span> et d'accueil de l'enfant. <strong>Vingt-cinq</strong> jours calendaires. <strong>Trente-deux</strong> pour des naissances multiples. Quatre jours consécutifs juste après le congé de naissance, puis vingt et un jours, ou vingt-huit pour des jumelles. Article L. 1225-35. Lui, il a trente-deux jours.</p>
+<p>— C'est tout ? Pour deux bébés ?</p>
+<p>— Il y a quelque chose de nouveau. La loi de financement pour 2026 a créé un <span class="k" tabindex="0" data-r="LFSS 2026, depuis le 1er juill. 2026">congé supplémentaire de naissance</span>, ouvert depuis le 1er juillet. Pour <strong>chaque parent</strong> salarié, après les congés de maternité, de paternité ou d'adoption. <strong>Un ou deux mois</strong>, au choix, fractionnable en deux périodes d'un mois. Il <strong>suspend le contrat de travail</strong>, article L. 1225-46-2. Et une indemnité journalière égale à une fraction des revenus antérieurs, éventuellement dégressive, article L. 331-8-1. Youssef peut prendre deux mois après ses trente-deux jours. Leïla aussi, après son congé de maternité.</p>
+<p>Augustin se tourna vers lui.</p>
+<p>— Ça existe pour les deux parents ? Même deux pères ?</p>
+<p>— Pour chaque parent. Après la maternité, la paternité ou l'<strong>adoption</strong>.</p>
+<p>Augustin ne répondit pas. Il regarda de nouveau la nurserie. Inès, ou peut-être Yasmine, avait ouvert un œil et le fixait, avec l'air sévère des très petits enfants qui jugent le monde.</p>
+<div class="scene">❦</div>
+<p>Ce fut ce matin-là, dans le couloir de la maternité de Lariboisière, à sept heures, que le téléphone d'Augustin sonna. Le président du conseil d'administration de Providentia.</p>
+<p>Augustin écouta longtemps. Il ne dit presque rien. Puis il raccrocha.</p>
+<p>— Ils veulent que je revienne, dit-il. L'action a perdu quarante pour cent depuis mon départ. Les clients sont partis en masse après l'audition. Ils pensent que je suis le seul qui puisse sauver la boîte.</p>
+<p>— Et tu vas revenir ?</p>
+<p>— À une condition. Que Providentia cesse d'être une société d'assurance à but lucratif. Qu'on la transforme en <strong>mutuelle</strong>. Sans actionnaires. Gouvernée par ses adhérents. Une complémentaire, pas un remplacement. Le supplémentaire, c'est en plus, pas à la place. C'est toi qui l'as dit.</p>
+<p>— Ils ne vont jamais accepter.</p>
+<p>— Ils ont perdu quarante pour cent. Ils accepteront n'importe quoi.</p>
+<p>Il éclata de rire, d'un rire si sonore qu'une sage-femme lui fit signe de se taire. Il se tut, et prit Sami dans ses bras, là, dans le couloir, devant la nurserie.</p>
+<p>— Je t'aime, dit-il, très bas, dans ses cheveux. Je ne l'ai jamais dit à personne. Je ne savais pas que ça se disait comme ça. Dans un couloir d'hôpital. À sept heures du matin. Après une nuit blanche.</p>
+<p>— Ça se dit n'importe où, dit Sami. C'est pour ça que c'est bien.</p>
+<p>Il l'embrassa. Derrière la vitre, Inès, ou peut-être Yasmine, se mit à hurler, et l'autre suivit immédiatement. Nadia, qui arrivait au bout du couloir avec ses clémentines, s'arrêta net, regarda son fils embrasser l'ancien patron de Providentia devant la nurserie, haussa les épaules, et dit à l'oncle Karim :</p>
+<p>— Je te l'avais dit. Il fait cette tête-là pour mon fils.</p>
+<aside class="retenir"><h4>Ce que tu viens d'apprendre</h4><ul><li>Assurance maternité : trois objectifs : frais de santé (L. 160-9) ; IJ et allocations (L. 331-3 à L. 331-7 ; L. 333-1 à L. 333-3) ; congés de paternité (L. 331-8) et supplémentaire de naissance (L. 331-8-1). Même champ que la maladie (L. 160-1).</li><li>Prestations en nature : prise en charge intégrale, aucune participation (L. 160-9), de 4 mois avant la date présumée (1er jour du 6e mois) à 12 jours après (D. 160-3) ; exonérations (ticket modérateur, participation de 2 €, franchises, forfait journalier).</li><li>Congé de maternité (1er ou 2e enfant) : 6 semaines avant, 10 après (L. 1225-17) ; IJ si arrêt d'au moins 8 semaines (L. 331-3) ; conditions : 150 h sur 3 mois ou 1 015 SMIC horaires sur 6 mois, et 6 mois d'affiliation.</li><li>Congé de paternité et d'accueil : 25 jours (32 si naissances multiples) : 4 jours après le congé de naissance puis 21 (L. 1225-35).</li><li>Congé supplémentaire de naissance (LFSS 2026, depuis le 1er juill. 2026) : chaque parent salarié, après maternité, paternité ou adoption ; 1 ou 2 mois, fractionnable ; suspend le contrat (L. 1225-46-2) ; IJ fraction des revenus, éventuellement dégressive (L. 331-8-1).</li></ul></aside></section>
+<section class="chap" id="ch13"><header><div class="num">Épilogue</div><h2>Deux croissants</h2><blockquote class="epi">« Du berceau à la tombe. »</blockquote></header><p>Deux ans plus tard, à six heures deux, la porte de la boulangerie <em>Au Pain de Montmartre</em> s'ouvrit sur l'homme du croissant.</p>
+<p>Il n'avait plus de costume bleu nuit. Il portait un vieux pull, un jean, une écharpe tricotée par Madame Lemaire, beaucoup trop longue, et une petite fille de deux ans dans les bras, qui dormait la bouche ouverte contre son épaule. C'était Inès. Ou peut-être Yasmine. Le mardi et le jeudi, il les gardait toutes les deux, pour que Leïla puisse reprendre ses horaires à la SNCF ; ce matin, il n'en avait qu'une, l'autre ayant un rhume et refusant de quitter les bras de Nadia.</p>
+<p>Providentia était devenue <em>Providentia Mutuelle</em>. Sans actionnaires. Gouvernée par ses trois millions d'adhérents. Une complémentaire. Pas un remplacement. Augustin en présidait le conseil, bénévolement, deux jours par semaine, et passait le reste du temps à la <em>Maison Lemaire</em>, où six jeunes de dix-huit à vingt et un ans, sortis de l'aide sociale à l'enfance, apprenaient à cuisiner, à remplir des dossiers de bourse et à ne pas avoir peur du jour de leurs vingt et un ans. Il leur apprenait à lire un bulletin de salaire. C'était, disait-il, la seule chose utile qu'il savait faire.</p>
+<p>Net&amp;Clair avait le taux de cotisation AT-MP le plus bas de son secteur. Plus aucun agent n'utilisait d'ammoniums quaternaires. Nadia Haddad touchait sa rente majorée, avait pris sa retraite, et donnait des cours de couscous aux jeunes de la <em>Maison Lemaire</em>, le samedi. Elle disait que c'était de l'action sociale. Facultative. Mais obligatoire pour ceux qui voulaient manger.</p>
+<div class="scene">❦</div>
+<p>Derrière le comptoir, Sami n'était plus là tous les matins. Il avait eu sa licence avec mention, son master de droit de la protection sociale, et il avait commencé l'école d'avocats en septembre. Il voulait plaider au <strong>pôle social</strong> du tribunal judiciaire. Les fautes inexcusables. Les maladies professionnelles hors tableau. Les dossiers que personne ne voulait.</p>
+<p>Mais ce matin-là, il était là. Monsieur Joly prenait sa retraite le samedi suivant, et la boulangerie allait être reprise par ses quatre salariés, en coopérative, avec un prêt que personne n'avait voulu leur accorder, sauf une mutuelle qui n'avait pas d'actionnaires. Sami avait voulu faire les baguettes une dernière fois.</p>
+<p>Il avait de la farine sur le nez. Il ne s'en rendait pas compte.</p>
+<p>— Bonjour, monsieur, dit-il. Un croissant ?</p>
+<p>— Deux, dit Augustin.</p>
+<p>Sami haussa un sourcil.</p>
+<p>— Pas un ?</p>
+<p>— Deux. Un pour moi. Un pour mon fiancé. Il travaille trop. Il oublie de manger.</p>
+<p>— Vous n'avez pas de fiancé.</p>
+<p>— Pas encore.</p>
+<p>Augustin posa un billet de cinquante sur le comptoir. Puis, à côté, une petite boîte en velours bleu nuit, ouverte. Dedans, un anneau d'or tout simple, gravé à l'intérieur. Sami le prit, le tourna vers la lumière du fournil, et lut : <em>Al. 11.</em></p>
+<p>— Tout être humain, dit Augustin, en équilibre avec Inès, ou Yasmine, endormie sur son épaule. Qui, en raison de son âge, de son état physique ou mental, de la situation économique, se trouve dans l'incapacité de vivre sans quelqu'un… a le droit d'obtenir de ce quelqu'un des moyens convenables d'existence. C'est à peu près ça. Je l'ai un peu adapté.</p>
+<p>— Tu l'as complètement réécrit.</p>
+<p>— Je suis devenu positiviste sociologique. Le droit évolue avec l'état de la société. C'est un de mes amis étudiants qui me l'a appris.</p>
+<p>— Ce n'est pas mon cours, ça. C'est celui des libertés.</p>
+<p>— Je les ai tous lus, maintenant. Tous tes cours. Tous les soirs, dans le studio, pendant que tu dormais. Je voulais savoir tout ce que tu savais.</p>
+<p>Monsieur Joly, dans le fournil, laissa tomber une plaque. Puis il passa la tête par la porte, les bras couverts de farine jusqu'aux coudes.</p>
+<p>— Mais dis oui, nom de Dieu ! Ça fait deux ans que je vous regarde !</p>
+<div class="scene">❦</div>
+<p>Sami fit le tour du comptoir. Il trébucha sur un sac de farine, évidemment, et se rattrapa à Augustin, qui se rattrapa au présentoir de pains au chocolat, qui ne se rattrapa à rien. Douze pains au chocolat roulèrent sur le carrelage. Inès, ou Yasmine, se réveilla, regarda les pains au chocolat par terre, et éclata de rire.</p>
+<p>— Oui, dit Sami, le nez dans l'écharpe de Madame Lemaire. Oui. Évidemment, oui.</p>
+<p>Augustin l'embrassa au milieu des pains au chocolat, avec une petite fille de deux ans entre eux qui tapait des mains, et de la farine sur le nez de tout le monde.</p>
+<div class="scene">❦</div>
+<p>Ils se marièrent en juin, à la mairie du 18e arrondissement, place Jules-Joffrin. Nadia portait un caftan doré. Madame Lemaire était venue de la Somme avec un panier de poireaux, qu'elle offrit au maire. Les six jeunes de la <em>Maison Lemaire</em> tenaient une banderole qu'ils avaient peinte eux-mêmes : <em>SOLIDARITÉ NATIONALE</em>. Les hôtesses du bar d'en face, rue Jean-Baptiste-Pigalle, envoyèrent des fleurs. Leïla et Youssef tenaient chacun une jumelle. L'oncle Karim pleura du début à la fin.</p>
+<p>Le soir, il y eut un grand repas à la <em>Maison Lemaire</em>, dans la cuisine où personne ne cuisinait jadis, et où maintenant tout le monde cuisinait en même temps. Augustin fit un discours très court.</p>
+<p>— Il y a trois ans, dit-il, je pensais que chacun devait payer pour ses propres risques. Puis un garçon couvert de farine m'a rendu ma monnaie. Mille deux cents euros. Il m'a dit qu'il ne voulait pas de charité. Qu'il voulait un salaire. Je n'ai jamais rien entendu de plus juste.</p>
+<p>Il leva son verre.</p>
+<p>— À la mutualisation des risques.</p>
+<p>— À la mutualisation des risques ! répondirent soixante personnes, sans savoir exactement ce que ça voulait dire, sauf Sami, qui riait en pleurant au bout de la table.</p>
+<p>Plus tard, dans la nuit, quand tout le monde fut parti, ils montèrent dans la plus haute chambre de la tourelle, celle que l'association leur gardait pour les soirs où ils restaient trop tard. Par la fenêtre, on voyait tout Montmartre, la rue Lepic, le Moulin de la Galette, et, plus bas, les néons de Pigalle qui ne s'éteignaient jamais.</p>
+<p>Augustin le déshabilla lentement, comme on ouvre un pli qu'on a attendu toute sa vie. Il embrassa la cicatrice rose sur l'avant-bras, celle de la plaque à cent quatre-vingts degrés, comme il le faisait chaque matin depuis trois ans.</p>
+<p>— Tu sais ce que c'est, le plus beau principe de la Sécu ? demanda Sami, contre sa bouche.</p>
+<p>— L'universalité ?</p>
+<p>— Non. Que personne ne choisit qui il protège. On protège tout le monde. Même ceux qu'on ne connaît pas. Même ceux qu'on n'aime pas.</p>
+<p>— Et moi, je t'ai choisi.</p>
+<p>— Toi, tu es une complémentaire.</p>
+<p>Augustin rit, de ce rire énorme qui faisait taire les sages-femmes, et l'attira sous les draps. Ils firent l'amour sous les voûtes gothiques de la maison qui n'était plus à eux, lentement, en riant, en se disant des choses absurdes et tendres. Ils s'endormirent à quatre heures et quart, l'heure exacte où, pendant des années, Sami s'était levé pour faire les baguettes.</p>
+<p>Pour la première fois, il ne se réveilla pas.</p>
+<p><em>Fin.</em></p>
+<aside class="retenir"><h4>Ce que tu viens d'apprendre</h4><ul><li>Protection sociale (large) = sécurité sociale + aide sociale + chômage + complémentaires. Assurance (Bismarck, cotisations, solidarité professionnelle) / assistance (Beveridge, besoin, solidarité nationale).</li><li>Aide sociale (obligatoire, droit subjectif, alimentaire, subsidiaire) / action sociale (facultative). Prestations contributives / non contributives ; en nature / en espèces. Complémentaire / supplémentaire. Branche (un risque) / régime (une population). Identification / assujettissement / affiliation.</li><li>AT (présomption) / trajet (preuve) / MP (tableaux, CRRMP, hors tableau 25 %). Faute inexcusable (Civ. 2e, 8 oct. 2020 ; CC 2010-8 QPC) / intentionnelle.</li><li>Dates : 1893, 1898, 1905, 1910, 1919, 1928-1930, 1932, 1942, 1945, 1946, 1958, 1967, 1991, 1996, 1999, 2005, 2016, 2019, 2020, 2023, 2024, LFSS 2026.</li><li>Chiffres : 932,5 Md€, 31,9 % du PIB ; cotisations 55,6 % ; CSG 9,2 % (activité), 10,6 % (patrimoine) ; CRDS 0,5 % ; IJ 50 % (carence 3 j, 1,4 SMIC) ; IJ AT 60 % puis 80 % ; participation 2 € et franchises (plafonds 70 €) ; forfait 23 € ; chômage 6 mois sur 24.</li></ul></aside></section>
+</article>
+<footer>Histoire inventée pour réviser ; personnages et lieux privés fictifs. Les règles de droit suivent la fiche du cours, qui fait foi en cas de doute.</footer>
+
+<script>
+const S={get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const K="roman-protec", st=S.get(K,{law:true,box:true,size:19,night:false,last:null,read:[]});
+const b=document.body;
+function apply(){b.classList.toggle("law",st.law);b.classList.toggle("hidebox",!st.box);b.classList.toggle("night",st.night);
+  document.documentElement.style.setProperty("--fs",st.size+"px");
+  bLaw.classList.toggle("on",st.law);bBox.classList.toggle("on",st.box);bNight.classList.toggle("on",st.night);
+  document.querySelectorAll(".toc a").forEach(a=>a.classList.toggle("read",st.read.includes(a.getAttribute("href"))));
+  S.set(K,st)}
+bLaw.onclick=()=>{st.law=!st.law;apply()};
+bBox.onclick=()=>{st.box=!st.box;apply()};
+bNight.onclick=()=>{st.night=!st.night;apply()};
+bSize.onclick=()=>{st.size=st.size>=23?16:st.size+2;apply()};
+const dr=document.getElementById("drawer");
+bToc.onclick=()=>dr.classList.add("open");
+dr.querySelector(".shade").onclick=()=>dr.classList.remove("open");
+dr.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>dr.classList.remove("open")));
+// liens chapitre suivant / précédent
+const chs=[...document.querySelectorAll(".chap")];
+chs.forEach((c,i)=>{const n=document.createElement("div");n.className="next";
+  n.innerHTML=(i?`<a class="btn" href="#${chs[i-1].id}">← Précédent</a>`:"")+(i<chs.length-1?`<a class="btn pri" href="#${chs[i+1].id}">${chs[i+1].querySelector(".num").textContent} →</a>`:`<a class="btn pri" href="../fiches/protec.html">Revoir la fiche →</a>`);
+  c.appendChild(n)});
+// reprise de lecture
+if(st.last && document.getElementById(st.last)){const s=document.getElementById("start");s.textContent="Reprendre ("+document.querySelector("#"+st.last+" .num").textContent+") →";s.href="#"+st.last}
+// progression + chapitre courant
+const prog=document.getElementById("prog");
+let tick=false;
+addEventListener("scroll",()=>{if(tick)return;tick=true;requestAnimationFrame(()=>{tick=false;
+  const bk=document.getElementById("book"),r=bk.getBoundingClientRect(),h=bk.offsetHeight-innerHeight;
+  prog.style.width=Math.max(0,Math.min(100,-r.top/h*100))+"%";
+  let cur=null;chs.forEach(c=>{if(c.getBoundingClientRect().top<innerHeight*.4)cur=c.id});
+  if(cur&&cur!==st.last){st.last=cur;const prev=chs.findIndex(c=>c.id===cur)-1;if(prev>=0&&!st.read.includes("#"+chs[prev].id))st.read.push("#"+chs[prev].id);apply()}
+})},{passive:true});
+// info-bulles au toucher : un 2e toucher ferme
+document.querySelectorAll(".k").forEach(k=>k.addEventListener("click",e=>{if(document.activeElement===k&&k.dataset.open){k.blur();delete k.dataset.open}else{k.focus();k.dataset.open=1}}));
+apply();
+</script>
+</body>
+</html>
