@@ -1,148 +1,186 @@
 {
-  "contrats": {
-    "title": "Solo consensu",
-    "course": "Droit des contrats spéciaux",
-    "pitch": "Théo, étudiant en L3 et serveur maladroit, se fait promettre un café sur une serviette en papier. Alexandre, millionnaire nonchalant, l'achète sous son nez. Vente, bail, prêt, dépôt, chantier, mandat, fiducie, jeu, viager et transaction : tout le cours, entre deux verres renversés.",
-    "c": "#E8590C",
-    "soft": "#FFF4E6",
-    "deep": "#A63A00",
-    "cast": [
-      [
-        "Théo Marchal",
-        "23 ans, L3 de droit le jour, serveur au Comptoir le soir, maladroit et brillant"
-      ],
-      [
-        "Alexandre Varenne",
-        "32 ans, fondateur d'une appli revendue des millions, nonchalant, égoïste, achète des immeubles par caprice"
-      ],
-      [
-        "Paulette Desmet",
-        "86 ans, ancienne meneuse de revue, propriétaire du Comptoir"
-      ],
-      [
-        "Cédric Desmet",
-        "son petit-neveu, agent immobilier, mandataire peu scrupuleux"
-      ],
-      [
-        "Lina",
-        "colocataire et collègue de Théo, étudiante aux Beaux-Arts"
-      ],
-      [
-        "Maître Inès Varenne",
-        "avocate, demi-sœur d'Alexandre"
-      ],
-      [
-        "Bertrand Lemaire",
-        "80 ans, garagiste, amoureux de Paulette"
-      ],
-      [
-        "Marc Delorme",
-        "promoteur rival, joueur de poker"
-      ],
-      [
-        "Maître Hélène Castel",
-        "notaire, place du Concert"
-      ],
-      [
-        "Gainsbourg",
-        "le chat roux de Paulette, maladroit lui aussi"
-      ]
-    ]
-  },
-  "proces": {
-    "title": "Au nom du peuple",
-    "course": "Grands principes du procès interne et européen",
-    "pitch": "Noé, étudiant et serveur maladroit à Montmartre, est accusé d'avoir volé un dessin de Valadon. Raphaël, ténor du barreau arrogant qui n'a pas perdu depuis sept ans, le défend pour gagner un pari. Accès au juge, impartialité, contradictoire, motivation, exécution : tout le procès, de la garde à vue au verdict.",
-    "c": "#6741D9",
-    "soft": "#F3F0FF",
-    "deep": "#4527A0",
-    "cast": [
-      [
-        "Noé Ferrand",
-        "23 ans, L3 de droit, serveur au Chat Perché rue Lepic, vit à Pigalle au-dessus d'un sex-shop"
-      ],
-      [
-        "Raphaël Saint-Aubin",
-        "36 ans, ténor du barreau pénal, penthouse avenue Junot, n'aime que gagner"
-      ],
-      [
-        "Sylvie Ferrand",
-        "mère de Noé, sourde, aquarelliste, lit sur les lèvres"
-      ],
-      [
-        "Yasmine",
-        "collègue de Noé au café, drag queen le soir"
-      ],
-      [
-        "Clémence Arnaud",
-        "vice-procureure, rivale de Raphaël"
-      ],
-      [
-        "Ophélie Marchetti",
-        "galeriste rue Lepic"
-      ],
-      [
-        "Gaspard Saint-Aubin",
-        "père de Raphaël, marchand d'art avenue Matignon"
-      ],
-      [
-        "Hélène Boisseau",
-        "présidente de la 10e chambre correctionnelle"
-      ],
-      [
-        "Antoine Mercier",
-        "juge, ex de Raphaël"
-      ],
-      [
-        "Lucas",
-        "9 ans, le petit voisin de Noé"
-      ],
-      [
-        "Josiane",
-        "gérante du sex-shop, et de sa caméra"
-      ]
-    ]
-  },
-  "dip": {
-    "title": "Le prince en exil",
-    "course": "Droit international public approfondi",
-    "pitch": "Elio, étudiant qui dessine les touristes place du Tertre, fait un portrait raté d'un prince d'une micro-principauté alpine. Coup d'État, gouvernement en exil dans sa chambre de bonne de Pigalle, traités, coutume, CIJ et recours à la force : tout le cours, de Westphalie à La Haye.",
-    "c": "#1971C2",
-    "soft": "#E7F5FF",
-    "deep": "#0B4F8A",
-    "cast": [
-      [
-        "Elio Martin",
-        "22 ans, L3 de droit, portraitiste place du Tertre le week-end, chambre de bonne rue Frochot (Pigalle)"
-      ],
-      [
-        "Casimir « Caz » de Haut-Valberg",
-        "31 ans, prince régent d'une principauté alpine, hôtel particulier avenue Frochot, ne s'intéresse à personne"
-      ],
-      [
-        "Bénédicte Orsoni",
-        "74 ans, conseillère juridique de la principauté, ancienne membre de la CDI"
-      ],
-      [
-        "L'archiduc Ottokar",
-        "oncle de Caz, putschiste"
-      ],
-      [
-        "Le prince Léopold",
-        "père de Caz, malade"
-      ],
-      [
-        "Hélène de Haut-Valberg",
-        "mère de Caz, morte en 2009, auteure de carnets"
-      ],
-      [
-        "Le comte Ilya Volnar",
-        "attaché culturel ostravien, charmeur"
-      ],
-      [
-        "Anja et Mila Weller",
-        "journaliste valbergeoise réfugiée et sa fille de 12 ans"
-      ]
-    ]
-  }
+ "contrats": {
+  "title": "Solo consensu",
+  "course": "Droit des contrats spéciaux",
+  "pitch": "Théo, étudiant en L3 et serveur maladroit, se fait promettre un café sur une serviette en papier. Alexandre, millionnaire nonchalant, l'achète sous son nez. Vente, bail, prêt, dépôt, chantier, mandat, fiducie, jeu, viager et transaction : tout le cours, entre deux verres renversés.",
+  "c": "#E8590C",
+  "soft": "#FFF4E6",
+  "deep": "#A63A00",
+  "cast": [
+   [
+    "Théo Marchal",
+    "23 ans, L3 de droit le jour, serveur au Comptoir le soir, maladroit et brillant"
+   ],
+   [
+    "Alexandre Varenne",
+    "32 ans, fondateur d'une appli revendue des millions, nonchalant, égoïste, achète des immeubles par caprice"
+   ],
+   [
+    "Paulette Desmet",
+    "86 ans, ancienne meneuse de revue, propriétaire du Comptoir"
+   ],
+   [
+    "Cédric Desmet",
+    "son petit-neveu, agent immobilier, mandataire peu scrupuleux"
+   ],
+   [
+    "Lina",
+    "colocataire et collègue de Théo, étudiante aux Beaux-Arts"
+   ],
+   [
+    "Maître Inès Varenne",
+    "avocate, demi-sœur d'Alexandre"
+   ],
+   [
+    "Bertrand Lemaire",
+    "80 ans, garagiste, amoureux de Paulette"
+   ],
+   [
+    "Marc Delorme",
+    "promoteur rival, joueur de poker"
+   ],
+   [
+    "Maître Hélène Castel",
+    "notaire, place du Concert"
+   ],
+   [
+    "Gainsbourg",
+    "le chat roux de Paulette, maladroit lui aussi"
+   ]
+  ]
+ },
+ "proces": {
+  "title": "Au nom du peuple",
+  "course": "Grands principes du procès interne et européen",
+  "pitch": "Noé, étudiant et serveur maladroit à Montmartre, est accusé d'avoir volé un dessin de Valadon. Raphaël, ténor du barreau arrogant qui n'a pas perdu depuis sept ans, le défend pour gagner un pari. Accès au juge, impartialité, contradictoire, motivation, exécution : tout le procès, de la garde à vue au verdict.",
+  "c": "#6741D9",
+  "soft": "#F3F0FF",
+  "deep": "#4527A0",
+  "cast": [
+   [
+    "Noé Ferrand",
+    "23 ans, L3 de droit, serveur au Chat Perché rue Lepic, vit à Pigalle au-dessus d'un sex-shop"
+   ],
+   [
+    "Raphaël Saint-Aubin",
+    "36 ans, ténor du barreau pénal, penthouse avenue Junot, n'aime que gagner"
+   ],
+   [
+    "Sylvie Ferrand",
+    "mère de Noé, sourde, aquarelliste, lit sur les lèvres"
+   ],
+   [
+    "Yasmine",
+    "collègue de Noé au café, drag queen le soir"
+   ],
+   [
+    "Clémence Arnaud",
+    "vice-procureure, rivale de Raphaël"
+   ],
+   [
+    "Ophélie Marchetti",
+    "galeriste rue Lepic"
+   ],
+   [
+    "Gaspard Saint-Aubin",
+    "père de Raphaël, marchand d'art avenue Matignon"
+   ],
+   [
+    "Hélène Boisseau",
+    "présidente de la 10e chambre correctionnelle"
+   ],
+   [
+    "Antoine Mercier",
+    "juge, ex de Raphaël"
+   ],
+   [
+    "Lucas",
+    "9 ans, le petit voisin de Noé"
+   ],
+   [
+    "Josiane",
+    "gérante du sex-shop, et de sa caméra"
+   ]
+  ]
+ },
+ "dip": {
+  "title": "Le prince en exil",
+  "course": "Droit international public approfondi",
+  "pitch": "Elio, étudiant qui dessine les touristes place du Tertre, fait un portrait raté d'un prince d'une micro-principauté alpine. Coup d'État, gouvernement en exil dans sa chambre de bonne de Pigalle, traités, coutume, CIJ et recours à la force : tout le cours, de Westphalie à La Haye.",
+  "c": "#1971C2",
+  "soft": "#E7F5FF",
+  "deep": "#0B4F8A",
+  "cast": [
+   [
+    "Elio Martin",
+    "22 ans, L3 de droit, portraitiste place du Tertre le week-end, chambre de bonne rue Frochot (Pigalle)"
+   ],
+   [
+    "Casimir « Caz » de Haut-Valberg",
+    "31 ans, prince régent d'une principauté alpine, hôtel particulier avenue Frochot, ne s'intéresse à personne"
+   ],
+   [
+    "Bénédicte Orsoni",
+    "74 ans, conseillère juridique de la principauté, ancienne membre de la CDI"
+   ],
+   [
+    "L'archiduc Ottokar",
+    "oncle de Caz, putschiste"
+   ],
+   [
+    "Le prince Léopold",
+    "père de Caz, malade"
+   ],
+   [
+    "Hélène de Haut-Valberg",
+    "mère de Caz, morte en 2009, auteure de carnets"
+   ],
+   [
+    "Le comte Ilya Volnar",
+    "attaché culturel ostravien, charmeur"
+   ],
+   [
+    "Anja et Mila Weller",
+    "journaliste valbergeoise réfugiée et sa fille de 12 ans"
+   ]
+  ]
+ },
+ "libertes": {
+  "title": "Trop sucré",
+  "course": "Théorie des libertés fondamentales",
+  "pitch": "Lou, projectionniste maladroit d'un cinéma des Abbesses, renverse un seau de pop-corn sur Valentin Kessler, milliardaire d'un réseau social qui vient de racheter l'immeuble. État d'urgence, algorithme policier, référé-liberté, La Haye et Strasbourg : tout le cours, de la Magna Carta au Défenseur des droits.",
+  "c": "#C2255C",
+  "soft": "#FFF0F6",
+  "deep": "#8A1440",
+  "cast": [
+   [
+    "Lou Garnier",
+    "22 ans, L3 de droit, projectionniste au Studio des Abbesses, studio rue Germain-Pilon (Pigalle) au-dessus d'un cabaret"
+   ],
+   [
+    "Valentin Kessler",
+    "34 ans, fondateur du réseau Agora, maison villa Léandre, n'a jamais modéré un message"
+   ],
+   [
+    "Margaux Delorme",
+    "cofondatrice et directrice générale d'Agora, tailleur blanc"
+   ],
+   [
+    "Madame Ruiz",
+    "caissière du Studio, 63 ans, déteste l'État"
+   ],
+   [
+    "Amadou",
+    "second projectionniste, malien, étudiant en cinéma"
+   ],
+   [
+    "Sacha",
+    "chanteuse de Fréhel au cabaret sous chez Lou"
+   ],
+   [
+    "Maître Inès Benali",
+    "avocate spécialiste du référé-liberté"
+   ]
+  ]
+ }
 }
