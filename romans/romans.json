@@ -182,5 +182,47 @@
     "avocate spécialiste du référé-liberté"
    ]
   ]
+ },
+ "penal": {
+  "title": "Le Guide",
+  "course": "Droit pénal spécial",
+  "pitch": "Nino, guide maladroit des visites « Montmartre criminel », se prend un seau d'eau lancé par Ambroise Vauquelin, auteur de polars à succès qui n'écrit plus. Puis un cadavre devant sa grille, un miel empoisonné et une éditrice trop gentille. Meurtre, empoisonnement, violences, viol, vol, escroquerie, abus de confiance : tout le cours, en une enquête.",
+  "c": "#C92A2A",
+  "soft": "#FFF5F5",
+  "deep": "#8B1A1A",
+  "cast": [
+   [
+    "Nino Ferraro",
+    "21 ans, L3 de droit, guide des visites nocturnes « Montmartre criminel », studio rue de Douai (Pigalle)"
+   ],
+   [
+    "Ambroise Vauquelin",
+    "33 ans, auteur de la série du Commissaire Lebrun, 40 millions d'exemplaires, château des Brouillards, n'écrit plus"
+   ],
+   [
+    "Maigret",
+    "bouvier bernois de dix ans, ne fait rien"
+   ],
+   [
+    "Commandante Yasmina Kader",
+    "brigade criminelle, boit son café froid"
+   ],
+   [
+    "Hélène Marchetti",
+    "éditrice d'Ambroise depuis douze ans, l'appelle « mon petit »"
+   ],
+   [
+    "Bastien Roux",
+    "ancien assistant d'Ambroise"
+   ],
+   [
+    "Clémence",
+    "guide de la visite des peintres"
+   ],
+   [
+    "Madame Odette",
+    "88 ans, voisine de Nino, ancienne danseuse du Moulin Rouge"
+   ]
+  ]
  }
 }

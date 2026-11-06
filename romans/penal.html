@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Le Guide — Droit pénal spécial (version romancée)</title>
+<style>
+@font-face{font-family:"Fraunces";src:url("../assets/fonts/fraunces-latin-wght-normal.woff2") format("woff2");font-weight:100 900;font-style:normal}
+@font-face{font-family:"Fraunces";src:url("../assets/fonts/fraunces-latin-wght-italic.woff2") format("woff2");font-weight:100 900;font-style:italic}
+@font-face{font-family:"InterV";src:url("../assets/fonts/inter-latin-wght-normal.woff2") format("woff2");font-weight:100 900}
+:root{--c:#C92A2A;--soft:#FFF5F5;--deep:#8B1A1A;--paper:#FBF8F2;--ink:#22201C;--muted:#6E6A62;--line:#E7E1D6;--card:#fff;--fs:19px}
+body.night{--paper:#16151A;--ink:#E9E4DA;--muted:#9C978E;--line:#2C2A31;--card:#1F1E24;--soft:#2A211B}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.6 InterV,system-ui,sans-serif;transition:background .3s,color .3s}
+a{color:inherit}
+/* barre */
+.bar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar .in{max-width:1100px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;gap:8px}
+.bar a.back{font:600 13px InterV;text-decoration:none;padding:7px 12px;border:1px solid var(--line);border-radius:99px;background:var(--card)}
+.bar .t{flex:1;font:600 14px Fraunces,serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 6px}
+.bar button,.bar a.back{white-space:nowrap}
+.bar button{font:600 13px InterV;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:7px 11px;cursor:pointer}
+.bar button.on{background:var(--c);border-color:var(--c);color:#fff}
+.prog{position:absolute;left:0;bottom:-1px;height:3px;background:var(--c);width:0}
+/* couverture */
+.hero{max-width:760px;margin:0 auto;padding:64px 24px 24px}
+.hero .kick{font:600 12px InterV;letter-spacing:.14em;text-transform:uppercase;color:var(--c)}
+.hero h1{font:600 clamp(44px,8vw,84px)/1 Fraunces,serif;letter-spacing:-.02em;margin:14px 0 10px}
+.hero h1 em{color:var(--c);font-weight:500}
+.hero .sub{font:italic 400 21px/1.45 Fraunces,serif;color:var(--muted);margin:0 0 22px}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.meta span{font:600 12.5px InterV;background:var(--soft);color:var(--deep);padding:6px 11px;border-radius:99px}
+body.night .meta span{color:#FFB98A}
+.hero .cta{display:flex;gap:10px;flex-wrap:wrap}
+.btn{font:600 14px InterV;text-decoration:none;border-radius:12px;padding:12px 16px;border:1px solid var(--line);background:var(--card);cursor:pointer;color:var(--ink)}
+.btn.pri{background:var(--c);border-color:var(--c);color:#fff}
+.how{margin:30px 0 0;padding:18px 20px;border-radius:18px;background:var(--card);border:1px solid var(--line);font-size:14.5px;color:var(--muted)}
+.how b{color:var(--ink)}
+.how .k{cursor:default}
+details.cast{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:4px 20px}
+details.cast summary{cursor:pointer;font:600 15px InterV;padding:14px 0}
+details.cast ul{list-style:none;padding:0;margin:0 0 16px}
+details.cast li{display:flex;gap:10px;padding:7px 0;border-top:1px dashed var(--line);font-size:14.5px}
+details.cast li b{min-width:150px;font-family:Fraunces,serif;font-size:16px}
+details.cast li span{color:var(--muted)}
+/* sommaire */
+.toc{max-width:760px;margin:26px auto 0;padding:0 24px}
+.toc h3{font:600 13px InterV;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+.toc ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}
+.toc a{display:block;text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:11px 14px;font:500 15px/1.3 Fraunces,serif;transition:transform .15s,border-color .15s}
+.toc a:hover{transform:translateY(-2px);border-color:var(--c)}
+.toc a span{display:block;font:600 11px InterV;letter-spacing:.08em;text-transform:uppercase;color:var(--c);margin-bottom:3px}
+.toc a.read{opacity:.55}
+.toc a.read span::after{content:" ✓"}
+/* tiroir */
+.drawer{position:fixed;inset:0;z-index:40;display:none}
+.drawer.open{display:block}
+.drawer .shade{position:absolute;inset:0;background:rgba(0,0,0,.35)}
+.drawer .panel{position:absolute;right:0;top:0;bottom:0;width:min(360px,88vw);background:var(--paper);padding:20px;overflow:auto;box-shadow:-10px 0 30px rgba(0,0,0,.15)}
+.drawer .panel ol{grid-template-columns:1fr}
+/* texte */
+article{max-width:680px;margin:0 auto;padding:10px 24px 80px}
+.chap{padding-top:70px}
+.chap header{text-align:center;margin-bottom:34px}
+.chap .num{font:600 12px InterV;letter-spacing:.16em;text-transform:uppercase;color:var(--c)}
+.chap h2{font:600 clamp(32px,5vw,46px)/1.08 Fraunces,serif;margin:10px 0 16px;letter-spacing:-.01em}
+.epi{margin:0 auto;max-width:520px;font:italic 400 16px/1.5 Fraunces,serif;color:var(--muted);border:0;padding:0}
+.chap p{font:400 var(--fs)/1.72 Fraunces,serif;margin:0 0 1.05em;hyphens:auto;-webkit-hyphens:auto;text-align:justify}
+.chap header + p::first-letter{float:left;font:600 4.1em/.8 Fraunces,serif;color:var(--c);padding:.08em .1em 0 0}
+.chap strong{font-weight:650}
+.scene{text-align:center;color:var(--c);font-size:20px;margin:1.6em 0;letter-spacing:.5em}
+/* termes juridiques */
+.k{position:relative;cursor:help;outline:none}
+body.law .k{background:linear-gradient(transparent 58%,color-mix(in srgb,var(--c) 26%,transparent) 58%);border-radius:2px}
+body.law .k::after{content:"§";font:700 .62em InterV;color:var(--c);vertical-align:super;margin-left:1px}
+.k[data-r]:hover::before,.k[data-r]:focus::before{content:attr(data-r);position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%);
+  width:max-content;max-width:270px;background:#22201C;color:#fff;font:500 13px/1.4 InterV;padding:8px 11px;border-radius:10px;z-index:30;text-align:left;box-shadow:0 8px 24px rgba(0,0,0,.2);white-space:normal}
+body:not(.law) .k::before{display:none}
+/* encadrés */
+.retenir{margin:2.2em 0 0;background:var(--soft);border:1px solid color-mix(in srgb,var(--c) 30%,transparent);border-radius:20px;padding:20px 22px 10px}
+body.night .retenir{background:#231C17}
+.retenir h4{margin:0 0 10px;font:700 12px InterV;letter-spacing:.12em;text-transform:uppercase;color:var(--deep)}
+body.night .retenir h4{color:#FFB98A}
+.retenir ul{margin:0;padding-left:18px}
+.retenir li{font:400 14.5px/1.55 InterV;margin-bottom:9px}
+body.hidebox .retenir{display:none}
+.next{display:flex;justify-content:space-between;gap:10px;margin-top:26px}
+.next a{flex:1;text-align:center}
+footer{max-width:680px;margin:0 auto;padding:30px 24px 60px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+@media (max-width:600px){.bar .t{display:none}.bar .lbl{display:none}.bar .in{gap:6px;padding:9px 12px}.bar .in>a.back{margin-right:auto}.chap p{text-align:left}details.cast li{flex-direction:column;gap:0}
+  .k[data-r]:hover::before,.k[data-r]:focus::before{position:fixed;left:12px;right:12px;bottom:16px;top:auto;transform:none;width:auto;max-width:none;font-size:14px;padding:12px 14px}}
+@media print{.bar,.drawer,.next,.toc{display:none}}
+</style>
+</head>
+<body class="law">
+<div class="bar"><div class="in">
+  <a class="back" href="../index.html">← Cours</a>
+  <div class="t">Le Guide · Droit pénal spécial</div>
+  <button id="bLaw" class="on" title="Surligner les notions juridiques">§<span class="lbl"> Repères</span></button>
+  <button id="bBox" class="on" title="Afficher les encadrés de fin de chapitre">📌</button>
+  <button id="bSize" title="Taille du texte">Aa</button>
+  <button id="bNight" title="Mode nuit">☾</button>
+  <button id="bToc" title="Chapitres">☰</button>
+</div><div class="prog" id="prog"></div></div>
+
+<header class="hero">
+  <div class="kick">Version romancée · Droit pénal spécial</div>
+  <h1>Le Guide</h1>
+  <p class="sub">Nino, guide maladroit des visites « Montmartre criminel », se prend un seau d&#x27;eau lancé par Ambroise Vauquelin, auteur de polars à succès qui n&#x27;écrit plus. Puis un cadavre devant sa grille, un miel empoisonné et une éditrice trop gentille. Meurtre, empoisonnement, violences, viol, vol, escroquerie, abus de confiance : tout le cours, en une enquête.</p>
+  <div class="meta"><span>13 chapitres</span><span>≈ 102 min de lecture</span><span>Tout le cours dedans</span></div>
+  <div class="cta">
+    <a class="btn pri" id="start" href="#ch1">Commencer la lecture →</a>
+    <a class="btn" href="../fiches/penal.html">Lire la fiche classique</a>
+  </div>
+  <div class="how"><b>Comment ça marche.</b> Les notions du cours sont <span class="k" tabindex="0" data-r="Survole ou touche un mot surligné : l'article ou la règle s'affiche.">surlignées</span> : survole-les (ou touche-les sur téléphone) pour voir l'article ou la règle. Chaque chapitre se termine par un encadré « Ce que tu viens d'apprendre ». Le bouton § coupe les surlignages si tu veux juste lire l'histoire.</div>
+  <details class="cast"><summary>Les personnages</summary><ul><li><b>Nino Ferraro</b><span>21 ans, L3 de droit, guide des visites nocturnes « Montmartre criminel », studio rue de Douai (Pigalle)</span></li><li><b>Ambroise Vauquelin</b><span>33 ans, auteur de la série du Commissaire Lebrun, 40 millions d&#x27;exemplaires, château des Brouillards, n&#x27;écrit plus</span></li><li><b>Maigret</b><span>bouvier bernois de dix ans, ne fait rien</span></li><li><b>Commandante Yasmina Kader</b><span>brigade criminelle, boit son café froid</span></li><li><b>Hélène Marchetti</b><span>éditrice d&#x27;Ambroise depuis douze ans, l&#x27;appelle « mon petit »</span></li><li><b>Bastien Roux</b><span>ancien assistant d&#x27;Ambroise</span></li><li><b>Clémence</b><span>guide de la visite des peintres</span></li><li><b>Madame Odette</b><span>88 ans, voisine de Nino, ancienne danseuse du Moulin Rouge</span></li></ul></details>
+</header>
+
+<nav class="toc" id="toc"><h3>Chapitres</h3><ol><li><a href="#ch1"><span>Chapitre 1</span>Montmartre criminel</a></li><li><a href="#ch2"><span>Chapitre 2</span>Préméditation</a></li><li><a href="#ch3"><span>Chapitre 3</span>Le miel d&#x27;acacia</a></li><li><a href="#ch4"><span>Chapitre 4</span>La nuit de la nationale 7</a></li><li><a href="#ch5"><span>Chapitre 5</span>Les lettres aux cercueils</a></li><li><a href="#ch6"><span>Chapitre 6</span>Libre, éclairé, révocable</a></li><li><a href="#ch7"><span>Chapitre 7</span>Clémence</a></li><li><a href="#ch8"><span>Chapitre 8</span>La corbeille à papier</a></li><li><a href="#ch9"><span>Chapitre 9</span>Les bijoux d&#x27;Odette</a></li><li><a href="#ch10"><span>Chapitre 10</span>La fausse moustache</a></li><li><a href="#ch11"><span>Chapitre 11</span>Mon petit</a></li><li><a href="#ch12"><span>Chapitre 12</span>Maigret</a></li><li><a href="#ch13"><span>Épilogue</span>Le Guide</a></li></ol></nav>
+
+<div class="drawer" id="drawer"><div class="shade"></div><div class="panel"><nav class="toc"><h3>Chapitres</h3><ol><li><a href="#ch1"><span>Chapitre 1</span>Montmartre criminel</a></li><li><a href="#ch2"><span>Chapitre 2</span>Préméditation</a></li><li><a href="#ch3"><span>Chapitre 3</span>Le miel d&#x27;acacia</a></li><li><a href="#ch4"><span>Chapitre 4</span>La nuit de la nationale 7</a></li><li><a href="#ch5"><span>Chapitre 5</span>Les lettres aux cercueils</a></li><li><a href="#ch6"><span>Chapitre 6</span>Libre, éclairé, révocable</a></li><li><a href="#ch7"><span>Chapitre 7</span>Clémence</a></li><li><a href="#ch8"><span>Chapitre 8</span>La corbeille à papier</a></li><li><a href="#ch9"><span>Chapitre 9</span>Les bijoux d&#x27;Odette</a></li><li><a href="#ch10"><span>Chapitre 10</span>La fausse moustache</a></li><li><a href="#ch11"><span>Chapitre 11</span>Mon petit</a></li><li><a href="#ch12"><span>Chapitre 12</span>Maigret</a></li><li><a href="#ch13"><span>Épilogue</span>Le Guide</a></li></ol></nav></div></div>
+
+<article id="book">
+<section class="chap" id="ch1"><header><div class="num">Chapitre 1</div><h2>Montmartre criminel</h2><blockquote class="epi">« Le fait de donner volontairement la mort à autrui constitue un meurtre. » — Art. 221-1 C. pén.</blockquote></header><p>— Et c'est ici, mesdames et messieurs, exactement ici, sous vos pieds, qu'en 1897 on retrouva la tête d'une blanchisseuse dans un panier à linge !</p>
+<p>Nino Ferraro leva sa lanterne au-dessus des pavés de l'allée des Brouillards. Les quatorze touristes de la visite <em>Montmartre Criminel</em> poussèrent le petit cri qu'il attendait. Il était vingt-deux heures, un mardi d'octobre, le brouillard montait vraiment, comme dans le nom, et Nino portait la cape noire et le chapeau haut de forme que l'agence lui imposait, avec la moustache postiche qui se décollait toujours au moment le plus dramatique.</p>
+<p>Elle se décolla.</p>
+<p>Elle tomba dans le panier à linge en osier que Nino trimballait pour l'ambiance.</p>
+<p>— Ceci, dit-il en la repêchant, n'était pas prévu.</p>
+<p>Les touristes rirent. Nino avait vingt et un ans, des boucles brunes qui frisaient à l'humidité, de grands yeux noisette, et une manière de rougir jusqu'aux oreilles qui faisait gagner des pourboires. Le jour, il était en L3 de droit. Le soir, trois fois par semaine, il racontait les crimes de Montmartre pour quatorze euros de l'heure, plus les pourboires. Il habitait rue de Douai, à Pigalle, au-dessus d'un magasin de guitares, dans un studio où l'on entendait accorder des Fender jusqu'à vingt heures.</p>
+<p>— Et derrière ce mur, poursuivit-il en baissant la voix, le château des Brouillards. Une folie du XVIIIe siècle. On dit qu'un fantôme…</p>
+<p>Une fenêtre s'ouvrit au premier étage.</p>
+<p>— Le seul fantôme ici, dit une voix, c'est moi. Et j'essaie de dormir.</p>
+<p>Un seau d'eau s'abattit sur la cape noire de Nino, sur sa lanterne, sur son chapeau, et sur sa moustache qui, cette fois, partit définitivement dans le caniveau.</p>
+<div class="scene">❦</div>
+<p>Le lendemain soir, Nino changea son trajet. Le surlendemain aussi. Mais le vendredi, l'agence lui rappela que l'allée des Brouillards était « l'étape signature » du parcours, et Nino y retourna, la mort dans l'âme, avec un parapluie.</p>
+<p>Cette fois, la fenêtre ne s'ouvrit pas. La porte, si.</p>
+<p>Un homme sortit du château, en peignoir de soie bordeaux sur un jean, pieds nus dans des mocassins, un verre de whisky à la main. Grand, mal rasé, des cheveux noirs trop longs, des yeux gris fatigués de tout. Nino le reconnut immédiatement, parce que tout le monde le reconnaissait : Ambroise Vauquelin. Trente-trois ans. Quarante millions d'exemplaires vendus de la série du <em>Commissaire Lebrun</em>. Traduit en cinquante langues. Adapté en série. Et plus rien publié depuis trois ans.</p>
+<p>— Je viens avec vous, dit-il.</p>
+<p>— Pardon ?</p>
+<p>— Votre visite. Je viens. Je veux savoir ce que vous racontez sous ma fenêtre trois fois par semaine. Combien ?</p>
+<p>— Vingt-cinq euros.</p>
+<p>Ambroise sortit de la poche de son peignoir un billet de cinq cents et le posa sur le panier à linge.</p>
+<p>— Gardez la monnaie. Et racontez bien. Je suis exigeant, je vis de ça.</p>
+<div class="scene">❦</div>
+<p>Nino raconta. Il raconta mal, d'abord, parce qu'il sentait le regard gris dans son dos. Puis mieux, parce qu'Ambroise Vauquelin ricanait aux mauvais moments et que ça le mettait en colère, et que la colère le rendait bon.</p>
+<p>Devant la maison du Bateau-Lavoir, une touriste anglaise demanda :</p>
+<p>— Mais juridiquement, qu'est-ce qu'un meurtre, exactement ?</p>
+<p>Ambroise eut un petit sourire, l'air de dire <em>voyons comment il s'en sort</em>. Nino planta sa lanterne dans le sol.</p>
+<p>— L'<span class="k" tabindex="0" data-r="meurtre simple : 30 ans de réclusion">article 221-1</span> du Code pénal : « Le fait de donner volontairement la mort à autrui constitue un meurtre. » Trente ans de réclusion criminelle. Comme toute infraction, il a une <strong>condition préalable</strong>, un <strong>élément matériel</strong> et un <strong>élément moral</strong>. La condition préalable, c'est un <strong>être humain vivant</strong>.</p>
+<p>— Et un bébé pas encore né ? demanda une autre touriste.</p>
+<p>— Le Code ne répond pas pour le meurtre. Mais l'assemblée plénière de la Cour de cassation, le <span class="k" tabindex="0" data-r="Cass. AP, 29 juin 2001, n° 99-85.973">29 juin 2001</span>, a refusé l'homicide involontaire sur un enfant à naître : interprétation stricte de la loi pénale. Il faut sans doute en déduire qu'aucune qualification d'homicide ne s'applique au fœtus.</p>
+<p>— Et si la personne était déjà morte quand on la tue ? lança Ambroise depuis le fond du groupe. Ça m'est arrivé dans le tome 7.</p>
+<p>— Alors c'est une <strong>infraction impossible</strong>. L'arrêt <span class="k" tabindex="0" data-r="Cass. crim., 16 janv. 1986">Perdereau</span>, 1986. Un homme frappe un autre homme déjà mort, tué par quelqu'un d'autre quelques minutes avant. La Cour de cassation retient la <strong>tentative de meurtre</strong> : la mort antérieure est une circonstance <strong>indépendante de la volonté</strong> de l'agent. Il voulait tuer, il a tout fait pour tuer, il n'a pas réussi parce que c'était impossible. Il est puni.</p>
+<p>Ambroise haussa un sourcil. Dans le tome 7, son assassin était relaxé.</p>
+<p>— Et autrui ? reprit Nino. On ne peut pas se tuer soi-même au sens du meurtre : le <strong>suicide</strong> n'est pas punissable. Mais la <strong>provocation au suicide</strong> est un délit, si elle est suivie d'au moins une tentative : article 223-13, trois ans et 45 000 euros.</p>
+<div class="scene">❦</div>
+<p>Ils montèrent la rue Norvins. Le brouillard s'épaississait. Ambroise marchait maintenant à côté de Nino, son verre vide à la main.</p>
+<p>— L'élément matériel, dit Ambroise. Vous allez me dire « un acte homicide ». C'est ce que dit Lebrun dans le tome 2.</p>
+<p>— C'est juste. <strong>Tout moyen</strong> : arme à feu, couteau, strangulation, coups. Sauf le <strong>poison</strong> : il y a une qualification spéciale, l'empoisonnement. <em>Specialia generalibus derogant</em> : le spécial déroge au général.</p>
+<p>— Et si je laisse quelqu'un mourir ? Si je le regarde se noyer sans rien faire ?</p>
+<p>— C'est la grande question : le meurtre <strong>par omission</strong>. La doctrine exige un acte positif. Mais le texte dit « le fait de donner la mort », c'est vague. La vraie difficulté, c'est de prouver le <strong>lien de causalité</strong>. On dit parfois : puisqu'il existe des délits spéciaux d'omission, la non-assistance à personne en péril, article 223-6, la privation de soins d'un mineur, 227-15, c'est que l'omission n'est pas un meurtre. Mais l'argument ne porte pas, parce que ces délits n'exigent pas l'<strong>intention de tuer</strong>. En fait, aucun arrêt n'exclut le meurtre par omission. Alors que l'homicide <strong>involontaire</strong>, lui, résulte très souvent d'une omission.</p>
+<p>— Et l'élément moral ?</p>
+<p>— L'<span class="k" tabindex="0" data-r="intention de tuer">animus necandi</span>. L'<em>animus necandi</em>, l'intention de tuer. La volonté d'accomplir les actes et la conscience qu'ils vont ou peuvent tuer. Peu importe le nombre de victimes : l'intention peut être <strong>indéterminée</strong>. Peu importe l'<strong>erreur sur la personne</strong> : si je veux tuer Pierre et que je tue Paul, c'est un meurtre. Peu importent les <strong>mobiles</strong> : même l'euthanasie est un meurtre ; le mobile n'a d'incidence que sur la peine. On prouve l'intention par des <strong>indices objectifs</strong> : l'arme utilisée, la partie du corps visée. Un coup de couteau dans le cœur, ce n'est pas pareil qu'un coup dans la cuisse. Et si l'auteur voulait seulement <strong>blesser</strong> ? Alors ce sont des <strong>violences ayant entraîné la mort sans intention de la donner</strong>, article 222-7, quinze ans.</p>
+<p>Ils étaient arrivés place du Tertre. Les peintres rangeaient leurs chevalets. Le groupe applaudit. Ambroise n'applaudit pas. Il regardait Nino d'un air étrange, comme on regarde un personnage qu'on n'a pas encore écrit.</p>
+<p>— Vous savez que vous êtes meilleur que mes trois derniers conseillers juridiques ?</p>
+<p>— Vous en avez combien ?</p>
+<p>— Je les ai tous virés. Ils étaient ennuyeux.</p>
+<div class="scene">❦</div>
+<p>Il était minuit passé quand Nino redescendit vers l'allée des Brouillards pour récupérer son panier à linge, oublié devant le château. Ambroise l'accompagnait, sans qu'aucun des deux en ait parlé, les mains dans les poches de son peignoir.</p>
+<p>— Pourquoi vous n'écrivez plus ? demanda Nino.</p>
+<p>— Parce que je n'ai plus rien à dire.</p>
+<p>— Vous avez quarante millions de lecteurs qui attendent.</p>
+<p>— Ils n'attendent pas <em>moi</em>. Ils attendent Lebrun.</p>
+<p>Ils tournèrent le coin de l'allée. Le panier à linge était là, devant la grille du château. Et à côté, quelque chose de long, sombre, immobile, étendu sur les pavés mouillés.</p>
+<p>Nino crut d'abord à un sac. Puis il vit la main. Puis le visage, tourné vers le ciel, les yeux ouverts, le cou marqué de traces violacées.</p>
+<p>Ambroise s'était figé. Sa voix, quand elle vint, n'avait plus rien de nonchalant.</p>
+<p>— C'est Bastien. Bastien Roux. Mon ancien assistant.</p>
+<p>Nino s'agenouilla, chercha un pouls, n'en trouva pas, et sortit son téléphone d'une main qui tremblait si fort qu'il le fit tomber deux fois sur les pavés avant de composer le 17.</p>
+<aside class="retenir"><h4>Ce que tu viens d'apprendre</h4><ul><li>Meurtre simple (art. 221-1) : donner volontairement la mort à autrui ; 30 ans de réclusion criminelle.</li><li>Condition préalable : un être humain vivant. Fœtus : refus de l'homicide involontaire (Cass. AP, 29 juin 2001) → sans doute aucune qualification. Personne déjà morte : infraction impossible, tentative punissable (Perdereau, 16 janv. 1986). Suicide non punissable ; provocation au suicide suivie d'une tentative (223-13 : 3 ans, 45 000 €).</li><li>Élément matériel : acte homicide, tout moyen sauf le poison (specialia generalibus derogant). Omission : doctrine réservée, texte vague, difficulté de la causalité ; l'argument des délits d'omission (223-6, 227-15) ne porte pas ; aucun arrêt n'exclut le meurtre par omission.</li><li>Élément moral : animus necandi ; intention indéterminée, erreur sur la personne et mobiles (euthanasie) indifférents ; preuve par indices objectifs. Volonté de blesser seulement : violences mortelles (222-7, 15 ans).</li></ul></aside></section>
+<section class="chap" id="ch2"><header><div class="num">Chapitre 2</div><h2>Préméditation</h2><blockquote class="epi">« La préméditation est le dessein formé avant l'action de commettre un crime ou un délit déterminé. » — Art. 132-72 C. pén.</blockquote></header><p>La commandante Yasmina Kader avait trente-six ans, une queue-de-cheval sévère, une veste en cuir usée aux coudes, et l'habitude de boire son café froid parce qu'elle oubliait toujours qu'il était là. Elle reçut Nino et Ambroise à huit heures du matin au 36, rue du Bastion, dans un bureau du quatrième étage qui donnait sur le périphérique.</p>
+<p>Elle avait lu les quarante millions d'exemplaires. Enfin, au moins les douze tomes.</p>
+<p>— Monsieur Vauquelin, dit-elle, votre ancien assistant a été retrouvé mort devant votre porte. Étranglé. Vous vous étiez fâchés il y a deux ans, d'après votre éditrice. Vous comprenez que je m'intéresse à vous.</p>
+<p>— Je comprends parfaitement. C'est le chapitre 3 de tous mes romans.</p>
+<p>— Et vous étiez où, entre vingt-deux heures et minuit ?</p>
+<p>— Avec lui.</p>
+<p>Il désigna Nino d'un geste du menton. Nino, qui n'avait pas dormi, avait encore de la poussière de pavé sur les genoux et une trace de cire de lanterne sur la joue.</p>
+<p>— Il m'a payé cinq cents euros pour une visite à vingt-cinq, précisa Nino. Il y a quatorze touristes qui peuvent témoigner. Dont une Anglaise qui a tout filmé.</p>
+<p>La commandante nota. Elle regarda Ambroise, puis Nino, puis Ambroise de nouveau, avec une lueur que Nino ne sut pas interpréter.</p>
+<p>— Bien. Le légiste dit que la mort remonte à vingt-trois heures environ. Si l'Anglaise confirme, vous êtes couverts tous les deux. Mais ne quittez pas Paris.</p>
+<p>— Je ne quitte jamais Paris, dit Ambroise. Je ne quitte même jamais ma maison.</p>
+<div class="scene">❦</div>
+<p>Ils sortirent dans le matin gris des Batignolles. Ambroise héla un taxi, puis renonça et se mit à marcher, comme s'il avait oublié qu'il était milliardaire.</p>
+<p>— Elle va vouloir savoir si c'était prémédité, dit-il.</p>
+<p>— Évidemment. C'est toute la différence entre le meurtre et l'<span class="k" tabindex="0" data-r="art. 221-3 : meurtre avec préméditation ou guet-apens">assassinat</span>. Article 221-3. La matérialité est la même : on donne la mort. Mais avec <strong>préméditation</strong> ou <strong>guet-apens</strong>. La préméditation, article 132-72, c'est « le dessein formé avant l'action de commettre un crime ou un délit déterminé ». Pas besoin d'une longue réflexion : c'est une question de fait, laissée aux juges et au jury. Le <strong>guet-apens</strong>, article 132-71-1, depuis la loi du 5 mars 2007 : attendre un certain temps une ou plusieurs personnes dans un lieu déterminé pour commettre contre elles une ou plusieurs infractions. C'est une forme particulière de préméditation.</p>
+<p>— Et l'assassin prend combien ?</p>
+<p>— <strong>Perpétuité.</strong> Contre trente ans pour le meurtre simple. Avec une <strong>période de sûreté</strong> renforcée dans certains cas : si la victime est un mineur de quinze ans et qu'il y a eu viol, tortures ou actes de barbarie, ou si la victime est magistrat, policier, gendarme, surveillant pénitentiaire, dépositaire de l'autorité publique, à cause de ses fonctions. La cour d'assises peut porter la sûreté à trente ans, ou même l'étendre à toute la peine avec la perpétuité. On appelle ça la « perpétuité réelle ».</p>
+<p>— Lebrun déteste la perpétuité réelle.</p>
+<p>— Lebrun est un personnage de fiction.</p>
+<p>— Lebrun est le seul ami que j'aie.</p>
+<p>Il le dit sur le ton de la plaisanterie. Nino ne rit pas.</p>
+<div class="scene">❦</div>
+<p>Ils s'arrêtèrent dans un café de la place de Clichy. Ambroise commanda deux cafés et deux croissants, et mangea les deux croissants.</p>
+<p>— Si c'est un meurtre simple, il risque quoi, au juste ? demanda-t-il. Donnez-moi tout. Je veux comprendre ce que l'assassin de Bastien a dans la tête.</p>
+<p>— Personnes physiques : trente ans, plus des <strong>peines complémentaires</strong>, articles 221-8 et suivants. La <strong>tentative</strong> est punissable, puisque c'est un crime, s'il y a <strong>commencement d'exécution</strong>. Exemple récent : un homme qui sonne plusieurs fois à une porte, visage dissimulé, un bâton à la main, et qui ne renonce qu'en entendant la police : tentative, <span class="k" tabindex="0" data-r="Cass. crim., 25 juill. 2018, n° 18-83.125">25 juill. 2018</span>. Avec des coups de couteau, on hésite entre violences avec arme et tentative de meurtre : tout dépend de l'intention. Les <strong>personnes morales</strong> : un million d'euros d'amende, articles 221-5-2 et 131-38, et les peines de l'article 131-39. La même amende pour l'assassinat et les meurtres aggravés, ce qui est critiquable.</p>
+<p>— Et la prescription ?</p>
+<p>— <strong>Vingt ans</strong> pour les crimes, article 7 du Code de procédure pénale. Avec un <strong>report</strong> en cas de <strong>dissimulation</strong>, article 9-1, depuis la loi du 27 février 2017, sans dépasser trente ans à compter des faits. Avant 2017, c'était bizarre : la jurisprudence admettait le report pour certains délits cachés, mais pas pour les crimes. Illogique. Alors l'assemblée plénière a inventé autre chose en <span class="k" tabindex="0" data-r="Cass. AP, 7 nov. 2014, n° 14-83.739">2014</span> : une femme avait caché les cadavres de huit nouveau-nés. Personne ne connaissait leur existence. La Cour a jugé que la prescription était <strong>suspendue</strong> à cause d'un <strong>obstacle insurmontable</strong> aux poursuites. Mais en 2017, elle a refusé d'aller plus loin : la seule dissimulation du cadavre d'un adulte disparu ne suffit pas.</p>
+<p>Ambroise avait cessé de mâcher.</p>
+<p>— Vous lisez des choses horribles.</p>
+<p>— Vous en écrivez.</p>
+<p>— Moi, j'invente. Vous, c'est vrai.</p>
+<div class="scene">❦</div>
+<p>Ils remontèrent à pied jusqu'à Montmartre. Ambroise semblait ne pas vouloir rentrer, et Nino n'avait pas cours avant quatorze heures.</p>
+<p>— Et s'il y avait des circonstances aggravantes ? demanda Ambroise. Mes lecteurs adorent les circonstances aggravantes.</p>
+<p>— Il y a des <strong>meurtres aggravés</strong>, punis de <strong>perpétuité</strong> comme l'assassinat. D'abord la <strong>concomitance</strong>, article 221-2 alinéa 1 : un meurtre qui précède, accompagne ou suit un <strong>autre crime</strong>, distinct, commis par le même auteur. Tuer après avoir violé, par exemple. Attention : si un seul acte tue deux personnes, ce n'est pas une concomitance, c'est un <strong>concours réel</strong>. Ensuite la <strong>corrélation</strong>, alinéa 2 : un meurtre qui a pour objet de <strong>préparer ou faciliter un délit</strong>, ou de favoriser la <strong>fuite</strong> ou l'<strong>impunité</strong> de l'auteur ou du complice d'un délit. Un vol au cours duquel on tue le propriétaire. L'auteur du meurtre n'est pas forcément celui du délit, et on n'exige pas l'unité de temps et de lieu.</p>
+<p>— Et la victime ?</p>
+<p>— La <strong>qualité de la victime</strong>, article 221-4 : un mineur de quinze ans ; un ascendant ou un parent adoptif ; une personne d'une <strong>particulière vulnérabilité</strong> apparente ou connue, âge, maladie, infirmité, déficience, grossesse ; un magistrat, un juré, un avocat, un officier public, un gendarme, un policier, un douanier ; un enseignant, et d'autres. Et puis le <strong>mobile discriminatoire</strong>, articles 132-76 et 132-77, généralisés par la loi du 27 janvier 2017. Si l'infraction est précédée, accompagnée ou suivie de propos, d'écrits, d'images, d'objets ou d'actes qui portent atteinte à l'honneur de la victime en raison de son appartenance, vraie ou supposée, à une prétendue race, une ethnie, une nation, une religion, ou en raison de son <strong>sexe</strong>, de son <strong>orientation sexuelle</strong> ou de son <strong>identité de genre</strong>, ou qui établissent qu'elle a été visée pour ces raisons. Le maximum est relevé d'un cran : trente ans deviennent la perpétuité ; vingt, trente ; quinze, vingt ; dix ans d'emprisonnement, quinze ans de réclusion ; sept, dix ; cinq, sept ; trois ans ou moins, doublé.</p>
+<p>Ambroise s'arrêta en haut de l'escalier de la rue Foyatier, sous le Sacré-Cœur. Paris s'étalait en dessous, blanc et gris.</p>
+<p>— Bastien était gay, dit-il. Il avait reçu des menaces, il y a deux ans. C'est pour ça qu'il était parti. Il disait que je ne l'avais pas protégé.</p>
+<p>— Vous l'aviez protégé ?</p>
+<p>— Non. Je ne protège personne. Je n'en ai jamais eu besoin.</p>
+<div class="scene">❦</div>
+<p>Devant la grille du château des Brouillards, Ambroise sortit ses clés, hésita, se retourna.</p>
+<p>— J'ai une proposition. J'écris un nouveau Lebrun. Le premier depuis trois ans. Il me faut un conseiller juridique. Quelqu'un qui connaisse le droit pénal spécial par cœur, qui sache le raconter, et qui ne m'ennuie pas. Trois soirs par semaine, les soirs où vous ne faites pas vos visites. Je paie mille euros la séance.</p>
+<p>— C'est absurde. C'est plus que ce que je gagne en un mois.</p>
+<p>— C'est un tarif. Pas un cadeau. J'ai horreur des cadeaux.</p>
+<p>— Et pourquoi moi ?</p>
+<p>Ambroise le regarda longtemps. La brume s'accrochait à ses cheveux trop longs.</p>
+<p>— Parce qu'hier soir, devant le corps de Bastien, vous êtes le seul à avoir pensé à vérifier s'il respirait encore. Moi, j'ai pensé à une phrase pour le tome 13. C'est ce que je suis devenu. J'ai besoin de quelqu'un qui pense d'abord aux vivants.</p>
+<p>Nino accepta. Il se dit que c'était pour l'argent, pour le loyer de la rue de Douai, pour les manuels. Il savait bien que ce n'était pas pour ça.</p>
+<p>Il y avait une dernière chose, avant de partir. Il la dit en regardant ses chaussures.</p>
+<p>— Si quelqu'un avait payé un tueur pour tuer Bastien et que le tueur n'avait rien fait, ce serait quoi ?</p>
+<p>— Vous pensez à quelqu'un ?</p>
+<p>— Je pense à mon partiel. C'est l'article 221-5-1. La <strong>provocation non suivie d'effet</strong> : faire des offres, des promesses, des dons, des avantages à quelqu'un pour qu'il commette, même à l'étranger, un assassinat ou un empoisonnement, alors que ce crime n'est ni commis ni tenté. Dix ans et 150 000 euros. Le texte comble le vide des arrêts <span class="k" tabindex="0" data-r="Cass. crim., 25 oct. 1962">Lacour et Benamar</span>, 1962 : le docteur Lacour avait payé un homme pour tuer quelqu'un ; l'homme avait pris l'argent et prévenu la police. Pas de tentative, faute de commencement d'exécution. Pas de complicité, faute de fait principal punissable. Le commanditaire était intouchable. Et il y a aussi les <strong>repentis</strong>, article 221-5-3 : l'auteur d'une tentative qui a averti l'autorité et permis d'éviter la mort est déclaré coupable mais <strong>exempté</strong> de peine ; celui qui a permis d'identifier les autres auteurs ou d'éviter une autre mort voit sa peine réduite des <strong>deux tiers</strong>, et la perpétuité ramenée à quinze ans.</p>
+<p>— Vous savez tout.</p>
+<p>— Je sais tout ce qui est dans la fiche.</p>
+<p>Ambroise sourit, pour la première fois, un vrai sourire, un peu tordu, un peu triste.</p>
+<p>— À jeudi, monsieur le conseiller juridique.</p>
+<aside class="retenir"><h4>Ce que tu viens d'apprendre</h4><ul><li>Régime du meurtre : 30 ans ; peines complémentaires ; tentative si commencement d'exécution (Cass. crim., 25 juill. 2018) ; personnes morales : 1 M€ et art. 131-39. Prescription : 20 ans (art. 7 CPP), report si dissimulation (art. 9-1, loi du 27 févr. 2017), max 30 ans. Avant : obstacle insurmontable (Cass. AP, 7 nov. 2014) mais pas pour la seule dissimulation d'un cadavre d'adulte (Cass. crim., 13 déc. 2017).</li><li>Assassinat (221-3) : préméditation (132-72) ou guet-apens (132-71-1, loi 2007) ; perpétuité ; sûreté renforcée (« perpétuité réelle »). Repentis (221-5-3) : exemption ; réduction des 2/3, perpétuité → 15 ans.</li><li>Provocation non suivie d'effet (221-5-1 : 10 ans, 150 000 €) : comble le vide de Lacour et Benamar (1962 : ni tentative, ni complicité).</li><li>Meurtres aggravés (perpétuité) : concomitance (221-2 al. 1, autre crime distinct ; ≠ concours réel) ; corrélation (221-2 al. 2, délit, fuite, impunité) ; qualité de la victime (221-4) ; mobile discriminatoire (132-76, 132-77, loi du 27 janv. 2017 : maximum relevé d'un cran).</li></ul></aside></section>
+<section class="chap" id="ch3"><header><div class="num">Chapitre 3</div><h2>Le miel d&#x27;acacia</h2><blockquote class="epi">« Le fait d'attenter à la vie d'autrui par l'emploi ou l'administration de substances de nature à entraîner la mort constitue un empoisonnement. » — Art. 221-5 C. pén.</blockquote></header><p>Le château des Brouillards, à l'intérieur, ne ressemblait à rien de ce que Nino avait imaginé. Pas de dorures, pas de lustres : des livres. Partout. Sur les marches de l'escalier, dans la cheminée éteinte, dans la baignoire du rez-de-chaussée, en piles qui montaient jusqu'au plafond. Un chien énorme, un bouvier bernois roux et blanc, dormait au milieu du salon sur un tapis persan.</p>
+<p>— Maigret, dit Ambroise. Il ne fait rien. Il a dix ans. Il me ressemble.</p>
+<p>Maigret ouvrit un œil, regarda Nino, se leva, traversa le salon et vint poser sa tête énorme sur ses genoux. Ambroise eut l'air presque vexé.</p>
+<p>— Il ne fait jamais ça.</p>
+<p>— Les chiens savent.</p>
+<p>— Savent quoi ?</p>
+<p>Nino ne répondit pas. Il caressait les oreilles de Maigret et ne savait pas lui-même.</p>
+<div class="scene">❦</div>
+<p>La première séance de travail commença à vingt et une heures, dans la cuisine, la seule pièce sans livres. Ambroise avait préparé du thé, ce qui semblait lui coûter un effort surhumain, avec un pot de miel d'acacia qu'on lui livrait chaque semaine d'une épicerie fine de la rue des Martyrs.</p>
+<p>— Le légiste a appelé, dit-il en versant le thé. Bastien n'est pas mort étranglé. Il avait de la <strong>digitaline</strong> dans le sang. Une dose mortelle. L'étranglement est venu après. Ou c'était une mise en scène. La commandante Kader parle d'empoisonnement.</p>
+<p>Nino sortit sa fiche. Il avait pris l'habitude de les emporter partout, plastifiées, à cause de la pluie et du thé.</p>
+<p>— L'<span class="k" tabindex="0" data-r="art. 221-5 : 30 ans de réclusion">empoisonnement</span>, article 221-5. Ce n'est pas une atteinte à la vie, c'est un <strong>attentat</strong> à la vie. Ça commande tout. La <strong>substance</strong> : pas seulement un poison au sens toxicologique, l'arsenic, la strychnine, la digitaline. Ce qui compte, c'est sa <strong>capacité de tuer</strong>, plus ou moins vite : un produit minéral ou végétal, un virus mortel. L'<strong>administration</strong> : par tout moyen. L'ingestion, la boisson, l'injection, l'inoculation lors de rapports sexuels non protégés.</p>
+<p>Il remua son thé, y mit une cuillère de miel, puis une deuxième.</p>
+<p>— Et surtout, c'est une <span class="k" tabindex="0" data-r="constituée indépendamment du résultat">infraction formelle</span>. C'est une tentative de meurtre érigée en crime <strong>consommé</strong>. Elle est constituée dès l'<strong>administration</strong>, que la victime meure ou survive, par exemple grâce à des soins rapides. Et la tentative est elle-même punissable : mélanger le poison aux aliments destinés à la victime, c'est déjà une tentative, <span class="k" tabindex="0" data-r="Cass. crim., 5 févr. 1958">5 févr. 1958</span>. Comme l'empoisonnement est déjà une tentative, on punit en réalité une « tentative de tentative ».</p>
+<p>— C'est vertigineux.</p>
+<p>— Attendez l'élément moral. C'est l'affaire du <strong>sang contaminé</strong>.</p>
+<p>Il but une gorgée de thé. Le miel était un peu amer. Il pensa que c'était l'acacia.</p>
+<p>— Deux thèses. Soit il faut l'<strong>intention de tuer</strong>, et l'empoisonnement serait une forme de meurtre. Soit il suffit de la <strong>volonté d'administrer</strong> une substance en la sachant mortelle. Dans les années quatre-vingt, des responsables de la transfusion sanguine ont laissé distribuer à des hémophiles des produits sanguins qu'ils savaient contaminés par le VIH. Des centaines de personnes ont été infectées. La Cour de cassation a d'abord évité de trancher, en 1994. Puis en 2003, <span class="k" tabindex="0" data-r="Cass. crim., 18 juin 2003, n° 02-85.199">sang contaminé</span> : elle exige l'<strong>intention de donner la mort</strong>, élément moral commun aux atteintes volontaires à la vie. Les responsables savaient que le sang était contaminé, mais ils ne voulaient pas tuer. Non-lieu.</p>
+<p>— C'est scandaleux.</p>
+<p>— Mon prof dit que c'est critiquable. Une décision de politique criminelle, pour clore le scandale. Et une contradiction : si l'infraction est formelle, pourquoi exiger l'intention du résultat ? Conséquence : quand quelqu'un transmet volontairement le VIH par des rapports non protégés, on ne retient pas l'empoisonnement, mais le délit d'<strong>administration de substances nuisibles</strong>, <span class="k" tabindex="0" data-r="Cass. crim., 10 janv. 2006, n° 05-80.787">10 janv. 2006</span>.</p>
+<p>Nino posa sa tasse. Sa main tremblait un peu. Il pensa à la fatigue.</p>
+<p>— Le régime, c'est celui du meurtre. Trente ans. La perpétuité avec les mêmes circonstances aggravantes. Période de sûreté. Personnes morales, un million d'euros. Exemption du repenti qui a évité la mort ; réduction des deux tiers, perpétuité ramenée à quinze ans. Et la provocation non suivie d'effet de l'article 221-5-1.</p>
+<p>— Et la différence avec les substances nuisibles ?</p>
+<p>— Article 222-15. Ça se distingue des violences par le <strong>moyen</strong>, une substance, et de l'empoisonnement par…</p>
+<p>Il s'arrêta. La cuisine tournait. Le visage d'Ambroise se dédoublait, puis se triplait. Il sentit son cœur battre trop vite, puis trop lentement, puis n'importe comment.</p>
+<p>— Par le résultat, dit-il d'une voix pâteuse. Il faut une atteinte… à l'intégrité…</p>
+<p>La tasse lui échappa. Il entendit Maigret aboyer pour la première fois de la soirée. Puis plus rien.</p>
+<div class="scene">❦</div>
+<p>Il se réveilla à l'hôpital Lariboisière, au service des urgences, avec une perfusion dans le bras, des électrodes sur la poitrine, et Ambroise Vauquelin endormi sur une chaise en plastique à côté du lit, en peignoir bordeaux, la tête renversée en arrière, la bouche ouverte.</p>
+<p>Il avait l'air d'avoir cent ans. Il avait l'air d'avoir quinze ans.</p>
+<p>Nino toussa. Ambroise se redressa d'un coup, comme électrocuté.</p>
+<p>— Tu es réveillé.</p>
+<p>C'était la première fois qu'il le tutoyait. Il ne sembla pas s'en rendre compte.</p>
+<p>— Qu'est-ce qui s'est passé ?</p>
+<p>— Le miel. Il y avait un médicament dedans. Un bêtabloquant, en grande quantité. La commandante a fait analyser le pot. Ton cœur a ralenti jusqu'à quarante battements par minute. Le médecin dit que si je n'avais pas appelé le SAMU dans les cinq minutes…</p>
+<p>Il ne finit pas. Il avait les yeux rouges. Nino comprit qu'il avait pleuré, et que ça ne lui était pas arrivé depuis très longtemps.</p>
+<p>— Le miel était pour toi, dit Nino. Pas pour moi.</p>
+<p>— Oui.</p>
+<p>— Quelqu'un a essayé de te tuer.</p>
+<p>— Oui. Et c'est toi qui en as mangé deux cuillères. Pourquoi deux cuillères ?</p>
+<p>— J'aime le sucre.</p>
+<p>Ambroise rit, un rire cassé, et se cacha le visage dans les mains.</p>
+<div class="scene">❦</div>
+<p>La commandante Kader passa en fin de matinée, son café froid à la main.</p>
+<p>— La dose n'était pas mortelle, dit-elle. Pas pour un adulte en bonne santé. Juste de quoi rendre très malade. Alors je ne sais pas encore si on me parlera d'empoisonnement ou d'administration de substances nuisibles.</p>
+<p>— Tout dépend de l'intention, dit Nino depuis son lit. Si la substance est seulement <strong>nuisible</strong>, on est sur l'article 222-15. L'administration, c'est la même notion : tout moyen. Une infusion de plante toxique remise à quelqu'un qui la boit plus tard, hors de la présence de l'auteur, ça compte, <span class="k" tabindex="0" data-r="Cass. crim., 23 mars 2021, n° 20-81.713">23 mars 2021</span>. Mais c'est une <strong>infraction de résultat</strong> : il faut une atteinte à l'intégrité physique ou psychique, et un lien de causalité. Pas de contamination par le VIH, pas de délit, 2019. Du Valium versé dans les bouteilles d'eau de sportifs, ça compte, 1995. L'intention : savoir que la substance est nuisible et l'administrer. Par imprudence, ce ne seraient que des blessures involontaires. La tentative n'est pas incriminée. Et les peines sont celles des <strong>violences</strong>, selon le résultat.</p>
+<p>— Et si celui qui a mis le médicament dans le miel croyait qu'il était mortel ?</p>
+<p>— Alors, selon mon prof, c'est un <strong>empoisonnement</strong>, même si la substance n'était que nuisible. C'est l'intention qui est déterminante. Le cours critique un vieux jugement, le tribunal de Cherbourg en 1981 : quelqu'un avait caché des substances radioactives dans la voiture de sa victime, et on n'a retenu que les substances nuisibles. Pareil pour le VIH : le cours trouve réducteur de parler de substances nuisibles, puisque la maladie reste mortelle. Mais exiger l'intention de tuer rend l'empoisonnement presque impossible à prouver.</p>
+<p>La commandante le regarda avec un intérêt nouveau.</p>
+<p>— Vous voulez faire quoi, plus tard ?</p>
+<p>— Je ne sais pas encore.</p>
+<p>— Venez faire un stage à la Crim'. On manque de gens qui lisent.</p>
+<p>Elle partit. Ambroise referma la porte derrière elle, revint vers le lit, et resta debout, les bras ballants, sans savoir quoi faire de son corps immense.</p>
+<p>— Je vais te faire livrer tous les miels de Paris, dit-il. Mais je les goûterai avant.</p>
+<p>— Ce n'est pas comme ça qu'on protège quelqu'un.</p>
+<p>— Alors comment ?</p>
+<p>— En restant là.</p>
+<p>Ambroise s'assit sur le bord du lit. Puis, après un temps très long, il prit la main de Nino, celle qui n'avait pas de perfusion, et la garda dans la sienne jusqu'à ce que l'infirmière vienne dire que les visites étaient terminées depuis deux heures.</p>
+<aside class="retenir"><h4>Ce que tu viens d'apprendre</h4><ul><li>Empoisonnement (221-5) : un attentat à la vie, non une atteinte ; 30 ans. Substance de nature à entraîner la mort (capacité de tuer : minéral, végétal, virus). Administration par tout moyen.</li><li>Infraction formelle : constituée par l'administration, que la victime meure ou non ; tentative punissable (5 févr. 1958 : « tentative de tentative »).</li><li>Intention : sang contaminé (Cass. crim., 22 juin 1994 puis 18 juin 2003) : intention de donner la mort exigée ; critiques (politique criminelle ; contradiction avec le caractère formel). Transmission du VIH : substances nuisibles (10 janv. 2006).</li><li>Régime : celui du meurtre (perpétuité si aggravé, sûreté, personnes morales 1 M€, repentis, provocation 221-5-1).</li><li>Substances nuisibles (222-15) : substance seulement nuisible ; infraction de résultat (atteinte + causalité ; pas de contamination, pas de délit, 2019) ; intention = savoir la substance nuisible (23 mars 2021) ; tentative non incriminée ; peines des violences. Croire la substance mortelle → empoisonnement selon le cours (critique de TGI Cherbourg, 1981).</li></ul></aside></section>
+<section class="chap" id="ch4"><header><div class="num">Chapitre 4</div><h2>La nuit de la nationale 7</h2><blockquote class="epi">« Il n'y a point de crime ou de délit sans intention de le commettre. Toutefois, lorsque la loi le prévoit… » — Art. 121-3 C. pén.</blockquote></header><p>Ambroise refusa que Nino rentre rue de Douai.</p>
+<p>— Tu as failli mourir dans ma cuisine. Tu restes ici jusqu'à ce que le médecin dise que ton cœur est normal.</p>
+<p>— Mon cœur est normal.</p>
+<p>— Le médecin a dit « surveillance une semaine ». J'ai une chambre d'amis.</p>
+<p>— Vous n'avez pas d'amis.</p>
+<p>— J'ai une chambre quand même.</p>
+<p>La chambre d'amis était au deuxième étage, sous les combles, avec une fenêtre ronde comme un hublot qui donnait sur les vignes du Clos Montmartre. Il y avait des livres jusque sur la table de nuit. Maigret s'installa au pied du lit dès la première nuit, et refusa d'en bouger.</p>
+<div class="scene">❦</div>
+<p>La commandante Kader revint le troisième jour. Elle ne s'assit pas. Elle posa sur la table de la cuisine une chemise cartonnée jaunie.</p>
+<p>— Monsieur Vauquelin, j'ai consulté votre casier judiciaire. Vous auriez pu m'en parler.</p>
+<p>Ambroise ne bougea pas. Il regardait la chemise comme on regarde un animal mort.</p>
+<p>— Je ne vois pas le rapport.</p>
+<p>— Bastien Roux était au courant. Il avait écrit un manuscrit, une autobiographie, où il en parlait. Votre éditrice me l'a dit.</p>
+<p>Nino regarda Ambroise, puis la commandante, puis la chemise.</p>
+<p>— Au courant de quoi ?</p>
+<p>Ce fut Ambroise qui répondit, d'une voix blanche.</p>
+<p>— Il y a douze ans, j'avais vingt et un ans. Je rentrais d'un mariage, en Bourgogne, sur la nationale 7, avec mon meilleur ami, Gaspard. J'avais bu. Pas énormément. Assez. Je roulais à cent dix au lieu de quatre-vingt-dix. Il y a eu un sanglier, un virage, un platane. Gaspard est mort sur le coup. Moi, j'ai eu deux côtes cassées.</p>
+<p>Il se tut. Maigret, sous la table, posa sa tête sur son pied.</p>
+<p>— Homicide involontaire aggravé, dit la commandante. Trois ans avec sursis. Retrait de permis.</p>
+<p>— Je n'ai jamais repassé le permis, dit Ambroise. Je n'ai jamais quitté Paris. J'ai écrit le premier Lebrun l'année suivante. Gaspard voulait être flic.</p>
+<div class="scene">❦</div>
+<p>Après le départ de la commandante, Ambroise monta sans un mot, et Nino l'entendit marcher des heures au-dessus de sa tête, dans le bureau, d'un mur à l'autre. Vers minuit, il monta lui aussi. La porte du bureau était entrouverte. Ambroise était assis par terre, dos au mur, au milieu de manuscrits éparpillés.</p>
+<p>Nino s'assit à côté de lui. Il ne savait pas quoi dire. Alors il fit ce qu'il savait faire.</p>
+<p>— L'<span class="k" tabindex="0" data-r="art. 221-6">homicide involontaire</span>, article 221-6. C'est une infraction de <strong>résultat</strong>. Trois conditions : la mort d'un être humain, un lien de causalité, une faute.</p>
+<p>— Tu vas me faire un cours ? Maintenant ?</p>
+<p>— Oui. Parce que je crois que personne ne t'a jamais expliqué ce qui t'est arrivé. On t'a juste condamné.</p>
+<p>Ambroise tourna la tête vers lui. Ses yeux brillaient dans la pénombre.</p>
+<p>— Vas-y.</p>
+<p>— D'abord, la victime doit être <strong>vivante</strong>, 1972. Si elle est déjà morte, il n'y a aucune répression : la tentative d'un délit non intentionnel, ça n'existe pas. On peut punir le « meurtre d'un cadavre », comme tentative, mais pas « l'homicide involontaire d'un cadavre ». Pour le fœtus, refus, assemblée plénière de 2001. Mais si l'enfant, né après l'accident, a vécu <strong>une heure</strong>, le délit est constitué, <span class="k" tabindex="0" data-r="Cass. crim., 2 déc. 2003, n° 03-82.344">2 déc. 2003</span>. La répression dépend du hasard. Mon prof critique cette jurisprudence.</p>
+<p>— Gaspard était vivant.</p>
+<p>— Oui. Ensuite, le <span class="k" tabindex="0" data-r="cause certaine, directe ou indirecte">lien de causalité</span>. Il doit être <strong>certain</strong> : ta faute doit avoir été de façon certaine la cause, ou <strong>une</strong> des causes, de la mort. Un acte ou une omission. Quand il y a plusieurs causes, la faute de la victime ne t'exonère que si elle est la cause <strong>unique et exclusive</strong>. Si la victime meurt plus tard de ses blessures, c'est un homicide quand la mort est la conséquence logique des lésions ; sinon, ce ne sont que des blessures. Et sans causalité certaine, c'est la relaxe : en matière médicale, par exemple.</p>
+<p>— Il y avait le sanglier.</p>
+<p>— Il y a un arrêt presque identique, <span class="k" tabindex="0" data-r="Cass. crim., 25 sept. 2001, n° 01-80.100">25 sept. 2001</span>. Excès de vitesse, choc avec un sanglier, puis collision. Le sanglier ne fait pas disparaître la faute du conducteur : il roulait trop vite pour réagir. Ce n'était pas la cause unique et exclusive.</p>
+<p>Ambroise ferma les yeux.</p>
+<p>— Continue.</p>
+<div class="scene">❦</div>
+<p>— La loi du 10 juillet 2000, la <span class="k" tabindex="0" data-r="art. 121-3 al. 4">loi Fauchon</span>, a distingué deux types de causalité. La <strong>causalité directe</strong> : l'auteur a causé lui-même le dommage. On l'entend largement : son fait a déclenché le processus, ou en est le « paramètre déterminant ». Le conducteur qui renverse un piéton. Le médecin qui se trompe de geste. Le propriétaire d'un chien qui mord. Pour eux, une <strong>faute simple</strong> suffit. La <strong>causalité indirecte</strong> : l'auteur a <strong>créé</strong> ou contribué à créer la situation qui a permis le dommage, ou n'a pas pris les mesures pour l'éviter. Ce sont surtout les <strong>décideurs</strong> : chefs d'entreprise, maires. Pour eux, il faut une <strong>faute qualifiée</strong> : soit une violation <strong>manifestement délibérée</strong> d'une obligation particulière de prudence ou de sécurité prévue par la loi ou le règlement ; soit une <strong>faute caractérisée</strong>, qui expose autrui à un risque d'une particulière gravité que l'auteur ne pouvait ignorer. Un employeur, en 2008. Un maire, en 2008 aussi. La qualification relève des juges du fond, sous le contrôle de la Cour de cassation. La frontière est floue, ce qui donne beaucoup de pouvoir aux juges.</p>
+<p>— Et moi ?</p>
+<p>— Toi, tu tenais le volant. Causalité <strong>directe</strong>. Une faute simple suffisait. Et la <strong>faute</strong>, c'est l'imprudence, la négligence, la maladresse, l'inattention, le manquement à une obligation de sécurité prévue par la loi ou le règlement. On regarde si l'auteur a accompli les « diligences normales », compte tenu de ses missions, de ses compétences, de son pouvoir et de ses moyens. <strong>In concreto</strong>. Et la violation d'un texte suffit à établir la faute : un conducteur qui ne respecte pas le Code de la route est en faute, 1997. À défaut de texte, on le compare à une personne normalement prudente.</p>
+<p>— Et j'ai pris quoi, au juste ?</p>
+<p>— L'homicide involontaire simple, c'est <strong>trois ans</strong> et 45 000 euros. Avec une violation manifestement délibérée d'une obligation particulière, cinq ans et 75 000. Pour un <strong>conducteur</strong> d'un véhicule terrestre à moteur, article 221-6-1, c'est cinq ans et 75 000 euros, et plus avec des circonstances : l'alcool, la vitesse. Aujourd'hui, depuis la loi du 9 juillet 2025, il y a un nouveau texte, l'<span class="k" tabindex="0" data-r="art. 221-18">homicide routier</span>, article 221-18 : sept ans et 100 000 euros si le conducteur se trouve dans l'un des <strong>dix cas</strong> prévus, une violation manifestement délibérée d'une autre obligation, l'ivresse ou l'état alcoolique, les stupéfiants, les substances psychoactives… Dix ans et 150 000 euros avec deux circonstances ou plus.</p>
+<p>— Homicide routier, répéta Ambroise. C'est mieux que « involontaire ».</p>
+<p>— C'est pour ça qu'ils l'ont fait. Les familles de victimes trouvaient le mot « involontaire » choquant. Mais la rédaction est maladroite : le texte renvoie à l'article 121-3 sans dire quel alinéa, et parle d'une mort causée « sans intention de la donner », comme pour les coups mortels. En réalité, c'est bien un homicide non intentionnel, mais dont l'élément moral est <strong>toujours une faute délibérée</strong>, puisque le conducteur doit se trouver dans l'un des dix cas.</p>
+<p>— Et le chien ? Maigret pourrait tuer quelqu'un ?</p>
+<p>— Maigret ne pourrait pas tuer une mouche. Mais oui : l'agression mortelle par un chien, article 221-6-2, cinq ans pour le propriétaire ou le détenteur, sept ans dans sept cas, détention illicite, ivresse, stupéfiants, absence de permis de détention, dix ans avec deux circonstances.</p>
+<div class="scene">❦</div>
+<p>Il y eut un long silence. Dehors, une cloche du Sacré-Cœur sonna une heure.</p>
+<p>— Et les personnes morales ? demanda Ambroise, comme on s'accroche à une branche.</p>
+<p>— Pour elles, pas de distinction. L'article 121-3 alinéa 4 ne vise que les <strong>personnes physiques</strong>. Une personne morale est responsable de <strong>toute</strong> faute non intentionnelle de ses organes ou représentants, même simple, même si la causalité est indirecte, 2000. Le dirigeant peut être relaxé parce qu'il n'a pas commis de faute qualifiée, et la société condamnée pour sa faute simple. Peine : l'amende quintuplée, article 221-7, des peines de l'article 131-39, interdiction, surveillance judiciaire, confiscation, affichage, et la fermeture en cas de faute délibérée. Mais l'homicide <strong>routier</strong> ne peut pas leur être imputé comme auteur : seul un conducteur peut le commettre. Et puis la <strong>légitime défense</strong> est exclue pour un homicide involontaire. Mais l'<strong>état de nécessité</strong> peut jouer. Et la complicité des délits non intentionnels est possible.</p>
+<p>Ambroise rit doucement, sans joie.</p>
+<p>— Tu sais ce que Bastien voulait écrire dans son livre ? Que j'avais tué Gaspard. Pas « homicide involontaire ». « Tué ». Il disait que tous mes livres étaient des aveux.</p>
+<p>— Et ils le sont ?</p>
+<p>— Lebrun résout toujours les meurtres. Il n'y en a pas un seul qui reste impuni. Douze tomes. Pas un.</p>
+<p>Nino ne répondit pas. Il posa simplement sa tête contre l'épaule d'Ambroise. Ils restèrent là, assis par terre au milieu des manuscrits, jusqu'à ce que Maigret, qui les avait suivis, vienne se coucher en travers de leurs jambes et s'endorme en ronflant.</p>
+<p>— Ton cœur, dit Ambroise, au bout d'un moment. Il bat vite.</p>
+<p>— Le médecin a dit que c'était normal.</p>
+<p>— Le médecin n'est pas là.</p>
+<p>Ambroise posa sa main à plat sur la poitrine de Nino, par-dessus le tee-shirt, juste au-dessus du cœur. Il la laissa là, sans bouger, comme pour compter. Nino retint son souffle. Il sentait la chaleur de la paume à travers le coton, et son cœur qui ne ralentissait pas du tout.</p>
+<p>— Cent dix, dit Ambroise.</p>
+<p>— C'est ta faute.</p>
+<p>— Faute simple ou faute caractérisée ?</p>
+<p>— Violation manifestement délibérée.</p>
+<p>Ambroise sourit dans le noir. Il ne retira pas sa main.</p>
+<aside class="retenir"><h4>Ce que tu viens d'apprendre</h4><ul><li>Homicide involontaire (221-6) : infraction de résultat ; mort d'un être humain, causalité, faute. Victime vivante (12 déc. 1972) ; pas de tentative ; fœtus exclu (AP 2001), mais enfant né ayant vécu une heure (2 déc. 2003 ; critique).</li><li>Causalité certaine (actes ou omissions) ; faute de la victime exonératoire seulement si cause unique et exclusive ; mort conséquence logique des lésions ; sinon relaxe.</li><li>Loi Fauchon (10 juill. 2000, art. 121-3 al. 4) : causalité directe (paramètre déterminant ; faute simple : conducteur, sanglier 2001, médecin 2009, chien 2014) / indirecte (créer la situation ou ne pas l'empêcher ; décideurs ; faute qualifiée : délibérée ou caractérisée ; employeur 2008, maire 2008). Contrôle de la Cour de cassation (12 sept. 2006).</li><li>Faute : diligences normales in concreto ; violation d'un texte suffit (2 avr. 1997). Personnes morales : toute faute, même simple (24 oct. 2000).</li><li>Peines : 3 ans et 45 000 € ; 5 ans (faute délibérée ; conducteur, 221-6-1) ; homicide routier (221-18, loi du 9 juill. 2025 : 10 cas, 7 ans / 10 ans ; rédaction maladroite, faute toujours délibérée) ; chien (221-6-2). Personnes morales (221-7), pas d'homicide routier comme auteur. Légitime défense exclue, état de nécessité possible ; complicité possible.</li></ul></aside></section>
+<section class="chap" id="ch5"><header><div class="num">Chapitre 5</div><h2>Les lettres aux cercueils</h2><blockquote class="epi">« Le délit de violences peut être constitué, en dehors de toute atteinte physique, par tout acte de nature à impressionner vivement la victime. »</blockquote></header><p>La première lettre arriva le lundi. Une enveloppe blanche, sans timbre, glissée sous la grille du château. À l'intérieur, une feuille pliée en quatre, avec un dessin : un cercueil, et dedans, en lettres découpées dans un journal, <em>LEBRUN NE RÉSOUDRA PAS CELUI-LÀ.</em></p>
+<p>La deuxième, le mercredi : deux cercueils.</p>
+<p>La troisième, le vendredi : deux cercueils, et un petit chien.</p>
+<p>Ambroise les posa toutes les trois sur la table de la cuisine, alignées, et les regarda en buvant son café. Il avait l'air parfaitement calme. Nino voyait sa main gauche, sous la table, qui serrait le collier de Maigret si fort que les jointures étaient blanches.</p>
+<p>— C'est de la mise en scène, dit Ambroise. Quelqu'un qui a lu mes livres. Ça ne compte pas. Personne n'a touché personne.</p>
+<p>— Ça compte, dit Nino. C'est déjà des <strong>violences</strong>.</p>
+<div class="scene">❦</div>
+<p>Il sortit sa fiche. Elle commençait à être tachée de café, de thé, et d'une trace de patte de Maigret.</p>
+<p>— Les violences intentionnelles, c'est un dispositif complexe, dispersé, gradué selon l'importance de l'atteinte. Mais l'élément matériel est conçu très <strong>largement</strong>. L'arrêt de référence, c'est le <span class="k" tabindex="0" data-r="Cass. crim., 18 mars 2008, n° 07-86.075">18 mars 2008</span>. Quelqu'un frappe avec une barre de fer sur la voiture dans laquelle se trouve la victime. Il ne la touche pas. Mais c'est un acte de nature à l'<strong>impressionner vivement</strong> et à lui causer un <strong>choc émotif</strong>. Violences. Et l'article 222-14-3 l'a confirmé : les violences sont réprimées quelle que soit leur nature, <strong>y compris psychologiques</strong>.</p>
+<p>— Des lettres, ça impressionne vivement ?</p>
+<p>— Des lettres anonymes avec des croix gammées et des cercueils, 1991 : violences. Des appels téléphoniques malveillants, 1969, avant qu'on crée un délit spécial à l'article 222-16. Le fait de filmer, ou de faire semblant de filmer, des policiers de façon répétée et longue, 2021. C'est très proche des délits de <strong>harcèlement</strong>. Il y a une limite : un voyeur qui observe une femme dans une cabine de piscine avec un miroir n'a pas commis de violences, 2010. La victime ne l'avait pas vu. D'où un délit spécial, l'article 226-3-1 : apercevoir à son insu les parties intimes qu'une personne cache, un an et 15 000 euros.</p>
+<p>— Et il faut un résultat ?</p>
+<p>— Il <strong>faut et il suffit</strong> d'une atteinte à l'intégrité physique <strong>ou psychique</strong>, 1999. Pas besoin de contact ; un seul acte suffit. La tentative n'est pas punissable pour les délits. Mais certains actes très proches d'une tentative sont réprimés comme des violences consommées : l'automobiliste qui fonce sur un passant et s'écarte au dernier moment, 2005. Le passant a eu peur. Violences.</p>
+<p>— Et si quelqu'un laisse un autre souffrir sans rien faire ?</p>
+<p>Nino hésita. Il pensa à quelque chose de lointain, et le repoussa.</p>
+<p>— Il faut un <strong>acte positif</strong>. Le grand arrêt, c'est la <span class="k" tabindex="0" data-r="CA Poitiers, 20 nov. 1901">séquestrée de Poitiers</span>, 1901. Une femme enfermée vingt-cinq ans par sa mère et son frère dans une chambre aux volets clos, dans la crasse, presque sans nourriture. La cour d'appel a jugé qu'une <strong>abstention</strong> n'était pas une violence. Le frère a été relaxé. Aujourd'hui, on retiendrait peut-être la non-assistance à personne en péril, 223-6, ou la privation de soins d'un mineur de quinze ans, 227-15.</p>
+<div class="scene">❦</div>
+<p>Ambroise était resté longtemps silencieux. Puis il se leva et alla chercher dans le salon un vieux classeur noir, couvert de poussière.</p>
+<p>— Mes recherches pour le tome 9. Il y avait des tortures. Mon éditrice les avait fait couper. Trop violent pour une série du dimanche soir.</p>
+<p>— Les <span class="k" tabindex="0" data-r="art. 222-1 : 15 ans">tortures et actes de barbarie</span>, article 222-1. Interdites partout : l'article 3 de la CEDH, l'article 7 du Pacte de 1966, la convention de l'ONU contre la torture du 10 décembre 1984. Avant le Code pénal de 1994, ce n'étaient que des circonstances aggravantes ; maintenant, c'est une infraction <strong>autonome</strong>. Mais il n'y a <strong>aucune définition légale</strong>. Alors la jurisprudence a construit. L'élément matériel : infliger une <strong>souffrance extrême</strong>, révélant une grande cruauté. Le critère, c'est l'<strong>intensité des souffrances</strong>. Tortures et actes de barbarie sont assimilés. Et malgré le pluriel, <strong>un seul acte</strong> suffit s'il est particulièrement grave : crever les yeux de quelqu'un, 2002.</p>
+<p>— Et l'élément moral ?</p>
+<p>— Une intention <strong>particulière</strong> : la volonté de faire souffrir, au-delà de la simple volonté de violence. C'est le même parallèle qu'entre les sévices graves envers les animaux, article 521-1, et les simples mauvais traitements, R. 654-1. Les mobiles sont indifférents, <strong>même religieux</strong>. Il y a l'arrêt de la <span class="k" tabindex="0" data-r="Cass. crim., 3 sept. 1996, n° 96-82.633">séance de désenvoûtement</span>, en 1996. Plus de cinq heures de coups sur la plante des pieds, d'eau salée avalée de force, de strangulation, une serviette enfoncée dans la bouche, la tête plongée dans une bassine, malgré les cris, le sang, le visage qui bleuissait. La victime est morte de l'eau salée. Les auteurs disaient qu'ils voulaient chasser un démon. Tortures ayant entraîné la mort sans intention de la donner. Le contexte religieux ne change rien.</p>
+<p>— Les peines ?</p>
+<p>— <strong>Quinze ans</strong>, avec période de sûreté de plein droit. <strong>Vingt ans</strong> avec les circonstances de l'article 222-3 : la qualité de la victime, mineur de quinze ans, personne vulnérable, ascendant, magistrat, policier, et d'autres ; un mobile raciste ou sexiste ; accompagnées d'agressions sexuelles autres que le viol. <strong>Trente ans</strong> sur un mineur de quinze ans par un ascendant ou une personne qui a autorité ; en bande organisée ou de façon habituelle sur un mineur ou une personne vulnérable ; ou si elles ont entraîné une mutilation ou une infirmité permanente. <strong>Perpétuité</strong> si elles ont entraîné la mort sans intention de la donner, 222-6, ou si elles précèdent, accompagnent ou suivent un crime autre que le meurtre ou le viol, 222-2 ; le meurtre et le viol accompagnés de tortures sont déjà visés ailleurs. Les personnes morales : un million d'euros, sans tenir compte des aggravations, ce qui est critiquable. Les repentis, article 222-6-2 : exemption si on a évité l'infraction, réduction des deux tiers, perpétuité ramenée à vingt ans. Tentative punissable. Et si la victime est mineure, prescription de trente ans à compter de sa majorité.</p>
+<p>Ambroise referma le classeur.</p>
+<p>— Tu parles de tout ça comme d'une liste de courses.</p>
+<p>— C'est la seule façon de ne pas avoir peur.</p>
+<div class="scene">❦</div>
+<p>Ce soir-là, Nino reprit ses visites. Le médecin l'avait autorisé, Ambroise avait protesté, Nino avait dit qu'il avait un loyer à payer, Ambroise avait proposé de le payer, Nino avait claqué la porte. Ambroise l'avait rouverte, et l'avait suivi à vingt mètres, comme un garde du corps de deux mètres en peignoir bordeaux.</p>
+<p>C'est rue de l'Abreuvoir que ça arriva. La rue était déserte, le groupe était parti devant vers la Maison Rose. Nino s'était arrêté pour rallumer sa lanterne. Deux silhouettes sortirent d'un porche, capuches baissées. Elles l'attendaient. Un coup de poing dans l'estomac. Un autre à la tempe. Nino tomba sur les pavés. Une voix siffla : <em>Arrête de fouiner pour lui.</em></p>
+<p>Puis il y eut un rugissement. Ce n'était pas Maigret, qui était resté au château. C'était Ambroise, qui arrivait en courant, peignoir au vent, et qui se jeta sur le premier homme avec une absence totale de technique et une rage totale. Les deux silhouettes s'enfuirent vers la rue Saint-Vincent.</p>
+<p>Ambroise s'agenouilla. Il prit le visage de Nino entre ses mains.</p>
+<p>— Regarde-moi. Tu vois combien de doigts ?</p>
+<p>— Tu ne montres aucun doigt. Tu me tiens la tête.</p>
+<p>— Ah.</p>
+<div class="scene">❦</div>
+<p>Aux urgences de Lariboisière, encore, on lui donna six jours d'<strong>ITT</strong>, une incapacité totale de travail, pour un traumatisme crânien léger et deux côtes fêlées. Ambroise, assis à côté de lui sur un brancard, s'était ouvert les jointures sur la mâchoire de son agresseur et refusait qu'on le soigne avant Nino.</p>
+<p>— Ils m'attendaient, dit Nino, la voix pâteuse. C'est presque de l'<strong>embuscade</strong>. Article 222-15-1 : attendre un certain temps, dans un lieu déterminé, un policier, un gendarme, un pompier, un agent de transport, pour commettre contre lui des violences avec arme. Cinq ans, sept en réunion. On réprime des <strong>actes préparatoires</strong>. Mais je ne suis pas policier. Et ils n'avaient pas d'arme.</p>
+<p>— Tais-toi.</p>
+<p>— Et s'ils s'étaient organisés à plusieurs pour préparer ça, c'est la <strong>participation à un groupement violent</strong>, article 222-14-2 : participer sciemment à un groupement, même temporaire, en vue de la préparation, caractérisée par des faits matériels, de violences contre les personnes ou de destructions. Un an et 15 000 euros. C'est proche de l'association de malfaiteurs.</p>
+<p>— Nino. Tais-toi.</p>
+<p>— Et l'élément moral des violences, les textes sont muets, mais il faut l'<strong>intention</strong>, article 121-3 alinéa 1. Il suffit d'un <strong>acte volontaire</strong> de violence, quel que soit le mobile, même un jeu, même une plaisanterie, même si l'auteur n'a pas voulu le dommage. C'est le <span class="k" tabindex="0" data-r="l&#x27;agent répond des conséquences prévisibles de son acte voulu">dol indéterminé</span> : on répond de toutes les conséquences normalement prévisibles de son acte, et la peine suit le <strong>résultat</strong>. D'où les <strong>coups mortels</strong>, 222-7 : des violences volontaires, la mort n'étant ni voulue ni même envisagée. Puni moins que le meurtre, plus que les violences simples.</p>
+<p>Ambroise le fit taire de la seule façon qui lui vint à l'esprit. Il se pencha et posa ses lèvres sur les siennes, très doucement, à cause de la lèvre fendue, sur le brancard des urgences de Lariboisière, sous les néons, devant une infirmière qui fit semblant de ne rien voir.</p>
+<p>Quand il se redressa, Nino ne disait plus rien du tout.</p>
+<p>— Voilà, dit Ambroise. Ça, c'était un acte positif. Intentionnel. Et j'en assume toutes les conséquences normalement prévisibles.</p>
+<aside class="retenir"><h4>Ce que tu viens d'apprendre</h4><ul><li>Violences : élément matériel très large ; sans atteinte physique, tout acte de nature à impressionner vivement (18 mars 2008) ; violences psychologiques (222-14-3). Exemples : appels malveillants (1969), lettres anonymes (1991), captation d'images de policiers (2021). Limite : voyeur (2010) → 226-3-1.</li><li>Résultat : atteinte à l'intégrité physique ou psychique (1999) ; pas de contact ; tentative non punissable (délits), mais actes proches réprimés (13 avr. 2005). Acte positif exigé (séquestrée de Poitiers, 1901) → 223-6, 227-15.</li><li>Groupement violent (222-14-2 : 1 an) ; embuscade (222-15-1 : 5 ans, 7 en réunion ; actes préparatoires).</li><li>Élément moral : acte volontaire de violence, mobile indifférent ; dol indéterminé (peine suivant le résultat) ; coups mortels (222-7).</li><li>Tortures et actes de barbarie (222-1) : infraction autonome depuis 1994, sans définition ; souffrance extrême, intensité (un seul acte suffit) ; intention de faire souffrir ; mobile religieux indifférent (désenvoûtement, 3 sept. 1996). 15 ans → 20 (222-3) → 30 (222-3 al. 17, 222-4, 222-5) → perpétuité (222-6, 222-2). Personnes morales 1 M€ ; repentis (222-6-2) ; prescription 30 ans après la majorité.</li></ul></aside></section>
+<section class="chap" id="ch6"><header><div class="num">Chapitre 6</div><h2>Libre, éclairé, révocable</h2><blockquote class="epi">« L'autorité parentale s'exerce sans violences physiques ou psychologiques. » — Art. 371-1 al. 3 C. civ.</blockquote></header><p>La commandante Kader rappela le lendemain matin, pendant que Nino, couvert de bleus, essayait de manger des céréales au château sans plier le torse.</p>
+<p>— On en a un. Le plus grand des deux. Il s'est enfui en scooter par la rue Saint-Vincent et il a renversé une passante au coin de la rue des Saules. Elle a une jambe cassée, deux mois d'ITT. Il avait 1,8 gramme d'alcool dans le sang et pas de permis.</p>
+<p>— Il a dit pourquoi il m'avait attaqué ? demanda Nino.</p>
+<p>— Il dit qu'on l'a payé. Cinq cents euros. Une femme, la cinquantaine, manteau camel, lunettes noires. Il ne connaît pas son nom. Elle lui a donné rendez-vous dans un café de la rue Lepic.</p>
+<p>Ambroise, qui écoutait sur le haut-parleur, reposa sa tasse si brusquement que le café déborda.</p>
+<p>— Une femme, répéta-t-il.</p>
+<p>— Vous pensez à quelqu'un, monsieur Vauquelin ?</p>
+<p>— Je pense à toutes les femmes de cinquante ans en manteau camel de Paris. Ça fait du monde.</p>
+<div class="scene">❦</div>
+<p>Après l'appel, Nino reprit ses fiches, parce que c'était plus facile que de penser à la femme au manteau camel.</p>
+<p>— Bon. Mon agression, c'est quoi ? Six jours d'ITT. Sans circonstance aggravante, des violences avec une ITT de huit jours ou moins, c'est une simple <strong>contravention de cinquième classe</strong>, R. 625-1, 1 500 euros. Sans ITT du tout, une contravention de quatrième classe, 750 euros. Mais avec <strong>une</strong> circonstance aggravante, ça devient le délit de l'<span class="k" tabindex="0" data-r="violences aggravées sans ITT &amp;gt; 8 jours">article 222-13</span> : trois ans et 45 000 euros. Avec <strong>deux</strong>, cinq ans et 75 000. Avec <strong>trois</strong>, sept ans et 100 000. Eux, ils étaient <strong>deux</strong>, la pluralité d'auteurs ; et ils m'<strong>attendaient</strong> dans un porche, ça ressemble à un guet-apens. Deux circonstances. Cinq ans.</p>
+<p>— Et la passante à la jambe cassée ? demanda Ambroise.</p>
+<p>— Ça, c'est autre chose, on y viendra. Pour les violences, il y a toute une échelle. Avec une ITT de <strong>plus de huit jours</strong> : délit, article 222-11, trois ans et 45 000 euros ; cinq, sept ou dix ans selon le nombre de circonstances, 222-12. Une <strong>mutilation</strong> ou une <strong>infirmité permanente</strong> : délit, 222-9, dix ans ; et c'est un crime avec une circonstance aggravante, 222-10, quinze ans, vingt ans dans certains cas, par exemple sur un mineur de quinze ans par un ascendant, ou par le conjoint devant un mineur. La <strong>mort</strong> sans intention de la donner : crime, 222-7, quinze ans ; vingt ans avec une circonstance, 222-8, trente dans certains cas.</p>
+<p>— Une infirmité permanente, c'est quoi exactement ?</p>
+<p>— La perte d'un <strong>sens</strong> ou d'une <strong>fonction</strong>, physique ou intellectuelle. Ou une atteinte majeure et irréversible d'un membre, 2021. La <strong>mutilation</strong>, c'est l'ablation d'un membre ou d'un organe : la castration, 2004 ; l'excision, 1990.</p>
+<p>— Et les circonstances aggravantes ?</p>
+<p>— Celles de l'article 222-13. Tenant à la <strong>victime</strong> : mineur de quinze ans, personne vulnérable, ascendant, magistrat, juré, avocat, dépositaire de l'autorité publique, et d'autres. Tenant à l'<strong>auteur</strong> : dépositaire de l'autorité publique dans ses fonctions, agent de sécurité privée. Tenant aux <strong>circonstances</strong> : plusieurs auteurs ou complices, préméditation ou guet-apens, usage ou menace d'une arme. Pour les <strong>contraventions</strong>, la complicité par aide ou assistance doit être prévue par le texte, sinon elle n'est pas punissable ; c'est le cas ici. Pour les personnes morales, 225 000 ou 375 000 euros selon les délits, quintuplés dans les cas aggravés, un million pour les crimes. Il y a des textes spéciaux : les <strong>violences habituelles</strong> sur un mineur de quinze ans ou une personne vulnérable, 222-14 ; les violences graves contre la force publique, 222-14-1. Et la prescription : vingt ans à compter de la majorité pour les violences aggravées de l'article 222-12 sur un mineur ; trente ans pour le crime de l'article 222-10 sur un mineur de quinze ans.</p>
+<div class="scene">❦</div>
+<p>Ambroise avait écouté sans rien dire, en regardant les bleus sur les bras de Nino.</p>
+<p>— Tu en as d'autres, dit-il soudain. Des vieilles cicatrices. Sur le dos. Je les ai vues à l'hôpital, quand l'infirmière t'a enlevé ton tee-shirt.</p>
+<p>Nino baissa les yeux sur ses céréales.</p>
+<p>— Mon père. Quand j'étais petit, à Marseille. Il disait que c'était de l'éducation. Le « droit de correction ».</p>
+<p>Ambroise ne dit rien. Il attendit.</p>
+<p>— Ça n'a jamais existé, en droit, reprit Nino, d'une voix plus sourde. Les médecins peuvent porter atteinte au corps : c'est l'<strong>autorisation de la loi</strong>, l'article 16-3 du Code civil, seulement en cas de <strong>nécessité médicale</strong> pour la personne, ou exceptionnellement dans l'intérêt thérapeutique d'autrui, et l'état de nécessité. Le consentement du patient est exigé par le droit civil, mais ce n'est pas lui qui justifie pénalement. Les sportifs peuvent se faire mal : <strong>autorisation implicite</strong> de la loi, qui encourage le sport et valide ses règles. Mais un geste contraire aux règles qui blesse un adversaire redevient punissable. Le « droit de correction », lui, n'a <strong>jamais</strong> eu de fondement. Il est même expressément exclu par l'article 371-1 alinéa 3 du Code civil, depuis la loi du 10 juillet 2019 : l'autorité parentale s'exerce <strong>sans violences</strong> physiques ou psychologiques. Et en janvier, la Cour de cassation l'a dit noir sur blanc : <span class="k" tabindex="0" data-r="Cass. crim., 14 janv. 2026, n° 24-83.360">14 janv. 2026</span>. Aucun texte n'admet de fait justificatif tiré d'un droit de correction éducative. Seuls jouent la légitime défense et l'état de nécessité. Ni la jurisprudence contemporaine, ni les textes internationaux ne le reconnaissent.</p>
+<p>— Et si l'enfant était d'accord ? Si la victime consent ?</p>
+<p>— Le <strong>consentement</strong> de la victime n'est <strong>pas</strong> un fait justificatif, <span class="k" tabindex="0" data-r="Cass. crim., 25 juin 2019, n° 18-84.200">25 juin 2019</span>. La justification vient de la <strong>loi</strong>, jamais du consentement.</p>
+<p>Ambroise se leva. Il fit le tour de la table. Il s'agenouilla à côté de la chaise de Nino, de sorte que leurs visages soient à la même hauteur.</p>
+<p>— Je peux voir ?</p>
+<p>Nino hésita. Puis il hocha la tête. Ambroise souleva doucement le tee-shirt, juste assez, et regarda les fines lignes blanches, anciennes, sur les omoplates. Il ne les toucha pas. Il les regarda, simplement, longtemps, comme on lit un texte qu'on veut retenir.</p>
+<p>— Merci, dit-il. De me les avoir montrées.</p>
+<div class="scene">❦</div>
+<p>Le soir, ils parlèrent de la passante à la jambe cassée, parce que c'était plus simple.</p>
+<p>— Les <span class="k" tabindex="0" data-r="blessures involontaires">atteintes non intentionnelles</span> à l'intégrité physique, expliqua Nino, allongé sur le canapé du salon, la tête sur un coussin et les pieds sur Maigret. Mêmes conditions que l'homicide involontaire : une faute d'imprudence ou de négligence et un lien de causalité, directe ou indirecte, faute simple ou qualifiée. Originalité : parfois, la faute <strong>délibérée</strong> est l'élément moral <strong>même</strong> de l'infraction, alors que pour l'homicide, ce n'est qu'une circonstance aggravante. L'atteinte se mesure en <strong>ITT</strong>, l'incapacité d'exercer <strong>toute</strong> activité, pas seulement professionnelle. C'est une question de fait, souvent fixée par expertise, et on peut requalifier si l'état s'aggrave, ou si la victime meurt avant le jugement. Le seuil, c'est <strong>trois mois</strong>.</p>
+<p>— Donne-moi les cases.</p>
+<p>— Sans ITT : faute simple, contravention de deuxième classe ; faute délibérée, contravention de cinquième classe. ITT de <strong>trois mois ou moins</strong> : faute simple, contravention de cinquième classe, R. 625-2 ; faute délibérée, délit, 222-20, un an et 15 000 euros ; conducteur, deux ans. ITT de <strong>plus de trois mois</strong> : faute simple, délit, 222-19, deux ans et 30 000 euros ; faute délibérée, trois ans ; conducteur, trois ans. Et des régimes propres au chien.</p>
+<p>— Et le motard ivre, sans permis ?</p>
+<p>— Depuis la loi du 9 juillet 2025, ce sont les <strong>blessures routières</strong>, articles 221-19 et 221-20. Le conducteur cause « sans intention de nuire » une ITT de plus de trois mois, cinq ans, ou de trois mois au plus, trois ans, dans l'une des circonstances énumérées : violation manifestement délibérée d'une autre obligation, ivresse ou état alcoolique, stupéfiants, <strong>défaut de permis</strong>, excès de vitesse de trente kilomètres-heure ou plus. Avec deux circonstances ou plus : sept ans ou cinq ans. Lui, il en a deux : alcool et pas de permis. Deux mois d'ITT : article 221-20, cinq ans et 75 000 euros. Mon prof critique : la répression change peu, et les anciens délits aggravés existent toujours à côté, ça manque de cohérence.</p>
+<p>Ambroise rit. Il était assis par terre, le dos contre le canapé, la tête à hauteur de la hanche de Nino.</p>
+<p>— Tu sais que tu es complètement fou ?</p>
+<p>— Je suis en L3.</p>
+<p>— C'est pareil.</p>
+<p>Il se retourna. Nino le regardait d'en haut, les boucles en désordre sur le coussin.</p>
+<p>— Hier, à l'hôpital, dit Ambroise. Je t'ai embrassé sans te demander.</p>
+<p>— Je sais. J'étais là.</p>
+<p>— Je voudrais recommencer. Mais cette fois, je te demande.</p>
+<p>Nino rougit jusqu'aux oreilles, comme devant les touristes.</p>
+<p>— La nouvelle loi dit que le consentement doit être libre et éclairé, spécifique, préalable et révocable.</p>
+<p>— Alors ?</p>
+<p>— Alors je suis libre. Je suis éclairé, il y a une lampe. C'est spécifique : c'est toi. C'est préalable : tu demandes avant. Et révocable : je pourrai toujours dire stop.</p>
+<p>— Ça fait beaucoup de conditions pour un baiser.</p>
+<p>— Ce n'est pas juste pour un baiser.</p>
+<p>Ambroise mit longtemps à comprendre. Puis il comprit. Il se leva lentement, tendit la main, et Nino la prit.</p>
+<p>Ils montèrent l'escalier encombré de livres, très lentement, à cause des côtes fêlées. Dans la chambre sous les combles, à la lumière de la lune qui passait par le hublot, Ambroise déshabilla Nino avec une précaution infinie, en évitant chaque bleu, en demandant à chaque bouton. Nino riait de ses questions, puis ne riait plus. Il découvrit que cet homme qui ne protégeait personne avait des mains d'une douceur incroyable, et qu'on pouvait être blessé de partout et se sentir, pour la première fois depuis très longtemps, entièrement en sécurité.</p>
+<p>Maigret, qui les avait suivis, regarda la porte se refermer sur son nez, soupira profondément, et se coucha en travers du palier.</p>
+<aside class="retenir"><h4>Ce que tu viens d'apprendre</h4><ul><li>Peines des violences : sans ITT (R. 624-1, 750 €) ; ITT ≤ 8 j (R. 625-1, 1 500 €) ; avec circonstances : 222-13 (3, 5, 7 ans) ; ITT &gt; 8 j (222-11 : 3 ans ; 222-12 : 5, 7, 10 ans) ; mutilation ou infirmité (222-9 : 10 ans ; 222-10 : 15 ou 20 ans) ; mort (222-7 : 15 ans ; 222-8 : 20 ou 30 ans). Circonstances : victime, auteur, mode opératoire.</li><li>Infirmité permanente (perte d'un sens ou d'une fonction ; atteinte majeure et irréversible) ; mutilation (ablation : castration 2004, excision 1990). Contraventions : complicité par aide prévue par le texte. Personnes morales ; textes spéciaux (222-14, 222-14-1) ; prescription (20 ou 30 ans après la majorité).</li><li>Violences non punissables : justification par la loi, non par le consentement (25 juin 2019). Médecine (16-3 C. civ., nécessité) ; sport (autorisation implicite, dans les règles) ; « droit de correction » jamais fondé : 371-1 al. 3 C. civ. (loi du 10 juill. 2019) ; Cass. crim., 14 janv. 2026.</li><li>Atteintes non intentionnelles : faute + causalité (121-3) ; faute délibérée parfois élément moral même (R. 625-3, 222-20) ; ITT (toute activité), seuil de 3 mois ; R. 622-1, R. 625-2, 222-20, 222-19, 222-19-1, chien.</li><li>Blessures routières (221-19, 221-20, loi du 9 juill. 2025) : faute toujours délibérée ; 5 ou 3 ans, 7 ou 5 ans avec deux circonstances ; critique (cohérence).</li></ul></aside></section>
+<section class="chap" id="ch7"><header><div class="num">Chapitre 7</div><h2>Clémence</h2><blockquote class="epi">« Il ne peut être déduit du seul silence ou de la seule absence de réaction de la victime. » — Art. 222-22 C. pén.</blockquote></header><p>Ce chapitre aborde des violences sexuelles. Rien n'y est décrit ; il parle de la plainte, de la loi et de ce qui vient après.</p>
+<div class="scene">❦</div>
+<p>Clémence faisait la visite <em>Montmartre des Peintres</em> le jeudi et le samedi. Vingt-quatre ans, des cheveux rouges, un rire qu'on entendait depuis la place du Tertre, et l'habitude de piquer les bonbons dans la poche de la cape de Nino. Ils prenaient parfois un verre après le travail, dans un bar de la rue Frochot, à Pigalle.</p>
+<p>Le lundi, elle ne vint pas à la réunion de l'agence. Le mardi, elle ne répondit pas aux messages. Le mercredi soir, elle sonna rue de Douai, où Nino était repassé chercher des affaires. Elle portait un sweat trop grand, et elle ne riait pas.</p>
+<p>— Je ne me souviens de rien, dit-elle. Samedi soir. J'étais au bar. J'ai bu un verre, un seul. Et après, plus rien, jusqu'au dimanche midi. Je me suis réveillée chez quelqu'un. Je sais ce qui s'est passé. Je ne m'en souviens pas, mais je le sais.</p>
+<p>Nino ne posa aucune question. Il la fit asseoir, il fit du thé, il le posa devant elle, et il appela Ambroise.</p>
+<p>Ambroise arriva vingt minutes plus tard. En taxi. C'était la première fois depuis douze ans qu'il montait dans une voiture.</p>
+<div class="scene">❦</div>
+<p>— Je ne veux pas porter plainte, dit Clémence. Personne ne me croira. Je ne me souviens de rien. C'est ma parole contre la sienne.</p>
+<p>— Tu n'es pas obligée de décider ce soir, dit Nino doucement. Mais il faut que tu saches ce que dit la loi. Pour pouvoir choisir.</p>
+<p>Elle hocha la tête. Ambroise s'était assis par terre, loin d'elle, pour ne pas prendre de place. Il ne disait rien. Nino ne l'avait jamais vu aussi silencieux.</p>
+<p>— La loi a changé il y a un an, la <span class="k" tabindex="0" data-r="loi n° 2025-1057 : définition par l&#x27;absence de consentement">loi du 6 novembre 2025</span>. Avant, une agression sexuelle, c'était une atteinte sexuelle commise avec <strong>violence, contrainte, menace ou surprise</strong>. Maintenant, l'<span class="k" tabindex="0" data-r="définition générique des agressions sexuelles">article 222-22</span> dit : constitue une agression sexuelle <strong>tout acte sexuel non consenti</strong>. Et le consentement doit être <strong>libre et éclairé, spécifique, préalable et révocable</strong>. Il est apprécié au regard des circonstances. Il ne peut pas être déduit du <strong>seul silence</strong> ou de la <strong>seule absence de réaction</strong>. Et il n'y a pas de consentement si l'acte est commis avec violence, contrainte, menace ou surprise, quelle que soit leur nature.</p>
+<p>— Libre et éclairé, répéta Clémence.</p>
+<p>— Pas sous l'emprise de l'alcool ou d'une drogue. Spécifique : consentir à une chose, ce n'est pas consentir à une autre. Préalable, et révocable à tout moment. La jurisprudence disait déjà presque tout ça. Mais maintenant, l'accent n'est plus seulement sur ce que l'auteur a fait, ses moyens ; il est aussi sur le fait qu'il n'a <strong>pas recueilli</strong> de consentement. Ce qu'il faut prouver se déplace en partie. Et c'est vrai quelle que soit la relation, même dans un couple, même dans un mariage : des relations consenties dans le passé ne font pas présumer le consentement futur.</p>
+<p>— Mais je n'ai rien dit. Je n'ai pas résisté. Je ne pouvais pas.</p>
+<p>— C'est exactement pour ça que la loi dit que le silence ne vaut pas consentement. Et ce que tu décris, il y a un mot pour ça : la <strong>surprise</strong>. Profiter de la fausse compréhension de la situation par la victime, ou de son état. La Cour de cassation a jugé que profiter de l'ivresse d'une personne pour se glisser dans son lit, c'est la surprise, 2017. Un mari qui imposait des rapports à sa femme pendant qu'elle dormait sous somnifères, 2025. Quelqu'un qui utilise un stratagème pour cacher son identité, 2019. Et si on t'a droguée <strong>exprès</strong>, il y a en plus un délit spécial : la <span class="k" tabindex="0" data-r="art. 222-30-1">soumission chimique</span>, article 222-30-1. Administrer à quelqu'un, à son insu, une substance de nature à altérer son discernement ou le contrôle de ses actes, du GHB, des médicaments, <strong>afin</strong> de commettre un viol ou une agression sexuelle. C'est un délit <strong>formel</strong> : il est constitué même si rien d'autre ne s'est passé. La tentative est punissable. Cinq ans et 75 000 euros, sept ans sur un mineur ou une personne vulnérable. Et c'est aussi une <strong>circonstance aggravante</strong> du viol et des agressions.</p>
+<div class="scene">❦</div>
+<p>Clémence pleurait maintenant, sans bruit. Nino lui tendit des mouchoirs, un par un.</p>
+<p>— Le problème, dit-elle, c'est la preuve.</p>
+<p>— Oui. C'est la vraie difficulté de toute cette matière. Elle a été réformée sans arrêt, parce qu'on trouvait la répression insuffisante. Mais le problème, c'est la <strong>preuve</strong> : il faut des constatations médico-légales rapides, il y a rarement des témoins, et l'absence de consentement est souvent contestée. La nouvelle loi ne garantit pas de régler ça. Mais certaines drogues restent détectables quelques jours dans les cheveux ou les urines. Plus tu vas vite à l'hôpital, plus il y aura de traces. Les unités médico-judiciaires peuvent faire les prélèvements même avant que tu décides de porter plainte.</p>
+<p>Ambroise parla pour la première fois.</p>
+<p>— La commandante Kader. Elle n'est pas aux mœurs. Mais elle connaît des gens. Des gens bien. Si tu veux, je l'appelle. Elle viendra ici, ou ailleurs, où tu veux. Pas dans un commissariat.</p>
+<p>Clémence le regarda longtemps. Puis elle hocha la tête.</p>
+<div class="scene">❦</div>
+<p>La commandante vint à onze heures du soir, sans sa veste en cuir, avec une collègue de la brigade spécialisée, une femme d'une cinquantaine d'années à la voix très calme. Nino et Ambroise sortirent sur le palier pendant qu'elles parlaient. Ils s'assirent sur les marches, entre la porte et le magasin de guitares fermé.</p>
+<p>— Tu fais ça souvent ? demanda Ambroise à voix basse. Expliquer la loi aux gens au pire moment de leur vie ?</p>
+<p>— C'est la première fois.</p>
+<p>— Tu as été parfait.</p>
+<p>— Je n'ai rien fait. J'ai récité.</p>
+<p>— Tu lui as rendu les mots. C'est tout ce qu'on peut faire, au début. Rendre les mots.</p>
+<p>Nino posa la tête sur son épaule. Ils restèrent là une heure.</p>
+<div class="scene">❦</div>
+<p>Le samedi suivant, dans la cuisine du château, Nino termina le chapitre, parce que le partiel approchait et parce qu'il avait besoin de comprendre jusqu'au bout. Ambroise prenait des notes. Ils parlaient bas, comme dans une église.</p>
+<p>— Le <span class="k" tabindex="0" data-r="art. 222-23 : 15 ans">viol</span>, article 222-23. C'est un crime, une infraction de résultat. Ce qui le distingue des autres agressions, c'est la <strong>nature de l'acte</strong> : tout acte de <strong>pénétration sexuelle</strong>, de quelque nature qu'il soit, commis sur la personne d'autrui ou sur la personne de l'auteur, ainsi que tout acte <strong>bucco-génital</strong> ou, depuis 2025, <strong>bucco-anal</strong>, même sans pénétration. Auteur et victime de tout sexe. Les <strong>moyens</strong>, ce sont la violence, la contrainte physique ou morale, appréciée selon la capacité de résistance de la victime, la menace et la surprise. Pour les mineurs, article 222-22-1, la contrainte morale ou la surprise peuvent résulter de la <strong>différence d'âge</strong> et de l'<strong>autorité</strong> de droit ou de fait de l'auteur. Pour un mineur de quinze ans, elles sont caractérisées par l'abus de la vulnérabilité d'une victime qui n'a pas le discernement nécessaire. L'article 222-22-2 réprime aussi le fait de contraindre quelqu'un à subir un acte d'un tiers, ou à en commettre un sur lui-même : la loi du 21 avril 2021 a comblé un vide, parce que l'acte sur soi n'est pas une infraction et que la complicité était impossible.</p>
+<p>— Et si la victime n'a pas besoin de prouver la contrainte ?</p>
+<p>— C'est le <strong>viol non imposé</strong>. L'article 222-23-1 : un <strong>majeur</strong>, une victime de <strong>moins de quinze ans</strong>, un écart d'âge d'au moins <strong>cinq ans</strong>. L'écart n'est pas exigé s'il y a rémunération ou avantage. Le consentement apparent du mineur est <strong>indifférent</strong>. Avant 2021, c'était le délit d'atteinte sexuelle sur mineur, article 227-25, qui reste utile quand il n'y a pas cinq ans d'écart. Les relations consenties entre mineurs ne sont pas punissables. Et le <strong>viol incestueux</strong>, 222-23-2 : commis par un majeur sur un mineur de tout âge, quand le majeur est un ascendant ou une personne de l'article 222-22-3 ayant autorité de droit ou de fait. Sans preuve de l'absence de consentement. L'<strong>inceste</strong> lui-même, à l'article 222-22-3, est une « surqualification » : il vise les ascendants, les frères et sœurs, oncles, tantes, neveux, nièces, grands-oncles et grands-tantes, et leurs conjoints ou partenaires s'ils ont autorité. Ce n'est pas une circonstance aggravante, puisque la parenté l'est déjà : l'intérêt est surtout de <strong>nommer</strong> une réalité vécue par les victimes, sauf pour le viol incestueux, où ça change la répression.</p>
+<p>— L'intention ?</p>
+<p>— Pour le viol imposé : la volonté d'imposer l'acte en sachant que la victime n'y consent pas. C'est difficile à prouver quand l'auteur dit qu'il s'est mépris. Les juges apprécient la crédibilité, et plus les faits sont anciens, plus c'est difficile : le doute profite à l'accusé. Pour le mineur de quinze ans : la conscience de l'âge et de l'écart. Pour l'inceste : la conscience du lien. Les mobiles sont indifférents.</p>
+<p>— Les peines ?</p>
+<p>— Quinze ans pour le viol simple. Vingt ans pour le viol non imposé sur mineur de quinze ans ou incestueux, et pour le viol avec l'une des circonstances de l'article 222-24, dont l'<strong>administration d'une substance</strong>. Trente ans s'il a entraîné la mort. Perpétuité s'il est accompagné de tortures. Les personnes morales aussi. La tentative est punissable. Filmer sciemment un viol, c'est de la <strong>complicité</strong> ; diffuser les images, cinq ans, 222-33-3. L'instigation non suivie d'effet, dix ans. La prescription : <strong>vingt ans</strong> ; si la victime était mineure, <strong>trente ans à compter de sa majorité</strong>, avec une <strong>prescription glissante</strong> : si l'auteur commet un nouveau viol ou une agression sur un autre mineur avant la fin du délai, le délai du premier crime est prolongé. Certains réclament l'imprescriptibilité. Mon prof pense que c'est une fausse bonne idée, parce que le vrai problème reste la <strong>preuve</strong>, et qu'il existe déjà la suspension pour obstacle insurmontable : en 2023, pour un chirurgien qui agressait des patients sous anesthésie, qui ne pouvaient pas le savoir.</p>
+<p>— Et quand ce n'est pas un viol ?</p>
+<p>— Les <strong>agressions sexuelles autres que le viol</strong> : un acte sexuel non consenti qui n'est ni une pénétration, ni un acte bucco-génital ou bucco-anal. Des attouchements avec un <strong>contact physique</strong>, quel que soit le sexe. Le contexte compte. Cinq ans pour l'agression imposée simple ; sept avec une circonstance de l'article 222-28 ; dix ans sur un mineur de quinze ans, ou incestueuse, ou sur une personne vulnérable avec circonstance. Les agressions <strong>non imposées</strong> sur mineur de quinze ans avec cinq ans d'écart, 222-29-2, et incestueuses, 222-29-3. La tentative est incriminée, 222-31 : un faux médecin qui attire une femme dans un faux cabinet et lui demande de se déshabiller, 1995. Prescription de six ans ; dix ou vingt ans à compter de la majorité si la victime était mineure. Et des qualifications complémentaires pour protéger les mineurs en ligne : l'<strong>incitation</strong> d'un mineur par un majeur, par voie électronique, à un acte sexuel, 227-22-2, même sans effet ; la <strong>sollicitation d'images</strong> d'un mineur, 227-23-1. Sept ans, dix ans, jusqu'à un million d'euros en bande organisée. L'intention : savoir que la victime ne consent pas, ce qui exclut les actes strictement médicaux, ou connaître l'âge ou le lien familial.</p>
+<p>Ambroise referma son carnet.</p>
+<p>— Tu crois qu'elle va porter plainte ?</p>
+<p>— Elle l'a fait ce matin. L'hôpital a trouvé du GHB. Et la brigade a déjà deux autres plaintes contre le même homme, le gérant du bar.</p>
+<p>Ambroise resta longtemps silencieux. Puis il dit, très bas :</p>
+<p>— Lebrun n'a jamais enquêté sur un viol. Douze tomes. Pas un. Je trouvais que ce n'était pas un sujet de roman du dimanche soir.</p>
+<p>— Et maintenant ?</p>
+<p>— Maintenant, je trouve que c'était lâche.</p>
+<aside class="retenir"><h4>Ce que tu viens d'apprendre</h4><ul><li>Matière souvent réformée ; difficulté majeure : la preuve. Art. 222-22 (loi du 6 nov. 2025) : tout acte sexuel non consenti ; consentement libre et éclairé, spécifique, préalable, révocable ; non déduit du silence ; absent en cas de violence, contrainte, menace ou surprise ; toute relation, même le mariage (1990, 1992). Inceste (222-22-3) : surqualification.</li><li>Viol imposé (222-23) : pénétration de toute nature, acte bucco-génital ou bucco-anal ; moyens (contrainte morale selon la résistance : 1994, 1992 ; mineurs 222-22-1 ; surprise : 2017, 26 févr. 2025, 23 janv. 2019) ; 222-22-2 (loi du 21 avr. 2021). Viol non imposé : 222-23-1 (majeur, &lt; 15 ans, écart de 5 ans) ; 222-23-2 (incestueux).</li><li>Intention : imposer en sachant l'absence de consentement ; conscience de l'âge ou du lien. Peines : 15 ans ; 20 ans (222-23-3, 222-24) ; 30 ans (mort) ; perpétuité (tortures) ; tentative ; 222-33-3 ; 222-26-1. Prescription : 20 ans, 30 ans après la majorité, glissante ; imprescriptibilité critiquée (obstacle insurmontable, 21 juin 2023).</li><li>Agressions sexuelles autres : contact, contexte ; non imposées (222-29-2, 222-29-3) ; soumission chimique (222-30-1, délit formel) ; incitation en ligne (227-22-2) ; sollicitation d'images (227-23-1) ; instigation (222-30-2). Peines : 5, 7, 10 ans ; tentative (222-31) ; prescription 6, 10, 20 ans.</li></ul></aside></section>
+<section class="chap" id="ch8"><header><div class="num">Chapitre 8</div><h2>La corbeille à papier</h2><blockquote class="epi">« Le vol est la soustraction frauduleuse de la chose d'autrui. » — Art. 311-1 C. pén.</blockquote></header><p>Hélène Marchetti arriva au château un dimanche à midi, sans prévenir, avec un bouquet de pivoines et une boîte de macarons de chez Ladurée. Soixante ans, un carré argenté parfait, des lunettes à monture d'écaille, un manteau noir cintré. Elle était l'éditrice d'Ambroise depuis le premier Lebrun. Elle l'appelait « mon petit ».</p>
+<p>— Mon petit, dit-elle en embrassant Ambroise sur les deux joues, je viens aux nouvelles. On me dit que tu écris. On me dit que tu as un conseiller juridique.</p>
+<p>Elle se tourna vers Nino et l'examina de la tête aux pieds, avec un sourire très doux.</p>
+<p>— Il est charmant. Bastien aussi était charmant.</p>
+<p>Nino sentit un frisson lui descendre le long du dos, sans savoir pourquoi.</p>
+<div class="scene">❦</div>
+<p>Elle resta une heure, parla des droits d'adaptation, des traductions en coréen, de la série qui allait être renouvelée. Elle demanda à lire le début du tome 13. Ambroise refusa. Elle rit, dit qu'il avait toujours été un enfant, et partit en laissant les macarons.</p>
+<p>Par la fenêtre du salon, Nino la regarda remonter dans sa voiture, une berline grise garée en bas de l'allée. Sur le siège passager, il vit, plié, un manteau couleur caramel.</p>
+<p>Camel.</p>
+<p>Il ne dit rien. Il n'était pas sûr. La moitié des femmes de Paris avaient un manteau camel.</p>
+<div class="scene">❦</div>
+<p>Le lundi soir, en rentrant d'une visite, Nino trouva la porte du bureau d'Ambroise entrouverte, et Ambroise debout devant son ordinateur, très pâle.</p>
+<p>— Quelqu'un est entré, dit-il. Pendant que j'étais chez le dentiste. Rien n'a disparu. Mais l'ordinateur a été allumé. Quelqu'un a copié tout un dossier sur une clé. Le dossier <em>Lebrun</em>. Douze ans de manuscrits, de contrats, de relevés de droits d'auteur.</p>
+<p>— Rien n'a disparu ?</p>
+<p>— Rien. Les fichiers sont toujours là. On les a juste copiés. Donc ce n'est pas un vol, hein ? On ne m'a rien pris.</p>
+<p>Nino posa son sac. Il en sortit sa fiche, cornée, tachée, sur laquelle Maigret avait dormi.</p>
+<p>— Ça dépend. L'<span class="k" tabindex="0" data-r="vol : soustraction frauduleuse de la chose d&#x27;autrui">article 311-1</span> : « Le vol est la soustraction frauduleuse de la chose d'autrui. » La même définition que le Code de 1810. D'abord, il faut une <strong>chose</strong>. Le mot est volontairement large. Les <strong>meubles corporels</strong>, tout ce qui peut être déplacé, quelle que soit sa valeur, même sans préjudice réel : on réprime l'<strong>usurpation du droit</strong> du propriétaire. Les <strong>immeubles</strong>, non, mais leurs parties détachables, une pierre arrachée d'un mur, et le titre de propriété. Les immeubles par destination, oui, critère physique. L'<strong>énergie</strong> : le vol d'électricité par branchement frauduleux, 1912 ; l'article 311-2 dit que la soustraction d'énergie est « assimilée » au vol, mais c'est en réalité un vol. Les <strong>services</strong>, non : téléphoner gratuitement par le Minitel, 1990 ; capter Canal+ avec un décodeur pirate, 1987. D'où des délits spéciaux.</p>
+<p>— Et les informations ? Mes fichiers ?</p>
+<p>— C'est là que ça devient intéressant. En 1979, l'arrêt <span class="k" tabindex="0" data-r="Cass. crim., 8 janv. 1979">Logabax</span> : un salarié photocopie des documents de son employeur à des fins personnelles. La Cour juge qu'il a volé les documents <strong>le temps de la reproduction</strong>. Il les a eus entre les mains, il s'est comporté en propriétaire. Et en 2015, l'arrêt <span class="k" tabindex="0" data-r="Cass. crim., 20 mai 2015">Bluetouff</span> : un blogueur s'introduit sur un site, télécharge des données et les garde. Il ne les a pas enlevées, elles sont restées sur le serveur. Vol. Le vol d'un <strong>bien incorporel</strong> semble admis. Donc oui : copier ton dossier, c'est probablement un vol.</p>
+<p>Ambroise s'assit lourdement dans son fauteuil.</p>
+<p>— Qui voudrait voler mes relevés de droits d'auteur ?</p>
+<p>— Quelqu'un qui a quelque chose à cacher dedans.</p>
+<div class="scene">❦</div>
+<p>Ils fouillèrent le bureau toute la soirée. Nino, à genoux, vida la grande corbeille en osier sous la table, pleine de brouillons froissés de trois ans d'échec.</p>
+<p>Au fond, il trouva une lettre. Déchirée en huit morceaux. Une enveloppe au nom d'Ambroise, avec l'écriture penchée de Bastien Roux, et un cachet de la poste de deux ans plus tôt.</p>
+<p>— Tu ne l'as jamais lue ? demanda Nino.</p>
+<p>— Je l'ai déchirée sans l'ouvrir. On s'était disputés. Je ne voulais plus rien entendre de lui. La femme de ménage n'a pas vidé cette corbeille depuis deux ans, je le lui interdis : il y a des idées dedans.</p>
+<p>— Alors elle n'est pas <strong>abandonnée</strong>.</p>
+<p>— Pardon ?</p>
+<p>— Pour qu'il y ait vol, il faut une chose <strong>susceptible d'appropriation</strong>, qui <strong>appartient</strong> à quelqu'un, et à <strong>autrui</strong>. Le corps humain n'est pas une chose : enlever un cadavre, c'est une violation de sépulture. La détention illicite ne change rien : voler de la drogue à un dealer, c'est un vol. Mais on ne vole pas une <strong>res nullius</strong>, le gibier en liberté hors d'une propriété privée, ni une chose <strong>abandonnée</strong> : les chiffonniers qui ramassent les ordures ne volent rien, sous réserve de l'intention. Et la Cour de cassation a jugé en <span class="k" tabindex="0" data-r="Cass. crim., 10 mai 2005">10 mai 2005</span> qu'un courrier <strong>déchiré et jeté à la corbeille</strong> n'est pas abandonné : celui qui l'avait pris a été condamné pour vol, et celui qui l'avait reçu pour recel.</p>
+<p>— Donc si tu prends cette lettre, tu me la voles.</p>
+<p>— Sauf si tu me la donnes. Remise volontaire.</p>
+<p>Ambroise le regarda, les morceaux de papier dans ses mains.</p>
+<p>— Je te la donne.</p>
+<p>— Alors je ne te la vole pas.</p>
+<p>— Et si elle était à moi et que tu croyais qu'elle était à quelqu'un d'autre ?</p>
+<p>— Alors ce serait une tentative de vol impossible : on ne vole pas sa propre chose, mais celui qui prend sa chose en la croyant à autrui commet une tentative. Et un bien <strong>indivis</strong> ou en copropriété, si l'un des copropriétaires le prend, c'est un vol, 2015.</p>
+<div class="scene">❦</div>
+<p>Ils recollèrent la lettre sur la table de la cuisine, avec du ruban adhésif, morceau par morceau, comme un puzzle. Ambroise tenait les morceaux. Nino les assemblait. Leurs doigts se touchaient à chaque pièce.</p>
+<p>— Pendant qu'on recolle, dit Ambroise, raconte-moi la soustraction. Il faut que je pense à autre chose qu'à ce qu'il y a dans cette lettre.</p>
+<p>— Au départ, en 1837, soustraire, c'était « prendre, enlever, ravir ». Puis la notion s'est élargie. Le <strong>vol d'usage</strong> : prendre une voiture pour faire un tour et la ramener. Vol, si l'agent a voulu se comporter, même momentanément, en propriétaire, 1959. La <strong>remise volontaire</strong> : pas de vol. Si le caissier te rend trop de monnaie, tu ne le voles pas. Si le distributeur te donne plus que ton solde, c'est la machine qui remet volontairement, sans fraude de ta part : ce n'est pas un vol, juste un manquement contractuel, ou une escroquerie si tu as utilisé la carte frauduleusement, 1983. La <strong>remise par erreur</strong> : pas de vol non plus, même si tu sais que ce n'est pas à toi, 1958, sauf si c'est toi qui as provoqué l'erreur, 1972. Là, on frôle l'escroquerie. La <strong>détention précaire</strong> : si on te montre une reconnaissance de dette, juste pour que tu la lises, et que tu la déchires, c'est un vol, 1984. Tu n'avais qu'une détention matérielle, pas la possession. Et le <strong>libre-service</strong> : tu prends un produit dans le rayon, c'est permis ; le vol est consommé au passage en caisse, si tu l'as caché pour ne pas le payer, 1977.</p>
+<p>— Et l'intention frauduleuse ?</p>
+<p>— Deux choses. <strong>Savoir</strong> que la chose appartient à autrui : une erreur de fait supprime l'intention, tu prends au restaurant un manteau identique au tien. Une erreur de droit, seulement si elle est <strong>inévitable</strong>, article 122-3. Et <strong>vouloir usurper la possession</strong> : pas de vol s'il y a un malentendu, un prêt compris comme un don. Mais le vol est réalisé même si l'agent détruit aussitôt la chose : quelqu'un qui jette à la poubelle les fleurs et les vases d'une tombe, 1977. Le <strong>mobile</strong> est indifférent, 1998. Avec deux tempéraments, récents. Les <strong>droits de la défense</strong> : un salarié qui prend des documents de son employeur pour les produire aux prud'hommes est justifié, s'ils sont <strong>strictement nécessaires</strong> à sa défense, <span class="k" tabindex="0" data-r="Cass. crim., 11 mai 2004, n° 03-80.254">11 mai 2004</span>. Et la <strong>liberté d'expression</strong> : des militants qui décrochent des portraits du président de la République dans des mairies, pour dénoncer l'inaction climatique. La Cour de cassation a jugé que les condamner pouvait être une <strong>ingérence disproportionnée</strong> dans leur liberté d'expression, en 2021. Mais pas d'impunité automatique : le juge doit faire un contrôle de proportionnalité au vu de toutes les circonstances, 2022.</p>
+<p>Le dernier morceau tomba en place. La lettre était là, rapiécée de ruban adhésif, et l'écriture penchée de Bastien courait sur la page.</p>
+<p><em>Ambroise, je sais que tu ne me liras pas, mais je l'écris quand même. Je pars parce que je ne peux plus mentir pour elle. Hélène se sert dans tes droits d'auteur depuis des années. Les relevés qu'elle t'envoie sont faux. Je les ai comparés avec ceux des éditeurs étrangers. Il manque des millions. Je lui ai dit que je savais. Elle m'a dit que si je parlais, je le regretterais. Fais attention à toi. Je t'aimais bien, tu sais. Même si tu es insupportable. B.</em></p>
+<p>Ambroise lut la lettre deux fois. Puis il la posa, très doucement, comme on pose quelque chose de cassé.</p>
+<p>— Il a essayé de me prévenir, dit-il. Il y a deux ans. Et je l'ai déchiré sans l'ouvrir.</p>
+<p>Nino passa le bras autour de ses épaules. Ambroise se laissa aller contre lui, le visage dans son cou. Il ne pleurait pas. Il respirait seulement très fort, comme quelqu'un qui remonte d'une plongée trop longue.</p>
+<p>— Le dossier <em>Lebrun</em>, dit Nino doucement. Les relevés de droits. C'est elle qui les a copiés. Pour voir ce que tu avais. Pour savoir si tu pouvais découvrir la vérité.</p>
+<p>— Et Bastien allait publier son livre.</p>
+<p>— Et quelqu'un a mis du poison dans ton miel.</p>
+<p>Ils se regardèrent. Dans le salon, Maigret leva la tête et grogna, très bas, vers la fenêtre où, quelque part en bas de l'allée des Brouillards, une berline grise venait de démarrer.</p>
+<aside class="retenir"><h4>Ce que tu viens d'apprendre</h4><ul><li>Vol (311-1) : soustraction frauduleuse de la chose d'autrui (même définition qu'en 1810).</li><li>Chose : meubles corporels (valeur indifférente : usurpation du droit) ; pas les immeubles (sauf parties détachables, titre ; immeubles par destination oui) ; énergie (1912 ; 311-2) ; pas les services (Minitel 1990 ; Canal+ 1987) ; informations : Logabax (1979, le temps de la reproduction), Bluetouff (20 mai 2015, données téléchargées : bien incorporel).</li><li>Chose appropriée appartenant à autrui : pas le corps humain ; détention illicite indifférente ; pas les res nullius ni les choses abandonnées ; courrier déchiré à la corbeille non abandonné (10 mai 2005) ; sa propre chose crue à autrui → tentative ; bien indivis (2015).</li><li>Soustraction : vol d'usage (1959) ; remise volontaire (distributeur, 1983) ou par erreur (1958 ; sauf erreur provoquée, 1972) → pas de vol ; détention précaire (1984) → vol ; libre-service (1977).</li><li>Intention : savoir (erreur de fait ; erreur de droit inévitable, 122-3) et vouloir usurper ; destruction immédiate (1977), mobile indifférent (1998). Tempéraments : droits de la défense (11 mai 2004) ; liberté d'expression (portraits : 22 sept. 2021 ; proportionnalité, 18 mai 2022).</li></ul></aside></section>
+<section class="chap" id="ch9"><header><div class="num">Chapitre 9</div><h2>Les bijoux d&#x27;Odette</h2><blockquote class="epi">« Ne peut donner lieu à des poursuites pénales le vol commis au préjudice de son ascendant ou de son descendant… » — Art. 311-12 C. pén.</blockquote></header><p>La commandante Kader écouta toute l'histoire, lut la lettre recollée de Bastien, regarda les relevés de droits, et posa son café froid.</p>
+<p>— C'est un mobile, dit-elle. Ce n'est pas une preuve. Je ne peux pas arrêter une éditrice de soixante ans parce qu'elle a un manteau camel et qu'un mort l'accusait dans une lettre déchirée. Il me faut un lien avec le poison, avec l'agression de Nino, avec le dossier copié. Laissez-moi travailler. Et vous, ne faites rien.</p>
+<p>— Nous ne faisons jamais rien, dit Ambroise. Je suis écrivain.</p>
+<p>— Justement. J'ai lu vos livres. Vos personnages font toujours n'importe quoi au chapitre 9.</p>
+<div class="scene">❦</div>
+<p>Pour obéir, ou pour ne pas penser, Nino emmena Ambroise chez lui, rue de Douai. C'était la première fois. Ambroise monta les quatre étages derrière lui en regardant tout : la cage d'escalier qui sentait le tabac froid et la cire, les guitares en vitrine au rez-de-chaussée, les boîtes aux lettres cabossées.</p>
+<p>Au troisième, une porte s'ouvrit. Une très vieille dame apparut, en robe de chambre de satin rose, des faux cils, un turban.</p>
+<p>— Nino ! Mon petit Nino ! Et qui est ce grand garçon ?</p>
+<p>— Madame Odette. Ma voisine. Elle a dansé au Moulin Rouge de 1956 à 1971.</p>
+<p>— Jusqu'en 1974, mon chéri, je mens sur mon âge depuis toujours. Entrez, entrez, j'ai un problème, et vous êtes juriste.</p>
+<p>Son appartement était un musée : des affiches de revues, des plumes, des photos dédicacées par des gens dont Ambroise avait vaguement entendu parler. Elle les fit asseoir sur un canapé de velours vert, et leur servit du porto à quinze heures.</p>
+<p>— Mon petit-fils, Kevin, dit-elle. Il est venu dimanche. Il est reparti avec mon coffret à bijoux. Le collier de perles que m'avait offert un prince égyptien en 1962. Ma bague en émeraude. Et ma carte d'identité, et ma carte bancaire, parce qu'il dit que je ne devrais plus sortir seule, que je vais me perdre. Il veut me mettre en maison. Je ne veux pas aller en maison. Je veux qu'on lui coupe la tête.</p>
+<p>— On ne coupe plus la tête depuis 1981, Madame Odette.</p>
+<p>— C'est bien dommage.</p>
+<div class="scene">❦</div>
+<p>Nino posa son verre de porto, auquel il n'avait pas touché.</p>
+<p>— Normalement, c'est un vol. Un vol simple, article 311-3 : <strong>trois ans</strong> et 45 000 euros. Mais il y a un problème. L'<span class="k" tabindex="0" data-r="art. 311-12 : pas de poursuites entre ascendants, descendants, conjoints">immunité familiale</span>, article 311-12. On ne peut <strong>pas poursuivre</strong> le vol commis au préjudice d'un <strong>ascendant</strong>, d'un <strong>descendant</strong>, ou du <strong>conjoint</strong>, sauf si les époux sont séparés de corps ou autorisés à résider séparément. Kevin est votre petit-fils : vous êtes son ascendante.</p>
+<p>— Donc il peut me voler mes perles et on ne fait rien ?</p>
+<p>— Pour les perles et l'émeraude, non, on ne peut rien faire au pénal. L'immunité ne couvre que l'<strong>atteinte à la propriété</strong>. S'il vous avait frappée, les violences resteraient poursuivables comme infractions autonomes. Et elle ne profite pas aux <strong>tiers</strong> : s'il a revendu les perles à un bijoutier qui savait, le bijoutier est poursuivable. Elle s'applique aussi à l'extorsion, au chantage, à l'escroquerie et à l'abus de confiance. Mais il y a deux <strong>exceptions</strong>. Première : elle ne joue pas pour les objets ou documents <strong>indispensables à la vie quotidienne</strong>, les pièces d'identité, le titre de séjour, les <strong>moyens de paiement</strong>, le téléphone. Le législateur l'a prévu pour qu'on ne puisse pas retenir quelqu'un chez lui en lui prenant ses papiers. Votre carte d'identité et votre carte bancaire : là, Kevin peut être poursuivi. Deuxième exception : si l'auteur est le <strong>tuteur</strong>, le <strong>curateur</strong>, le mandataire spécial, la personne habilitée ou le <strong>mandataire de protection future</strong> de la victime.</p>
+<p>— Il a demandé à être mon curateur, il y a un mois, dit Odette. Le juge a refusé.</p>
+<p>— Alors il ne l'est pas. Mais la carte d'identité suffit.</p>
+<p>Madame Odette but son porto d'un trait.</p>
+<p>— Et s'il m'avait volé mes perles avec d'autres voyous ? Avec un pistolet ? Je veux savoir ce que j'ai raté.</p>
+<p>Ambroise éclata de rire. Nino, qui ne savait pas résister à une demande de cours, se lança.</p>
+<p>— Le vol simple : trois ans. Si la chose vaut <strong>300 euros au plus</strong> et qu'elle a été restituée ou la victime indemnisée, il peut y avoir une <strong>amende forfaitaire délictuelle</strong>, article 311-3-1, même en récidive : 300 euros. Avec une circonstance de l'article 311-4, la réunion, un dépositaire de l'autorité publique dans ses fonctions, des violences sans ITT, un vol dans un local d'habitation, une destruction ou une dégradation : cinq ans. Avec deux : sept ans. Avec trois : dix ans. Un majeur aidé de <strong>mineurs</strong>, 311-4-1 : sept ans, dix si les mineurs ont moins de treize ans. Des <strong>biens culturels</strong>, objets mobiliers classés, archives, découvertes archéologiques, 311-4-2 : sept ans, dix ans, et une amende qui peut aller jusqu'à la moitié de la valeur du bien.</p>
+<p>— Mon collier est un bien culturel.</p>
+<p>— Il faudrait qu'il soit classé. Ensuite, des violences avec une ITT de huit jours au plus, une victime vulnérable, la <strong>ruse</strong>, l'<strong>effraction</strong> ou l'<strong>escalade</strong> dans un local d'habitation, 311-5 : sept ans. Des violences avec une ITT de plus de huit jours, 311-6 : dix ans. Si elles entraînent une mutilation ou une infirmité permanente, 311-7, ça devient un <strong>crime</strong> : quinze ans. En <strong>bande organisée</strong>, 311-9 : quinze ans, trente avec arme. La bande organisée, c'est l'article 132-71 : un groupement ou une entente en vue de la préparation, caractérisée par des faits matériels, d'infractions. Avec une <strong>arme</strong>, usage, menace ou port d'une arme soumise à autorisation ou prohibée, 311-8 : vingt ans. Et si les violences entraînent la mort, ou s'il y a tortures, 311-10 : <strong>perpétuité</strong>. Plus les aggravations pour mobile discriminatoire, les peines complémentaires, les personnes morales.</p>
+<p>— Et s'il avait ouvert mon coffret et qu'il était vide ?</p>
+<p>— <strong>Tentative</strong> punissable, article 311-13, même si le vol était <strong>impossible</strong> : quelqu'un qui force une voiture vide, 1969 ; qui entre dans une maison vide, 1994. Il a voulu voler. Il a commencé. Il n'a rien trouvé. Il est puni.</p>
+<p>Madame Odette applaudit, comme au music-hall.</p>
+<p>— Ce garçon est merveilleux, dit-elle à Ambroise. Vous devriez l'épouser.</p>
+<p>Ambroise s'étrangla avec son porto. Nino devint écarlate jusqu'à la racine des cheveux.</p>
+<div class="scene">❦</div>
+<p>Plus tard, dans le studio de Nino, quatorze mètres carrés sous les toits, Ambroise s'assit sur le lit, le seul meuble où l'on pouvait s'asseoir, et regarda autour de lui : les fiches punaisées au mur, le réchaud, la fenêtre sur les toits de Pigalle, la guitare qu'on entendait monter à travers le plancher.</p>
+<p>— C'est minuscule, dit-il.</p>
+<p>— C'est chez moi.</p>
+<p>— C'est mieux que chez moi.</p>
+<p>— Tu as un château.</p>
+<p>— J'ai un dépôt de livres avec un chien dedans.</p>
+<p>Il se laissa tomber en arrière sur le lit. Nino s'allongea à côté de lui, sur le côté, la tête sur son bras.</p>
+<p>— Tu penses à Hélène, dit Nino.</p>
+<p>— Je pense à un truc que tu as dit. L'immunité familiale. Elle s'applique aussi à l'escroquerie et à l'abus de confiance ?</p>
+<p>— Oui. Articles 313-3 et 314-4.</p>
+<p>Ambroise resta silencieux très longtemps. En bas, quelqu'un jouait les premières mesures de <em>Je ne regrette rien</em> sur une guitare électrique, et se trompait toujours au même endroit.</p>
+<p>— Quand j'avais deux ans, dit enfin Ambroise, ma mère est partie. Mon père n'en parlait jamais. Il disait qu'elle travaillait « dans les livres », à Paris, et qu'elle n'avait pas voulu d'enfant. Il est mort quand j'avais vingt ans. Un an après l'accident, j'ai envoyé le premier Lebrun à quarante éditeurs. Un seul a répondu. En quarante-huit heures. Une femme. Elle m'a dit que je l'avais bouleversée, qu'elle avait l'impression de me connaître depuis toujours. Elle m'appelle « mon petit » depuis douze ans.</p>
+<p>Nino se redressa sur un coude.</p>
+<p>— Tu crois que…</p>
+<p>— Je ne crois rien. Je n'ai jamais voulu savoir. Je n'ai jamais demandé. Elle a toujours été là, c'est tout. La seule personne qui ait toujours été là.</p>
+<p>Il ferma les yeux.</p>
+<p>— Si c'est ma mère, Nino, et si elle m'a volé des millions, on ne pourra même pas la poursuivre pour ça. L'immunité familiale. C'est presque drôle.</p>
+<p>— Elle ne couvre que l'atteinte à la propriété. Pas Bastien. Pas le miel. Pas l'agression.</p>
+<p>— Je sais.</p>
+<p>Nino posa la main sur sa joue. Ambroise rouvrit les yeux. Ils étaient très clairs, et très perdus.</p>
+<p>— Reste ici ce soir, dit Nino. Dans quatorze mètres carrés. Personne ne nous trouvera.</p>
+<p>Ambroise resta. Le lit était trop petit pour deux, et beaucoup trop petit pour un homme de deux mètres. Ils dormirent emmêlés, les jambes d'Ambroise dépassant au bout du matelas, la tête de Nino sur sa poitrine, et ni l'un ni l'autre ne s'en plaignit.</p>
+<aside class="retenir"><h4>Ce que tu viens d'apprendre</h4><ul><li>Vol simple (311-3) : 3 ans et 45 000 € ; amende forfaitaire délictuelle (311-3-1 : chose ≤ 300 €, restituée ou indemnisée ; 300 €).</li><li>Aggravations : 311-4 (réunion, dépositaire de l'autorité, violences sans ITT, local d'habitation, destruction… : 5, 7, 10 ans) ; 311-4-1 (mineurs : 7 ou 10 ans) ; 311-4-2 (biens culturels) ; 311-5 (ITT ≤ 8 j, vulnérabilité, ruse, effraction, escalade : 7 ans) ; 311-6 (ITT &gt; 8 j : 10 ans) ; 311-7 (crime, 15 ans) ; 311-9 (bande organisée, 132-71 : 15 ans, 30 avec arme) ; 311-8 (arme : 20 ans) ; 311-10 (mort, tortures : perpétuité).</li><li>Tentative punissable (311-13), même vol impossible (véhicule vide 1969, habitation vide 1994).</li><li>Immunité familiale (311-12) : vol au préjudice d'un ascendant, descendant, conjoint (sauf séparés) ; aussi extorsion, chantage, escroquerie, abus de confiance ; ne couvre que l'atteinte à la propriété (violences poursuivables), ne profite pas aux tiers. Exclue : a) objets ou documents indispensables (papiers, moyens de paiement, télécommunication) ; b) tuteur, curateur, mandataire spécial, personne habilitée, mandataire de protection future.</li></ul></aside></section>
+<section class="chap" id="ch10"><header><div class="num">Chapitre 10</div><h2>La fausse moustache</h2><blockquote class="epi">« Le fait, soit par l'usage d'un faux nom ou d'une fausse qualité, soit par l'abus d'une qualité vraie, soit par l'emploi de manœuvres frauduleuses, de tromper… » — Art. 313-1 C. pén.</blockquote></header><p>— Non, dit Ambroise.</p>
+<p>— Je n'ai encore rien dit.</p>
+<p>— Tu as la tête de quelqu'un qui va faire n'importe quoi au chapitre 10.</p>
+<p>Nino posa sur la table de la cuisine une chemise cartonnée. Dedans, un CV : <em>Lucas Moreau, 22 ans, master 1 Édition, Sorbonne Nouvelle. Stage de six mois chez Gallimard.</em> Une photo de lui, avec des lunettes rondes et les cheveux plaqués. Et une lettre de l'agence d'intérim des Éditions Marchetti : <em>Nous avons le plaisir de vous confirmer votre stage au service des droits étrangers, à compter de lundi.</em></p>
+<p>— Hélène m'a vu une fois, dit Nino. Une heure, il y a deux semaines. Avec des lunettes et du gel, elle ne me reconnaîtra pas.</p>
+<p>— Tu fais tomber tout ce que tu touches. Tu vas te faire prendre en dix minutes.</p>
+<p>— Le service des droits étrangers, c'est là que sont les vrais relevés. Ceux que Bastien avait comparés. La commandante a dit qu'il lui fallait une preuve.</p>
+<p>— La commandante a dit de ne rien faire.</p>
+<p>— Je ne fais rien. Je fais un stage.</p>
+<div class="scene">❦</div>
+<p>Ambroise passa la soirée à essayer de l'en dissuader, puis à l'aider à répéter, puis à lui expliquer la différence entre un contrat de cession et un contrat de licence, puis, vers minuit, assis sur le carrelage de la cuisine avec Maigret, à écouter Nino réciter, parce que Nino récitait toujours quand il avait peur.</p>
+<p>— L'<span class="k" tabindex="0" data-r="art. 313-1 : 5 ans et 375 000 €">escroquerie</span>, article 313-1. C'est un délit <strong>complexe</strong> : des <strong>moyens</strong>, en vue d'un <strong>résultat</strong>. Les moyens doivent d'abord être un <strong>acte positif</strong>, pas une omission. Un aveugle à cent pour cent dont la vue s'améliore et qui ne le signale pas à la caisse ne commet pas d'escroquerie, 1978. La jurisprudence varie : celui qui ne déclare pas une activité tout en touchant le chômage commet « un acte positif de prise de la fausse qualité de travailleur privé d'emploi », 1999 ; mais le taxi conventionné qui continue après le retrait de sa carte sans prévenir la caisse, non, 2015. Ensuite, les moyens doivent être <strong>déterminants</strong> de la remise : il faut un lien de causalité, donc ils doivent être <strong>antérieurs</strong> à la remise.</p>
+<p>— Et quels moyens ?</p>
+<p>— Quatre. Le <strong>faux nom</strong> : un simple mensonge sur l'identité, écrit ou oral, qui suffit à lui seul. C'est rare, parce que ça suffit rarement à tromper. Une commande passée sous un faux nom avec un faux numéro de compte, 1995. La <strong>fausse qualité</strong> : un mensonge sur sa qualité, souvent professionnelle, qui suffit seul s'il est déterminant. Le faux chômeur, le faux antiquaire, le faux médecin, le faux inspecteur du guide Michelin, en 1974, qui mangeait gratuitement dans les grands restaurants. Le président d'une association dissoute, 2017. Mais attention : mentir sur un <strong>droit</strong>, se dire propriétaire par exemple, ce n'est pas une fausse qualité, 1969. L'<strong>abus de qualité vraie</strong>, moyen autonome depuis 1994 : une qualité réelle qui met la victime en confiance. Un avocat interdit d'exercer qui continue à toucher des honoraires, 2016. Un notaire, mandataire d'une vieille dame, qui lui achète un tableau à vil prix, 2018. Et les <strong>manœuvres frauduleuses</strong>, le cas le plus fréquent. Un simple <strong>mensonge</strong> ne suffit pas : il faut un <strong>acte extérieur</strong> qui l'accrédite, 1960. Une mise en scène, de faux documents, l'intervention d'un tiers, complice ou de bonne foi mais instrumentalisé, à condition qu'il ne soit pas le préposé de l'escroc. Un faux cambriolage, une fausse déclaration de sinistre, un incendie volontaire déclaré accidentel. De <strong>faux bilans</strong> pour obtenir des prêts, 1977. Un notaire de bonne foi qu'on utilise, un comptable qui certifie sans le savoir un bilan falsifié.</p>
+<p>— Et Lucas Moreau, master 1 Édition, il a quelle fausse qualité ?</p>
+<p>Nino s'arrêta.</p>
+<p>— Il n'escroque personne. Il ne se fait rien remettre.</p>
+<p>— Il se fait remettre un stage. Un badge. L'accès à des documents confidentiels.</p>
+<p>— Une <strong>remise</strong> d'information, ça peut compter, 2016…</p>
+<p>— Tu vois.</p>
+<div class="scene">❦</div>
+<p>Le lundi, Lucas Moreau entra aux Éditions Marchetti, boulevard Saint-Germain, avec des lunettes rondes à verres neutres, du gel, et la fausse moustache de la visite <em>Montmartre Criminel</em>, recollée à la colle forte, parce qu'Ambroise avait dit qu'elle le vieillissait de trois ans.</p>
+<p>Le service des droits étrangers était au sixième étage, sous les toits. Il y avait trois personnes, des piles de contrats, et une armoire métallique fermée à clé que personne n'ouvrait jamais, sauf « Madame Marchetti elle-même ».</p>
+<p>Le mardi, il trouva la clé dans le tiroir d'une stagiaire partie en congé maternité. Le mercredi, pendant la pause déjeuner, il ouvrit l'armoire.</p>
+<p>Ce qu'il trouva dépassait tout ce que Bastien avait écrit.</p>
+<p>Il y avait deux séries de relevés. Les vrais, envoyés par les éditeurs étrangers, en coréen, en allemand, en portugais. Et les faux, établis par Hélène, envoyés à Ambroise, avec des chiffres divisés par trois. La différence partait vers une société au Luxembourg, <em>HM Literary Holdings</em>. Il y avait de <strong>faux bilans</strong> de la maison d'édition, gonflés, qui avaient servi à obtenir trois prêts bancaires. Il y avait les statuts d'une <em>Fondation Lebrun pour la lecture</em>, qui avait collecté deux millions d'euros de dons auprès des lecteurs pour « offrir des livres aux enfants des hôpitaux », et dont les comptes ne mentionnaient aucun livre. Et il y avait le dossier d'un procès en diffamation intenté contre Bastien Roux, deux ans plus tôt, appuyé sur des courriels qui, Nino le voyait au premier coup d'œil, étaient des faux.</p>
+<p>Il photographia tout. Ses mains tremblaient tellement que la moitié des photos étaient floues. Il recommença.</p>
+<div class="scene">❦</div>
+<p>Le soir, au château, il étala les photos sur la table de la cuisine. Ambroise les regarda une par une, sans un mot. Puis il s'assit.</p>
+<p>— Explique-moi, dit-il. Avec tes mots. Comme si c'était un cas pratique.</p>
+<p>— La <strong>remise</strong>, c'est ce qui consomme le délit. Des fonds, des valeurs, ou un <strong>bien quelconque</strong>. Depuis un revirement sur le mot « bien », même un <strong>immeuble</strong> : un faux testament pour hériter d'une villa, <span class="k" tabindex="0" data-r="Cass. crim., 28 sept. 2016, n° 15-84.485">28 sept. 2016</span>. Une information, 2016. Un <strong>service</strong>, nouveauté de 1994 : des nuits d'hôtel payées avec de fausses coordonnées bancaires, 2019. Ou un <strong>acte opérant obligation ou décharge</strong> : une reconnaissance de dette, un prêt, un bail. Les banques lui ont remis des <strong>prêts</strong> à cause de faux bilans : manœuvres frauduleuses, escroquerie. Les lecteurs ont remis des <strong>dons</strong> à une fondation qui mentait sur son but : escroquerie <strong>par appel au public</strong>, aggravée. Et le procès contre Bastien, avec de faux courriels : c'est l'<strong>escroquerie au jugement</strong>. Agir en justice de mauvaise foi, avec des documents mensongers, pour « surprendre la religion du juge », <span class="k" tabindex="0" data-r="Cass. crim., 9 sept. 2020, n° 19-81.239">9 sept. 2020</span>. On trompe le juge pour obtenir une décision qui oblige l'autre.</p>
+<p>— Et le préjudice ?</p>
+<p>— Notion si large qu'elle perd son contenu. Il existe dès que la remise n'a pas été <strong>librement consentie</strong>, 1969, 1992. Ce n'est pas un élément autonome. Et le <strong>profit</strong> de l'escroc est indifférent, 1976.</p>
+<p>— L'intention ?</p>
+<p>— Vouloir tromper et obtenir la remise, en sachant les moyens frauduleux. On la déduit souvent des actes eux-mêmes. Il y a un arrêt drôle sur les <strong>voyantes</strong> : la voyante peut prétendre qu'elle croit en ses dons, mais les juges déduisent l'intention cupide des sommes demandées, 1989. Les mobiles sont indifférents : un créancier qui escroque son débiteur pour se faire payer, 1943 ; quelqu'un qui truque des parcmètres pour alerter sur le stationnement des professionnels, 1975.</p>
+<p>— Et elle risque quoi ?</p>
+<p>— Simple : <strong>cinq ans</strong> et 375 000 euros. <strong>Aggravée</strong>, article 313-2 : par un dépositaire de l'autorité publique, en prenant indûment cette qualité, <strong>par appel au public</strong>, au préjudice d'une personne vulnérable, au préjudice d'une personne publique ou d'un organisme social : sept ans et 750 000 euros. En <strong>bande organisée</strong> : dix ans et un million. Et depuis la loi du 25 juin 2026, la fraude sociale en bande organisée est un <strong>crime</strong>, quinze ans de réclusion : la première escroquerie criminelle du droit français. La <strong>tentative</strong> est punissable, même l'escroquerie impossible : des manœuvres envers un assureur qui ne couvrait pas le sinistre, 1980. Et rendre l'argent ensuite, ce n'est qu'un <strong>repentir actif</strong> : ça n'efface pas le délit. Peines complémentaires, 313-7 et 313-8. Et l'<strong>immunité familiale</strong> s'applique, article 313-3.</p>
+<p>Il s'arrêta. Ambroise le regardait fixement.</p>
+<p>— Pour les prêts bancaires et la fondation, dit Nino très vite, les victimes sont les banques et les lecteurs. Pas toi. L'immunité ne joue pas. Même si…</p>
+<p>— Même si elle était ma mère.</p>
+<p>Il y eut un long silence.</p>
+<p>— Et toi, dit enfin Ambroise, tu as commis une escroquerie ? Faux nom, fausse qualité, remise d'informations ?</p>
+<p>— Il y a un arrêt. La <span class="k" tabindex="0" data-r="Cass. crim., 26 oct. 2016, n° 15-83.774">journaliste infiltrée</span>, 2016. Une journaliste adhère à un parti politique sous un faux nom et une fausse qualité, obtient des documents internes, écrit un livre. Non-lieu approuvé : son enquête sérieuse nourrissait un <strong>débat d'intérêt général</strong>, et vu le rôle des journalistes, l'incriminer serait une <strong>ingérence disproportionnée</strong> dans la liberté d'expression, article 10 de la CEDH. C'est le premier cas de ce fait justificatif, étendu depuis à d'autres infractions, comme les portraits décrochés.</p>
+<p>— Tu n'es pas journaliste.</p>
+<p>— Je sais. La commandante va me tuer.</p>
+<div class="scene">❦</div>
+<p>Le jeudi, Lucas Moreau revint boulevard Saint-Germain pour remettre la clé dans le tiroir, comme si de rien n'était. Il croisa dans le couloir du sixième étage une femme au carré argenté et aux lunettes d'écaille.</p>
+<p>Hélène Marchetti s'arrêta. Elle le regarda. Il baissa les yeux, rentra la tête dans les épaules, continua son chemin. Il allait réussir. Il était presque à l'ascenseur.</p>
+<p>Il éternua.</p>
+<p>La fausse moustache, collée à la colle forte depuis quatre jours, céda d'un coup, et tomba sur la moquette grise, entre les escarpins d'Hélène Marchetti.</p>
+<p>Elle la regarda longtemps. Puis elle releva les yeux vers lui, et sourit, très doucement, le même sourire que le jour des pivoines et des macarons.</p>
+<p>— Bonjour, Nino, dit-elle. Vous direz à mon petit que j'aimerais le voir. Seul.</p>
+<aside class="retenir"><h4>Ce que tu viens d'apprendre</h4><ul><li>Escroquerie (313-1) : délit complexe (moyens → résultat). Moyens : acte positif (aveugle, 1978 ; mais faux chômeur, 1999 ; taxi conventionné, 2015 : pas d'escroquerie), déterminants, antérieurs à la remise.</li><li>Faux nom (suffit seul, rare : 1995) ; fausse qualité (déterminante : 1958 ; faux chômeur, antiquaire, médecin, inspecteur Michelin ; association dissoute 2017 ; mentir sur un droit ≠ fausse qualité, 1969) ; abus de qualité vraie (autonome depuis 1994 : avocat interdit 2016, notaire 2018) ; manœuvres frauduleuses (mensonge + acte extérieur, 1960 : mise en scène, faux documents, tiers ; faux bilans 1977).</li><li>Remise : fonds, valeurs, bien quelconque (immeuble : 28 sept. 2016 ; information : 26 oct. 2016) ; service (2019) ; acte opérant obligation ou décharge (escroquerie au jugement : 9 sept. 2020). Préjudice : remise non librement consentie (pas un élément autonome) ; profit indifférent.</li><li>Intention : volonté de tromper (voyance, 1989) ; mobiles indifférents (1943, 1975).</li><li>Peines : 5 ans et 375 000 € ; aggravée (313-2 : 7 ans, 750 000 €) ; bande organisée (10 ans, 1 M€) ; fraude sociale en bande organisée = crime (loi du 25 juin 2026 : 15 ans). Tentative, même impossible (1980) ; restitution = repentir actif ; immunité familiale (313-3).</li><li>Journaliste infiltrée (26 oct. 2016) : fait justificatif tiré de l'art. 10 CEDH (débat d'intérêt général).</li></ul></aside></section>
+<section class="chap" id="ch11"><header><div class="num">Chapitre 11</div><h2>Mon petit</h2><blockquote class="epi">« Le fait par une personne de détourner, au préjudice d'autrui, des fonds, des valeurs ou un bien quelconque qui lui ont été remis… » — Art. 314-1 C. pén.</blockquote></header><p>— Tu n'y vas pas seul.</p>
+<p>— Elle a dit seul.</p>
+<p>— Elle a peut-être tué Bastien. Elle a peut-être mis du poison dans ton miel. Elle a payé deux types pour me casser les côtes.</p>
+<p>— C'est peut-être ma mère.</p>
+<p>Ils étaient dans le salon du château, à onze heures du soir, au milieu des livres. Ambroise avait mis un vrai manteau, pas le peignoir, pour la première fois depuis que Nino le connaissait. Il avait l'air d'un homme qui va à un enterrement.</p>
+<p>La commandante Kader, assise sur l'accoudoir du canapé avec son café froid, trancha.</p>
+<p>— Il y va. Avec son téléphone dans la poche, en appel ouvert. J'écoute. J'ai deux équipes dans la rue. Et vous, Ferraro, vous restez ici et vous ne bougez pas. Vous avez déjà commis une escroquerie cette semaine, ça suffit.</p>
+<p>— Je n'ai pas commis d'escroquerie. Il y a un fait justificatif tiré de l'article 10…</p>
+<p>— Vous n'êtes pas journaliste.</p>
+<p>— C'est ce qu'il m'a dit aussi.</p>
+<div class="scene">❦</div>
+<p>Hélène avait donné rendez-vous au cimetière Saint-Vincent, au pied de Montmartre, derrière le Lapin Agile. Un petit cimetière de quartier, en pente, avec des tombes d'artistes et des chats. À minuit, il était fermé ; elle avait la clé de la grille.</p>
+<p>Dans la cuisine du château, Nino, Kader et Maigret écoutaient le haut-parleur du téléphone posé sur la table. On entendait les pas d'Ambroise sur le gravier, le vent, un chat qui feulait. Puis la voix d'Hélène.</p>
+<p>— Tu es venu, mon petit.</p>
+<p>— Ne m'appelle pas comme ça.</p>
+<p>— Je t'ai toujours appelé comme ça. Depuis que tu es né. Tu ne t'en souviens pas, tu avais deux ans quand je suis partie.</p>
+<p>Il y eut un silence si long que Nino crut que la communication avait coupé. Puis Ambroise parla, d'une voix que Nino ne lui connaissait pas.</p>
+<p>— Pourquoi ?</p>
+<p>— J'avais vingt-cinq ans. Je voulais faire des livres. Ton père voulait une femme à la maison, en Bourgogne. Je suis partie. Je me suis dit que je reviendrais quand j'aurais réussi. Je n'ai jamais réussi à revenir. Et puis un jour, vingt ans plus tard, ton manuscrit est arrivé sur mon bureau. Avec ton nom. Je l'ai lu en une nuit. Et j'ai décidé que, cette fois, je serais là.</p>
+<p>— Tu as été là. Pour me voler.</p>
+<p>— Je t'ai fait. Sans moi, tu serais un pharmacien de Beaune avec un casier judiciaire. Tu m'as donné un <strong>mandat</strong>, il y a douze ans, pour gérer tes droits étrangers. Tu as signé sans lire, comme tu signes tout. Tu ne voulais t'occuper de rien. Alors je me suis occupée de tout. Et je me suis payée.</p>
+<div class="scene">❦</div>
+<p>Dans la cuisine, Nino avait pris sa fiche, sans même s'en rendre compte, et la serrait si fort que le plastique craquait.</p>
+<p>— L'<span class="k" tabindex="0" data-r="art. 314-1 : 5 ans et 375 000 €">abus de confiance</span>, murmura-t-il. Article 314-1. Détourner, au préjudice d'autrui, des fonds, des valeurs ou un bien quelconque qui vous ont été <strong>remis</strong> et que vous avez <strong>acceptés</strong> à charge de les rendre, de les représenter ou d'en faire un <strong>usage déterminé</strong>. On trahit la confiance de celui qui vous a remis la chose pour un usage précis.</p>
+<p>— Continuez, dit la commandante sans quitter le téléphone des yeux. Ça m'aide à réfléchir.</p>
+<p>— D'abord, la condition préalable : une <strong>remise</strong> en vertu d'un <strong>titre</strong>. L'ancien article 408 de 1810 énumérait des contrats : louage, dépôt, <strong>mandat</strong>, nantissement, prêt à usage, travail. Le Code de 1994 les a supprimés. En théorie, le champ s'élargit ; en pratique, peu, parce que la jurisprudence étendait déjà le mandat, par exemple à la société, 1972. Un contrat n'est même pas indispensable : des fonds remis à charge de restitution si les conditions d'une promesse ne sont pas levées, 2000. Le juge pénal qualifie librement, et la <strong>nullité</strong> du contrat est indifférente, 1990. Le titre peut être légal ou judiciaire : un tuteur, 1870.</p>
+<p>— Et elle avait un mandat.</p>
+<p>— Oui. Et surtout, la remise doit être <strong>précaire</strong>, jamais en <strong>propriété</strong>, 2020. C'est le critère. L'acheteur qui ne paie pas, ce n'est pas un abus de confiance : il est propriétaire. Un acompte détourné par le vendeur, non plus. Un prêt affecté à construire une maison et utilisé autrement, non plus, 2007 : l'argent prêté devient la propriété de l'emprunteur. Mais le vendeur qui garde la chose vendue <strong>en dépôt</strong> et la revend à un autre, oui : le titre, c'est le dépôt. Une <strong>subvention publique affectée</strong>, à des logements étudiants, détournée : oui, 2008. Et des <strong>droits d'auteur</strong> encaissés comme mandataire pour les reverser : la remise est précaire, elle devait les <strong>représenter</strong>.</p>
+<p>Au téléphone, Hélène continuait, d'une voix calme, presque tendre.</p>
+<p>— J'ai investi. Au Luxembourg. Une maison à Saint-Jean-Cap-Ferrat. J'ai même acheté un immeuble, rue Lepic, au nom de la holding. Avec ton argent, si tu veux. Mais c'était pour toi. Tout aurait été à toi, un jour.</p>
+<div class="scene">❦</div>
+<p>— Le <strong>bien</strong>, reprit Nino, très vite. Fonds, valeurs, bien quelconque. Les <strong>immeubles</strong> ont longtemps été exclus, 2009. Mais il y a eu un revirement, <span class="k" tabindex="0" data-r="Cass. crim., 13 mars 2024, n° 22-83.689">13 mars 2024</span> : l'abus de confiance peut porter sur un bien quelconque, <strong>y compris un immeuble</strong>. C'était un site d'enfouissement de déchets utilisé de façon contraire au cahier des charges d'un marché public : un usage abusif qui révèle la volonté de se comporter, même momentanément, en propriétaire. Et les <strong>biens incorporels</strong> : un numéro de carte bancaire communiqué pour une seule commande, 2000 ; un projet informatique de l'employeur, 2004 ; des fichiers de données confidentielles, 2014 ; des informations sur la clientèle, 2017 ; même le <strong>temps de travail</strong> d'un salarié, 2013, ou les employés qui font des travaux personnels pour le dirigeant, 2019. Une très forte tendance à la dématérialisation.</p>
+<p>— Et le détournement ? demanda Kader.</p>
+<p>— Même par <strong>omission</strong> : le mandataire qui tait les fonds qu'il détient pour ne pas les représenter, 1982. Trois formes. La <strong>dissipation</strong> : faire disparaître la chose, matériellement, en la consommant ou la détruisant, ou juridiquement, par un acte incompatible avec le titre, vendre ce qu'on devait rendre. Le <strong>refus de restituer</strong> : se comporter en propriétaire. Un simple retard ne suffit pas : en 2024, un locataire qui n'avait pas rendu une voiture de location mais restait en contact avec le loueur n'avait pas détourné. Est assimilé le fait de se mettre dans l'<strong>impossibilité</strong> de restituer : utiliser l'argent d'un dépôt, 1969 ; une agence de voyages devenue insolvable avec l'argent des billets, 1997. Et l'<strong>usage abusif</strong> : employer le bien à une autre fin que celle prévue. Un gérant qui utilise autrement les fonds d'une augmentation de capital, 1969. Elle, elle a fait les trois : elle a dissipé, elle n'a pas représenté, et elle a fait un usage abusif.</p>
+<p>— Le préjudice ?</p>
+<p>— En principe un élément constitutif, mais il peut être matériel, moral ou même <strong>éventuel</strong>, 1936, et il est inclus dans la constatation du détournement, 1980. Le profit de l'agent est indifférent, 1973. L'<strong>intention</strong> : la conscience de la précarité et la volonté de détourner. Exigence légère : il suffit d'avoir dû prévoir qu'on ne pourrait pas restituer, 1997, ou d'avoir eu conscience du risque de ne pas pouvoir représenter les sommes, 2002. Elle se déduit souvent du détournement lui-même. Les mobiles sont indifférents : un mandataire ne peut pas compenser avec ce que le mandant lui doit, 1963.</p>
+<div class="scene">❦</div>
+<p>Au téléphone, la voix d'Ambroise revint, glacée.</p>
+<p>— Tu sais ce que tu risques ?</p>
+<p>— Je sais exactement ce que je risque, mon petit. J'ai un avocat très cher. L'abus de confiance, cinq ans et 375 000 euros. Sept ans s'il est aggravé. Dix ans si j'étais mandataire de justice ou officier public, mais je ne suis ni l'un ni l'autre. Et surtout, je suis ta <strong>mère</strong>. L'immunité familiale, article 314-4. Tu ne peux pas me poursuivre pour ce que je t'ai pris. Personne ne peut.</p>
+<p>Dans la cuisine, Nino ferma les yeux.</p>
+<p>— Elle a raison, dit-il à voix basse. L'immunité joue pour l'abus de confiance. Elle est son <strong>ascendante</strong>. Et un simple mandat ne fait pas partie des exceptions : ce n'est ni une tutelle, ni une curatelle, ni un mandat de protection future. Pour l'argent d'Ambroise, elle est intouchable. Il reste les banques, la fondation, l'escroquerie au jugement. Et la prescription : six ans pour l'abus de confiance, mais la jurisprudence en reportait le point de départ au jour où le délit est <strong>apparu</strong> et a pu être constaté, 2006, 2010, comme pour l'abus de biens sociaux. C'est généralisé depuis 2017 par l'article 9-1 pour les infractions <strong>occultes</strong> ou <strong>dissimulées</strong>, dans la limite de douze ans pour les délits. La <strong>tentative</strong> est incriminée depuis la loi du 24 décembre 2020 ; avant, elle était absorbée dans le délit consommé, comme le locataire surpris en train de déménager les meubles, 1930.</p>
+<p>— Et Bastien ? dit la voix d'Ambroise au téléphone. L'immunité familiale couvre Bastien ?</p>
+<p>Le silence, cette fois, dura très longtemps.</p>
+<p>— Je n'ai pas tué Bastien, dit enfin Hélène. Je voulais seulement lui faire peur.</p>
+<p>— Avec de la digitaline.</p>
+<p>— Il m'avait menacée. Il allait publier. Il allait te dire. Il allait tout détruire.</p>
+<p>— Et le miel ?</p>
+<p>— Le miel, c'était… un avertissement. Je ne voulais pas que tu meures. Je voulais que tu aies peur. Que tu arrêtes d'écrire ce treizième tome, avec ce garçon qui fouille partout. Que tu redeviennes comme avant. Mon petit à moi. Qui ne sait rien et qui signe tout.</p>
+<p>On entendit un bruit de gravier. Des pas qui s'éloignaient vite. Puis la voix de Kader, dans son talkie-walkie : <em>Elle part par le haut, rue Saint-Vincent, interpellez.</em></p>
+<p>Puis, dans le téléphone d'Ambroise, plus rien que le vent dans les tombes, et un chat.</p>
+<p>Dans la cuisine du château, Nino se leva d'un bond, attrapa sa veste, et s'aperçut que Maigret, pour la première fois de sa vie, était déjà devant la porte, debout, la truffe contre le battant, en train de gémir.</p>
+<aside class="retenir"><h4>Ce que tu viens d'apprendre</h4><ul><li>Abus de confiance (314-1) : détourner, au préjudice d'autrui, un bien remis et accepté à charge de le rendre, représenter ou en faire un usage déterminé.</li><li>Titre : liste de l'ancien art. 408 supprimée en 1994 (extension du mandat : 1972) ; contrat non indispensable (2000) ; nullité indifférente (1990) ; titre légal ou judiciaire (1870). Remise précaire, jamais en propriété (25 nov. 2020) : pas d'abus de confiance (acheteur, acompte 2020, prêt affecté 2007) / abus (dépôt de la chose vendue, subvention affectée 2008).</li><li>Bien : immeuble exclu (2009) puis admis (13 mars 2024) ; incorporels (carte 2000, projet 2004, fichiers 2014, clientèle 2017, temps de travail 2013, travaux 2019).</li><li>Détournement (même par omission, 1982) : dissipation ; refus de restituer (simple retard insuffisant : 23 oct. 2024 ; impossibilité de restituer : 1969, 1997) ; usage abusif (1969). Préjudice éventuel et inclus (1936, 1980) ; profit indifférent. Intention légère (1997, 2002), déduite du détournement ; pas de compensation (1963).</li><li>Peines : 5 ans et 375 000 € ; aggravé (314-1-1 : 7 ans, 750 000 €) ; mandataire de justice ou officier public (314-3 : 10 ans, 1,5 M€). Tentative (loi du 24 déc. 2020 ; avant : 1930). Immunité familiale (314-4). Prescription 6 ans, report (2006, 2010 ; art. 9-1 CPP : max 12 ans).</li></ul></aside></section>
+<section class="chap" id="ch12"><header><div class="num">Chapitre 12</div><h2>Maigret</h2><blockquote class="epi">« Qualifier : quel texte ? »</blockquote></header><p>Maigret n'avait jamais couru de sa vie. Il avait dix ans, quarante-huit kilos, et une philosophie de l'existence fondée sur le tapis persan. Mais quand Nino ouvrit la porte du château, il bondit dehors comme un boulet roux et blanc, et fila dans l'allée des Brouillards en aboyant d'une voix que personne ne lui connaissait.</p>
+<p>Nino courut derrière lui. La commandante Kader cria quelque chose dans son dos. Il ne l'entendit pas.</p>
+<p>Au bout de l'allée, sous le réverbère, là où on avait trouvé Bastien trois semaines plus tôt, une silhouette en manteau noir montait les marches depuis la rue Girardon. Le carré argenté brillait sous la lumière. Hélène Marchetti avait échappé aux policiers de la rue Saint-Vincent en passant par les jardins du Clos. Elle avait le souffle court, les escarpins à la main.</p>
+<p>Elle vit Nino. Elle s'arrêta.</p>
+<p>— Vous, dit-elle.</p>
+<p>Elle sortit de la poche de son manteau quelque chose de fin, de brillant. Une seringue.</p>
+<p>— C'est vous qui avez tout gâché. Il ne savait rien. Il ne voulait rien savoir. Il signait. Et vous êtes arrivé avec vos fiches.</p>
+<p>Elle s'avança. Nino recula, se prit le talon dans un pavé, et tomba en arrière sur les marches. La seringue s'abaissa vers son bras.</p>
+<p>Maigret sauta.</p>
+<p>Quarante-huit kilos de bouvier bernois s'abattirent sur Hélène Marchetti, qui bascula sur le côté. La seringue lui échappa, roula sur les pavés, tinta contre la grille du château et disparut dans le caniveau. Maigret resta assis sur elle, de tout son poids, en grondant doucement, l'air absolument stupéfait de lui-même.</p>
+<p>Trois secondes plus tard, Ambroise arriva en courant depuis la rue Saint-Vincent, son manteau ouvert, hors d'haleine. Il ne regarda pas sa mère. Il tomba à genoux à côté de Nino et le prit dans ses bras si fort que Nino sentit ses côtes fêlées protester.</p>
+<p>— Tu n'as rien ? Elle t'a touché ? Nino, regarde-moi.</p>
+<p>— Elle ne m'a pas touché. C'est Maigret. Maigret l'a arrêtée.</p>
+<p>Ambroise leva les yeux vers son chien, assis sur sa mère, et pour la première fois depuis douze ans, il éclata en sanglots.</p>
+<div class="scene">❦</div>
+<p>Le lendemain matin, la commandante Kader vint au château avec deux cafés chauds, pour une fois, et un rapport.</p>
+<p>— Le légiste a refait l'autopsie de Bastien Roux. Il n'a pas été étranglé. Pas par une main. Il portait une écharpe en laine. Quand la digitaline a fait son effet, il était juste devant votre grille, monsieur Vauquelin. Il est tombé. L'écharpe s'est prise dans les volutes de fer forgé. Elle l'a retenu par le cou pendant qu'il s'effondrait. Les marques venaient de là.</p>
+<p>Ambroise ferma les yeux.</p>
+<p>— Il venait me voir.</p>
+<p>— Le soir de sa mort, il avait pris un thé chez Mme Marchetti, à vingt et une heures. Il lui avait dit qu'il allait tout vous raconter. Il est parti à pied vers chez vous. Il est mort devant votre porte, en essayant de vous prévenir.</p>
+<p>Personne ne parla pendant longtemps. Maigret, sur son tapis persan, dormait à nouveau, comme si rien ne s'était passé.</p>
+<div class="scene">❦</div>
+<p>Le soir, Nino reprit ses fiches. Toutes. Il les étala sur la table de la cuisine, comme pour un partiel. Ambroise s'assit en face de lui.</p>
+<p>— Fais-moi le cas pratique, dit Ambroise. Hélène Marchetti. Toutes les qualifications. Je veux comprendre ce qu'elle a fait, en droit. Pas en roman.</p>
+<p>Nino respira.</p>
+<p>— La méthode, c'est toujours la même. Un : <strong>qualifier</strong>, trouver le texte, vérifier la condition préalable. Deux : l'<strong>élément matériel</strong>, l'acte, le résultat, la causalité. Trois : l'<strong>élément moral</strong>, l'intention ou la faute. Quatre : les <strong>circonstances aggravantes</strong>. Cinq : le <strong>régime</strong>, peine, tentative, faits justificatifs, immunité familiale, repentis, prescription, personnes morales.</p>
+<p>— Commence par Bastien.</p>
+<p>— Bastien, c'est un <strong>empoisonnement</strong>, article 221-5. Condition préalable : un être humain vivant ; il l'était. Élément matériel : l'<strong>administration</strong> d'une substance de nature à entraîner la mort, la digitaline, dans un thé. C'est une infraction formelle : elle est constituée dès l'administration. La mort ne change rien à la qualification. L'élément moral, c'est là qu'elle va se défendre. Elle dit qu'elle voulait seulement lui faire peur. Depuis l'arrêt du sang contaminé, en 2003, il faut l'<strong>intention de donner la mort</strong>. Mais on prouve l'intention par des <strong>indices objectifs</strong> : la dose. Le légiste dit qu'elle était cinq fois la dose mortelle. On ne fait pas peur avec cinq fois la dose mortelle.</p>
+<p>— Et l'écharpe ? Ça ne change rien, que ce soit l'écharpe qui l'ait tué ?</p>
+<p>— Non. La digitaline l'a fait tomber. L'écharpe, c'est une conséquence. De toute façon, l'empoisonnement est consommé dès l'administration. Ensuite, les <strong>circonstances aggravantes</strong>. L'empoisonnement a les mêmes que le meurtre. Et il y en a une, ici : la <strong>corrélation</strong>, article 221-2 alinéa 2. Elle l'a empoisonné pour <strong>favoriser l'impunité</strong> de ses délits, l'abus de confiance, les escroqueries, pour qu'il ne parle pas. Corrélation : <strong>perpétuité</strong>.</p>
+<p>Ambroise ne broncha pas.</p>
+<p>— Le miel.</p>
+<p>— Le miel, c'est pour toi, et c'est moi qui l'ai mangé. L'erreur sur la personne est indifférente. La substance était un bêtabloquant, pas en dose mortelle. Si elle savait qu'elle n'était que <strong>nuisible</strong>, c'est l'<strong>administration de substances nuisibles</strong>, article 222-15, avec le résultat : j'ai eu une ITT, donc les peines des violences selon l'ITT, et des circonstances aggravantes, la préméditation. Si elle croyait que c'était mortel, mon prof dirait que c'est un empoisonnement, parce que l'intention est déterminante. Elle dit qu'elle voulait te faire peur. Les juges trancheront.</p>
+<p>— Et l'immunité familiale ? Je suis son fils.</p>
+<p>— Elle ne couvre que les atteintes à la <strong>propriété</strong>. Pas le poison. Jamais.</p>
+<p>— Les deux hommes de la rue de l'Abreuvoir ?</p>
+<p>— Elle les a payés pour me frapper. C'est de la <strong>complicité</strong> de violences, par provocation ou instructions, articles 121-6 et 121-7. Les violences sont aggravées, réunion et guet-apens. Elle est punie comme auteur.</p>
+<p>— Ce soir ?</p>
+<p>— Ce soir, elle a voulu m'injecter quelque chose. Le laboratoire a récupéré la seringue dans le caniveau : de la digitaline. Elle n'a pas réussi à l'administrer, à cause de Maigret. Ce n'est donc pas un empoisonnement consommé, c'est une <strong>tentative d'empoisonnement</strong>, article 121-5 : un commencement d'exécution, la seringue levée vers mon bras, interrompu par une circonstance indépendante de sa volonté, un bouvier bernois de quarante-huit kilos. Et comme l'empoisonnement est déjà une tentative de meurtre érigée en crime, c'est la fameuse « tentative de tentative ». Punie comme l'infraction consommée.</p>
+<p>— Et l'argent ?</p>
+<p>— Les <strong>escroqueries</strong> : les prêts obtenus par de faux bilans, manœuvres frauduleuses ; la fondation, appel au public, aggravée, sept ans ; le procès contre Bastien, escroquerie au jugement. Les victimes sont les banques, les lecteurs, Bastien : pas d'immunité. L'<strong>abus de confiance</strong> sur tes droits d'auteur : là, l'immunité familiale joue, article 314-4. Elle ne sera pas poursuivie pour ça. Pareil pour le <strong>vol</strong> de ton dossier informatique, Bluetouff : vol au préjudice de son descendant, immunité, article 311-12. Mais rien ne t'empêche d'agir au <strong>civil</strong> pour récupérer l'argent. L'immunité est pénale.</p>
+<p>— Tout ça fait combien d'années ?</p>
+<p>— Quand on cumule, c'est le <strong>concours réel</strong> d'infractions : elle sera jugée pour tout en même temps, et on ne peut pas prononcer plus que le maximum le plus élevé. Ici, la perpétuité, pour l'empoisonnement aggravé de Bastien.</p>
+<div class="scene">❦</div>
+<p>Ambroise rassembla les fiches, une par une, et les empila soigneusement, comme on range un jeu de cartes.</p>
+<p>— Tu sais ce qui est le plus étrange ? dit-il. Je l'aimais. Pas comme une mère, je ne savais pas que c'en était une. Mais elle était là. Elle me disait que j'étais bon. Elle m'appelait « mon petit ». Et pendant douze ans, elle me volait, et je ne voyais rien, parce que je ne voulais rien voir.</p>
+<p>— Ce n'est pas ta faute.</p>
+<p>— C'est ma faute de ne jamais avoir rien lu. Ni mes contrats. Ni la lettre de Bastien. Ni personne. Je vivais dans un château plein de livres et je ne lisais rien de ce qui comptait.</p>
+<p>Nino fit le tour de la table. Il s'assit sur les genoux d'Ambroise, ce qu'il n'avait jamais fait, et lui prit le visage entre les mains.</p>
+<p>— Alors lis-moi, dit-il.</p>
+<p>Ambroise le regarda longtemps. Puis il l'embrassa, lentement, comme on lit une page qu'on veut garder par cœur. Ils montèrent sous les combles. Par le hublot, on voyait les vignes du Clos Montmartre et, au loin, les lumières de Pigalle, du boulevard de Clichy, de la rue de Douai où Madame Odette, sans doute, regardait une vieille revue en buvant du porto. Ambroise le déshabilla en lui demandant à chaque fois, comme la première nuit, et Nino lui répondit oui à chaque fois, et ils firent l'amour avec une lenteur grave, sans peur, comme deux personnes qui ont failli se perdre et qui viennent de se retrouver.</p>
+<p>En bas, Maigret dormait en travers de la porte d'entrée. Personne n'entrerait plus jamais sans sa permission.</p>
+<aside class="retenir"><h4>Ce que tu viens d'apprendre</h4><ul><li>Méthode du cas pratique : 1) qualifier (texte, condition préalable) ; 2) élément matériel (acte, résultat, causalité) ; 3) élément moral (intention ou faute) ; 4) circonstances aggravantes (victime, auteur, mode opératoire, résultat, mobile 132-76 et 132-77) ; 5) régime (peine, tentative, faits justificatifs, immunité familiale, repentis, prescription, personnes morales).</li><li>Empoisonnement : infraction formelle consommée par l'administration ; intention de tuer (2003) prouvée par indices objectifs (dose) ; mêmes aggravations que le meurtre (corrélation, 221-2 al. 2 : perpétuité).</li><li>Erreur sur la personne indifférente ; substances nuisibles (222-15) ou empoisonnement selon ce que croyait l'auteur.</li><li>Tentative d'empoisonnement : commencement d'exécution interrompu par une circonstance indépendante (« tentative de tentative »).</li><li>Immunité familiale : seulement les atteintes à la propriété (vol, escroquerie, abus de confiance au préjudice du descendant) ; jamais les atteintes aux personnes ; ni les infractions contre des tiers. Action civile possible.</li></ul></aside></section>
+<section class="chap" id="ch13"><header><div class="num">Épilogue</div><h2>Le Guide</h2><blockquote class="epi">« Texte, éléments constitutifs, répression. »</blockquote></header><p>La cour d'assises de Paris rendit son verdict un jeudi de juin, dix-huit mois plus tard, après neuf jours d'audience. Hélène Marchetti fut reconnue coupable de l'empoisonnement de Bastien Roux, en corrélation avec des délits, de la tentative d'empoisonnement de Nino Ferraro, d'administration de substances nuisibles, de complicité de violences aggravées, et de trois escroqueries. Réclusion criminelle à perpétuité, avec une période de sûreté de dix-huit ans.</p>
+<p>L'abus de confiance sur les droits d'Ambroise ne fut jamais jugé. Immunité familiale. Le tribunal judiciaire, au civil, ordonna la restitution de onze millions d'euros et la saisie de la maison de Saint-Jean-Cap-Ferrat.</p>
+<p>Ambroise n'avait pas regardé sa mère une seule fois pendant les neuf jours. Le dernier jour, à la sortie, il s'arrêta pourtant devant le box. Elle leva les yeux. Il dit simplement :</p>
+<p>— Je lirai tes lettres. Si tu m'écris. Je les lirai toutes.</p>
+<p>Puis il sortit, et prit la main de Nino dans la salle des pas perdus, devant les caméras.</p>
+<div class="scene">❦</div>
+<p>Le tome 13 parut en septembre. Il ne s'appelait pas <em>Lebrun</em>. Il s'appelait <em>Le Guide</em>.</p>
+<p>Le commissaire Lebrun y prenait sa retraite au chapitre premier, pour aller pêcher en Bretagne, et laissait la place à un étudiant en droit maladroit, qui racontait les crimes de Montmartre aux touristes avec une fausse moustache, et qui résolvait les affaires en récitant des articles du Code pénal. Il y avait un meurtre, un empoisonnement, un homicide routier, des tortures, un vol de données, une escroquerie au jugement, un abus de confiance sur un immeuble. Les professeurs de droit pénal le recommandaient à leurs étudiants. Les étudiants le lisaient en cachette pendant les TD.</p>
+<p>Il était dédié <em>À Bastien, qui a essayé. Et à N., qui m'a appris à lire.</em></p>
+<p>Sur la couverture, sous le nom d'Ambroise Vauquelin, il y avait un second nom, plus petit : <em>avec la collaboration juridique de Nino Ferraro.</em></p>
+<p>— Ce n'est pas une fausse qualité, avait dit Ambroise. C'est un abus de qualité vraie.</p>
+<p>— C'est un abus tout court.</p>
+<p>— Alors poursuis-moi.</p>
+<p>Les droits d'auteur du tome 13 furent versés, pour moitié, à une association d'aide aux victimes de soumission chimique fondée par Clémence, qui avait repris ses visites de Montmartre et dont le gérant de bar avait été condamné à douze ans. L'autre moitié servit à racheter l'immeuble de la rue Lepic acheté par Hélène avec l'argent volé. Ambroise en fit don à Madame Odette, qui y ouvrit, à quatre-vingt-neuf ans, une école de cancan pour seniors. Kevin n'y était pas invité.</p>
+<p>Le <em>Guide</em> devint le livre le plus vendu de l'année. Il obtint le prix du Quai des Orfèvres, que la commandante Kader remit elle-même, avec un discours de quatre minutes et un café froid.</p>
+<div class="scene">❦</div>
+<p>Le soir de la remise du prix, Ambroise ne se rendit pas au cocktail. Il mit une cape noire, un chapeau haut de forme et une fausse moustache, et il attendit à vingt-deux heures, avec une lanterne, au départ de la visite <em>Montmartre Criminel</em>, place des Abbesses.</p>
+<p>Nino, qui avait obtenu sa licence avec mention bien, dix-huit en droit pénal spécial, et commençait un master de sciences criminelles à Paris 2, faisait encore la visite le vendredi. Pour le plaisir. Et pour les pourboires.</p>
+<p>— Qu'est-ce que tu fais là ?</p>
+<p>— Je suis ton nouvel assistant. Tu racontes, je tiens la lanterne. J'ai demandé à l'agence. Quatorze euros de l'heure.</p>
+<p>— Tu es multimillionnaire.</p>
+<p>— Je suis en période d'essai. Je fais tout tomber, il paraît que c'est contagieux.</p>
+<p>Ils firent la visite ensemble. Ambroise fit tomber la lanterne deux fois, et sa moustache une fois, dans le panier à linge. Les touristes crurent que c'était prévu. Une Américaine reconnut Ambroise et faillit s'évanouir ; une Japonaise reconnut Nino, à cause de la couverture, et demanda un autographe.</p>
+<p>À minuit, ils arrivèrent à la dernière étape, l'étape signature : l'allée des Brouillards, devant la grille du château. Il y avait maintenant, accrochée aux volutes de fer forgé, une petite plaque de cuivre : <em>Ici est mort Bastien Roux, qui voulait dire la vérité.</em></p>
+<p>Les touristes partis, ils restèrent seuls sous le réverbère. Le brouillard montait, comme dans le nom.</p>
+<p>— Il y a une fenêtre, au premier étage, dit Ambroise. D'où un fantôme jetait des seaux d'eau sur les guides.</p>
+<p>— Je m'en souviens. C'était un fantôme très mal élevé.</p>
+<p>— Il voudrait s'excuser.</p>
+<p>Ambroise leva la tête. Nino suivit son regard. À la fenêtre du premier étage, Madame Odette, en robe de chambre rose et turban, souriait jusqu'aux oreilles, un seau à la main. À côté d'elle, la commandante Kader. Et Clémence. Et Maigret, qui ne comprenait rien mais remuait la queue.</p>
+<p>Le seau se renversa. Mais ce n'était pas de l'eau. C'étaient des pétales de rose, des centaines, qui tombèrent en pluie sur l'allée des Brouillards, sur la cape noire, sur les boucles de Nino.</p>
+<p>Quand Nino baissa les yeux, Ambroise était à genoux sur les pavés mouillés, avec une petite boîte ouverte dans la main.</p>
+<p>— Je me suis renseigné, dit-il, et sa voix tremblait. Un consentement libre et éclairé. Spécifique. Préalable. Et révocable. Je te demande avant. Je te demande à toi, et à personne d'autre. Tu es libre. Il y a un réverbère, tu es éclairé. Et tu pourras toujours dire non, demain, dans dix ans, quand tu veux.</p>
+<p>Nino le regarda, longtemps, sous la pluie de pétales. Puis il se mit à genoux lui aussi, en face de lui, sur les pavés, et prit son visage entre ses mains.</p>
+<p>— Révocable, dit-il. Mais je ne révoquerai pas.</p>
+<p>À la fenêtre, Madame Odette lança un cri de music-hall qu'on entendit jusqu'à Pigalle. Maigret aboya trois fois, ce qui faisait quatre fois dans sa vie. La commandante Kader, pour la première fois depuis que tout le monde la connaissait, finit son café pendant qu'il était encore chaud.</p>
+<p><em>Fin.</em></p>
+<aside class="retenir"><h4>Ce que tu viens d'apprendre</h4><ul><li>Réflexe pour chaque infraction : texte → éléments constitutifs (condition préalable, élément matériel, élément moral) → répression (peine, tentative, aggravations, faits justificatifs, immunités, repentis, prescription, personnes morales).</li><li>Seuils : meurtre 30 ans ; assassinat et meurtre aggravé perpétuité ; empoisonnement 30 ans ; homicide involontaire 3 ans (5) ; homicide routier 7 ans (10) ; tortures 15 ans ; violences 750 € / 1 500 € / 3 ans ; infirmité 10 ans ; mort 15 ans ; viol 15 ans (20) ; agression sexuelle 5 ans (10) ; vol 3 ans ; escroquerie et abus de confiance 5 ans et 375 000 €.</li><li>Prescription : crimes 20 ans ; délits 6 ans ; mineurs : 30 ans (crimes sexuels et tortures) ou 10 / 20 ans après la majorité ; report pour dissimulation (art. 9-1 CPP : 12 ans délits, 30 ans crimes).</li><li>Réformes : loi Fauchon (2000) ; mobiles discriminatoires (27 janv. 2017) ; prescription (27 févr. 2017) ; fin du droit de correction (2019) ; tentative d'abus de confiance (2020) ; mineurs et inceste (21 avr. 2021) ; homicide et blessures routiers (9 juill. 2025) ; consentement (6 nov. 2025) ; escroquerie criminelle (25 juin 2026).</li></ul></aside></section>
+</article>
+<footer>Histoire inventée pour réviser ; personnages et lieux privés fictifs. Les règles de droit suivent la fiche du cours, qui fait foi en cas de doute.</footer>
+
+<script>
+const S={get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const K="roman-penal", st=S.get(K,{law:true,box:true,size:19,night:false,last:null,read:[]});
+const b=document.body;
+function apply(){b.classList.toggle("law",st.law);b.classList.toggle("hidebox",!st.box);b.classList.toggle("night",st.night);
+  document.documentElement.style.setProperty("--fs",st.size+"px");
+  bLaw.classList.toggle("on",st.law);bBox.classList.toggle("on",st.box);bNight.classList.toggle("on",st.night);
+  document.querySelectorAll(".toc a").forEach(a=>a.classList.toggle("read",st.read.includes(a.getAttribute("href"))));
+  S.set(K,st)}
+bLaw.onclick=()=>{st.law=!st.law;apply()};
+bBox.onclick=()=>{st.box=!st.box;apply()};
+bNight.onclick=()=>{st.night=!st.night;apply()};
+bSize.onclick=()=>{st.size=st.size>=23?16:st.size+2;apply()};
+const dr=document.getElementById("drawer");
+bToc.onclick=()=>dr.classList.add("open");
+dr.querySelector(".shade").onclick=()=>dr.classList.remove("open");
+dr.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>dr.classList.remove("open")));
+// liens chapitre suivant / précédent
+const chs=[...document.querySelectorAll(".chap")];
+chs.forEach((c,i)=>{const n=document.createElement("div");n.className="next";
+  n.innerHTML=(i?`<a class="btn" href="#${chs[i-1].id}">← Précédent</a>`:"")+(i<chs.length-1?`<a class="btn pri" href="#${chs[i+1].id}">${chs[i+1].querySelector(".num").textContent} →</a>`:`<a class="btn pri" href="../fiches/penal.html">Revoir la fiche →</a>`);
+  c.appendChild(n)});
+// reprise de lecture
+if(st.last && document.getElementById(st.last)){const s=document.getElementById("start");s.textContent="Reprendre ("+document.querySelector("#"+st.last+" .num").textContent+") →";s.href="#"+st.last}
+// progression + chapitre courant
+const prog=document.getElementById("prog");
+let tick=false;
+addEventListener("scroll",()=>{if(tick)return;tick=true;requestAnimationFrame(()=>{tick=false;
+  const bk=document.getElementById("book"),r=bk.getBoundingClientRect(),h=bk.offsetHeight-innerHeight;
+  prog.style.width=Math.max(0,Math.min(100,-r.top/h*100))+"%";
+  let cur=null;chs.forEach(c=>{if(c.getBoundingClientRect().top<innerHeight*.4)cur=c.id});
+  if(cur&&cur!==st.last){st.last=cur;const prev=chs.findIndex(c=>c.id===cur)-1;if(prev>=0&&!st.read.includes("#"+chs[prev].id))st.read.push("#"+chs[prev].id);apply()}
+})},{passive:true});
+// info-bulles au toucher : un 2e toucher ferme
+document.querySelectorAll(".k").forEach(k=>k.addEventListener("click",e=>{if(document.activeElement===k&&k.dataset.open){k.blur();delete k.dataset.open}else{k.focus();k.dataset.open=1}}));
+apply();
+</script>
+</body>
+</html>
