@@ -11,6 +11,14 @@ Fiches de révision détaillées des cours de L3 droit (semestre 5, 2026-2027) :
 | Droit pénal spécial | [lire](fiches/penal.html) | [PDF](pdf/penal.pdf) |
 | Initiation au droit de la protection sociale | [lire](fiches/protec.html) | [PDF](pdf/protec.pdf) |
 
+## Romancé
+
+Chaque cours raconté comme un roman, avec toutes les notions dedans :
+
+- Droit des contrats spéciaux : [La Part des Anges](romans/contrats.html)
+
+Les chapitres sont dans `romans/src/<cours>/` ; `python3 romans/build_roman.py` régénère les pages.
+
 Ouvre `index.html` pour le site : liste des cours, recherche, suivi de progression et cartes de révision.
 
 Pour le publier avec GitHub Pages : Settings → Pages → Branch `main`, dossier `/ (root)`.

@@ -1,0 +1,19 @@
+{
+  "contrats": {
+    "title": "La Part des Anges",
+    "course": "Droit des contrats spéciaux",
+    "pitch": "Une sommelière, une boutique promise sur une serviette en papier, un restaurateur qui la lui prend. Vente, bail, prêt, dépôt, chantier, mandat, fiducie, viager et transaction : tout le cours, vécu de l'intérieur.",
+    "c": "#E8590C", "soft": "#FFF4E6", "deep": "#A63A00",
+    "cast": [
+      ["Nora Delacroix", "28 ans, sommelière, rêve d'ouvrir sa cave à vins"],
+      ["Gabriel Lenoir", "31 ans, restaurateur, achète la boutique que Nora voulait"],
+      ["Odette Vermeulen", "84 ans, ancienne chanteuse de cabaret, propriétaire de l'épicerie"],
+      ["Damien Vermeulen", "son neveu, agent immobilier, mandataire peu scrupuleux"],
+      ["Samia", "meilleure amie de Nora, en L3 de droit, révise les contrats spéciaux"],
+      ["Bertrand Lemaire", "79 ans, garagiste, amoureux d'Odette"],
+      ["Yanis Lenoir", "26 ans, petit frère de Gabriel, joueur"],
+      ["Maître Inès Lenoir", "avocate, sœur de Gabriel"],
+      ["Maître Hélène Castel", "notaire, place du Concert"]
+    ]
+  }
+}

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>__TITLE__ — __COURSE__ (version romancée)</title>
+<style>
+@font-face{font-family:"Fraunces";src:url("../assets/fonts/fraunces-latin-wght-normal.woff2") format("woff2");font-weight:100 900;font-style:normal}
+@font-face{font-family:"Fraunces";src:url("../assets/fonts/fraunces-latin-wght-italic.woff2") format("woff2");font-weight:100 900;font-style:italic}
+@font-face{font-family:"InterV";src:url("../assets/fonts/inter-latin-wght-normal.woff2") format("woff2");font-weight:100 900}
+:root{--c:__C__;--soft:__SOFT__;--deep:__DEEP__;--paper:#FBF8F2;--ink:#22201C;--muted:#6E6A62;--line:#E7E1D6;--card:#fff;--fs:19px}
+body.night{--paper:#16151A;--ink:#E9E4DA;--muted:#9C978E;--line:#2C2A31;--card:#1F1E24;--soft:#2A211B}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.6 InterV,system-ui,sans-serif;transition:background .3s,color .3s}
+a{color:inherit}
+/* barre */
+.bar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar .in{max-width:1100px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;gap:8px}
+.bar a.back{font:600 13px InterV;text-decoration:none;padding:7px 12px;border:1px solid var(--line);border-radius:99px;background:var(--card)}
+.bar .t{flex:1;font:600 14px Fraunces,serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 6px}
+.bar button,.bar a.back{white-space:nowrap}
+.bar button{font:600 13px InterV;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:7px 11px;cursor:pointer}
+.bar button.on{background:var(--c);border-color:var(--c);color:#fff}
+.prog{position:absolute;left:0;bottom:-1px;height:3px;background:var(--c);width:0}
+/* couverture */
+.hero{max-width:760px;margin:0 auto;padding:64px 24px 24px}
+.hero .kick{font:600 12px InterV;letter-spacing:.14em;text-transform:uppercase;color:var(--c)}
+.hero h1{font:600 clamp(44px,8vw,84px)/1 Fraunces,serif;letter-spacing:-.02em;margin:14px 0 10px}
+.hero h1 em{color:var(--c);font-weight:500}
+.hero .sub{font:italic 400 21px/1.45 Fraunces,serif;color:var(--muted);margin:0 0 22px}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.meta span{font:600 12.5px InterV;background:var(--soft);color:var(--deep);padding:6px 11px;border-radius:99px}
+body.night .meta span{color:#FFB98A}
+.hero .cta{display:flex;gap:10px;flex-wrap:wrap}
+.btn{font:600 14px InterV;text-decoration:none;border-radius:12px;padding:12px 16px;border:1px solid var(--line);background:var(--card);cursor:pointer;color:var(--ink)}
+.btn.pri{background:var(--c);border-color:var(--c);color:#fff}
+.how{margin:30px 0 0;padding:18px 20px;border-radius:18px;background:var(--card);border:1px solid var(--line);font-size:14.5px;color:var(--muted)}
+.how b{color:var(--ink)}
+.how .k{cursor:default}
+details.cast{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:4px 20px}
+details.cast summary{cursor:pointer;font:600 15px InterV;padding:14px 0}
+details.cast ul{list-style:none;padding:0;margin:0 0 16px}
+details.cast li{display:flex;gap:10px;padding:7px 0;border-top:1px dashed var(--line);font-size:14.5px}
+details.cast li b{min-width:150px;font-family:Fraunces,serif;font-size:16px}
+details.cast li span{color:var(--muted)}
+/* sommaire */
+.toc{max-width:760px;margin:26px auto 0;padding:0 24px}
+.toc h3{font:600 13px InterV;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+.toc ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}
+.toc a{display:block;text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:11px 14px;font:500 15px/1.3 Fraunces,serif;transition:transform .15s,border-color .15s}
+.toc a:hover{transform:translateY(-2px);border-color:var(--c)}
+.toc a span{display:block;font:600 11px InterV;letter-spacing:.08em;text-transform:uppercase;color:var(--c);margin-bottom:3px}
+.toc a.read{opacity:.55}
+.toc a.read span::after{content:" ✓"}
+/* tiroir */
+.drawer{position:fixed;inset:0;z-index:40;display:none}
+.drawer.open{display:block}
+.drawer .shade{position:absolute;inset:0;background:rgba(0,0,0,.35)}
+.drawer .panel{position:absolute;right:0;top:0;bottom:0;width:min(360px,88vw);background:var(--paper);padding:20px;overflow:auto;box-shadow:-10px 0 30px rgba(0,0,0,.15)}
+.drawer .panel ol{grid-template-columns:1fr}
+/* texte */
+article{max-width:680px;margin:0 auto;padding:10px 24px 80px}
+.chap{padding-top:70px}
+.chap header{text-align:center;margin-bottom:34px}
+.chap .num{font:600 12px InterV;letter-spacing:.16em;text-transform:uppercase;color:var(--c)}
+.chap h2{font:600 clamp(32px,5vw,46px)/1.08 Fraunces,serif;margin:10px 0 16px;letter-spacing:-.01em}
+.epi{margin:0 auto;max-width:520px;font:italic 400 16px/1.5 Fraunces,serif;color:var(--muted);border:0;padding:0}
+.chap p{font:400 var(--fs)/1.72 Fraunces,serif;margin:0 0 1.05em;hyphens:auto;-webkit-hyphens:auto;text-align:justify}
+.chap header + p::first-letter{float:left;font:600 4.1em/.8 Fraunces,serif;color:var(--c);padding:.08em .1em 0 0}
+.chap strong{font-weight:650}
+.scene{text-align:center;color:var(--c);font-size:20px;margin:1.6em 0;letter-spacing:.5em}
+/* termes juridiques */
+.k{position:relative;cursor:help;outline:none}
+body.law .k{background:linear-gradient(transparent 58%,color-mix(in srgb,var(--c) 26%,transparent) 58%);border-radius:2px}
+body.law .k::after{content:"§";font:700 .62em InterV;color:var(--c);vertical-align:super;margin-left:1px}
+.k[data-r]:hover::before,.k[data-r]:focus::before{content:attr(data-r);position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%);
+  width:max-content;max-width:270px;background:#22201C;color:#fff;font:500 13px/1.4 InterV;padding:8px 11px;border-radius:10px;z-index:30;text-align:left;box-shadow:0 8px 24px rgba(0,0,0,.2);white-space:normal}
+body:not(.law) .k::before{display:none}
+/* encadrés */
+.retenir{margin:2.2em 0 0;background:var(--soft);border:1px solid color-mix(in srgb,var(--c) 30%,transparent);border-radius:20px;padding:20px 22px 10px}
+body.night .retenir{background:#231C17}
+.retenir h4{margin:0 0 10px;font:700 12px InterV;letter-spacing:.12em;text-transform:uppercase;color:var(--deep)}
+body.night .retenir h4{color:#FFB98A}
+.retenir ul{margin:0;padding-left:18px}
+.retenir li{font:400 14.5px/1.55 InterV;margin-bottom:9px}
+body.hidebox .retenir{display:none}
+.next{display:flex;justify-content:space-between;gap:10px;margin-top:26px}
+.next a{flex:1;text-align:center}
+footer{max-width:680px;margin:0 auto;padding:30px 24px 60px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+@media (max-width:600px){.bar .t{display:none}.bar .lbl{display:none}.bar .in{gap:6px;padding:9px 12px}.bar .in>a.back{margin-right:auto}.chap p{text-align:left}details.cast li{flex-direction:column;gap:0}
+  .k[data-r]:hover::before,.k[data-r]:focus::before{position:fixed;left:12px;right:12px;bottom:16px;top:auto;transform:none;width:auto;max-width:none;font-size:14px;padding:12px 14px}}
+@media print{.bar,.drawer,.next,.toc{display:none}}
+</style>
+</head>
+<body class="law">
+<div class="bar"><div class="in">
+  <a class="back" href="../index.html">← Cours</a>
+  <div class="t">__TITLE__ · __COURSE__</div>
+  <button id="bLaw" class="on" title="Surligner les notions juridiques">§<span class="lbl"> Repères</span></button>
+  <button id="bBox" class="on" title="Afficher les encadrés de fin de chapitre">📌</button>
+  <button id="bSize" title="Taille du texte">Aa</button>
+  <button id="bNight" title="Mode nuit">☾</button>
+  <button id="bToc" title="Chapitres">☰</button>
+</div><div class="prog" id="prog"></div></div>
+
+<header class="hero">
+  <div class="kick">Version romancée · __COURSE__</div>
+  <h1>__TITLE__</h1>
+  <p class="sub">__PITCH__</p>
+  <div class="meta"><span>__NCH__ chapitres</span><span>≈ __MINUTES__ min de lecture</span><span>Tout le cours dedans</span></div>
+  <div class="cta">
+    <a class="btn pri" id="start" href="#ch1">Commencer la lecture →</a>
+    <a class="btn" href="../fiches/__SLUG__.html">Lire la fiche classique</a>
+  </div>
+  <div class="how"><b>Comment ça marche.</b> Les notions du cours sont <span class="k" tabindex="0" data-r="Survole ou touche un mot surligné : l'article ou la règle s'affiche.">surlignées</span> : survole-les (ou touche-les sur téléphone) pour voir l'article ou la règle. Chaque chapitre se termine par un encadré « Ce que tu viens d'apprendre ». Le bouton § coupe les surlignages si tu veux juste lire l'histoire.</div>
+  <details class="cast"><summary>Les personnages</summary><ul>__CAST__</ul></details>
+</header>
+
+<nav class="toc" id="toc"><h3>Chapitres</h3><ol>__TOC__</ol></nav>
+
+<div class="drawer" id="drawer"><div class="shade"></div><div class="panel"><nav class="toc"><h3>Chapitres</h3><ol>__TOC__</ol></nav></div></div>
+
+<article id="book">
+__BODY__
+</article>
+<footer>Histoire inventée pour réviser ; personnages et lieux privés fictifs. Les règles de droit suivent la fiche du cours, qui fait foi en cas de doute.</footer>
+
+<script>
+const S={get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const K="roman-__SLUG__", st=S.get(K,{law:true,box:true,size:19,night:false,last:null,read:[]});
+const b=document.body;
+function apply(){b.classList.toggle("law",st.law);b.classList.toggle("hidebox",!st.box);b.classList.toggle("night",st.night);
+  document.documentElement.style.setProperty("--fs",st.size+"px");
+  bLaw.classList.toggle("on",st.law);bBox.classList.toggle("on",st.box);bNight.classList.toggle("on",st.night);
+  document.querySelectorAll(".toc a").forEach(a=>a.classList.toggle("read",st.read.includes(a.getAttribute("href"))));
+  S.set(K,st)}
+bLaw.onclick=()=>{st.law=!st.law;apply()};
+bBox.onclick=()=>{st.box=!st.box;apply()};
+bNight.onclick=()=>{st.night=!st.night;apply()};
+bSize.onclick=()=>{st.size=st.size>=23?16:st.size+2;apply()};
+const dr=document.getElementById("drawer");
+bToc.onclick=()=>dr.classList.add("open");
+dr.querySelector(".shade").onclick=()=>dr.classList.remove("open");
+dr.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>dr.classList.remove("open")));
+// liens chapitre suivant / précédent
+const chs=[...document.querySelectorAll(".chap")];
+chs.forEach((c,i)=>{const n=document.createElement("div");n.className="next";
+  n.innerHTML=(i?`<a class="btn" href="#${chs[i-1].id}">← Précédent</a>`:"")+(i<chs.length-1?`<a class="btn pri" href="#${chs[i+1].id}">${chs[i+1].querySelector(".num").textContent} →</a>`:`<a class="btn pri" href="../fiches/__SLUG__.html">Revoir la fiche →</a>`);
+  c.appendChild(n)});
+// reprise de lecture
+if(st.last && document.getElementById(st.last)){const s=document.getElementById("start");s.textContent="Reprendre ("+document.querySelector("#"+st.last+" .num").textContent+") →";s.href="#"+st.last}
+// progression + chapitre courant
+const prog=document.getElementById("prog");
+let tick=false;
+addEventListener("scroll",()=>{if(tick)return;tick=true;requestAnimationFrame(()=>{tick=false;
+  const bk=document.getElementById("book"),r=bk.getBoundingClientRect(),h=bk.offsetHeight-innerHeight;
+  prog.style.width=Math.max(0,Math.min(100,-r.top/h*100))+"%";
+  let cur=null;chs.forEach(c=>{if(c.getBoundingClientRect().top<innerHeight*.4)cur=c.id});
+  if(cur&&cur!==st.last){st.last=cur;const prev=chs.findIndex(c=>c.id===cur)-1;if(prev>=0&&!st.read.includes("#"+chs[prev].id))st.read.push("#"+chs[prev].id);apply()}
+})},{passive:true});
+// info-bulles au toucher : un 2e toucher ferme
+document.querySelectorAll(".k").forEach(k=>k.addEventListener("click",e=>{if(document.activeElement===k&&k.dataset.open){k.blur();delete k.dataset.open}else{k.focus();k.dataset.open=1}}));
+apply();
+</script>
+</body>
+</html>
