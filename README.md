@@ -15,7 +15,7 @@ Fiches de révision détaillées des cours de L3 droit (semestre 5, 2026-2027) :
 
 Chaque cours raconté comme un roman, avec toutes les notions dedans :
 
-- Droit des contrats spéciaux : [La Part des Anges](romans/contrats.html)
+- Droit des contrats spéciaux : [Solo consensu](romans/contrats.html)
 
 Les chapitres sont dans `romans/src/<cours>/` ; `python3 romans/build_roman.py` régénère les pages.
 
