@@ -48,5 +48,59 @@
         "le chat roux de Paulette, maladroit lui aussi"
       ]
     ]
+  },
+  "proces": {
+    "title": "Au nom du peuple",
+    "course": "Grands principes du procès interne et européen",
+    "pitch": "Noé, étudiant et serveur maladroit à Montmartre, est accusé d'avoir volé un dessin de Valadon. Raphaël, ténor du barreau arrogant qui n'a pas perdu depuis sept ans, le défend pour gagner un pari. Accès au juge, impartialité, contradictoire, motivation, exécution : tout le procès, de la garde à vue au verdict.",
+    "c": "#6741D9",
+    "soft": "#F3F0FF",
+    "deep": "#4527A0",
+    "cast": [
+      [
+        "Noé Ferrand",
+        "23 ans, L3 de droit, serveur au Chat Perché rue Lepic, vit à Pigalle au-dessus d'un sex-shop"
+      ],
+      [
+        "Raphaël Saint-Aubin",
+        "36 ans, ténor du barreau pénal, penthouse avenue Junot, n'aime que gagner"
+      ],
+      [
+        "Sylvie Ferrand",
+        "mère de Noé, sourde, aquarelliste, lit sur les lèvres"
+      ],
+      [
+        "Yasmine",
+        "collègue de Noé au café, drag queen le soir"
+      ],
+      [
+        "Clémence Arnaud",
+        "vice-procureure, rivale de Raphaël"
+      ],
+      [
+        "Ophélie Marchetti",
+        "galeriste rue Lepic"
+      ],
+      [
+        "Gaspard Saint-Aubin",
+        "père de Raphaël, marchand d'art avenue Matignon"
+      ],
+      [
+        "Hélène Boisseau",
+        "présidente de la 10e chambre correctionnelle"
+      ],
+      [
+        "Antoine Mercier",
+        "juge, ex de Raphaël"
+      ],
+      [
+        "Lucas",
+        "9 ans, le petit voisin de Noé"
+      ],
+      [
+        "Josiane",
+        "gérante du sex-shop, et de sa caméra"
+      ]
+    ]
   }
 }
