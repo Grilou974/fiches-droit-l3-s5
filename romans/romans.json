@@ -102,5 +102,47 @@
         "gérante du sex-shop, et de sa caméra"
       ]
     ]
+  },
+  "dip": {
+    "title": "Le prince en exil",
+    "course": "Droit international public approfondi",
+    "pitch": "Elio, étudiant qui dessine les touristes place du Tertre, fait un portrait raté d'un prince d'une micro-principauté alpine. Coup d'État, gouvernement en exil dans sa chambre de bonne de Pigalle, traités, coutume, CIJ et recours à la force : tout le cours, de Westphalie à La Haye.",
+    "c": "#1971C2",
+    "soft": "#E7F5FF",
+    "deep": "#0B4F8A",
+    "cast": [
+      [
+        "Elio Martin",
+        "22 ans, L3 de droit, portraitiste place du Tertre le week-end, chambre de bonne rue Frochot (Pigalle)"
+      ],
+      [
+        "Casimir « Caz » de Haut-Valberg",
+        "31 ans, prince régent d'une principauté alpine, hôtel particulier avenue Frochot, ne s'intéresse à personne"
+      ],
+      [
+        "Bénédicte Orsoni",
+        "74 ans, conseillère juridique de la principauté, ancienne membre de la CDI"
+      ],
+      [
+        "L'archiduc Ottokar",
+        "oncle de Caz, putschiste"
+      ],
+      [
+        "Le prince Léopold",
+        "père de Caz, malade"
+      ],
+      [
+        "Hélène de Haut-Valberg",
+        "mère de Caz, morte en 2009, auteure de carnets"
+      ],
+      [
+        "Le comte Ilya Volnar",
+        "attaché culturel ostravien, charmeur"
+      ],
+      [
+        "Anja et Mila Weller",
+        "journaliste valbergeoise réfugiée et sa fille de 12 ans"
+      ]
+    ]
   }
 }
